@@ -69,7 +69,7 @@ class TeamMemberResource extends Resource
                     ->label('Role'),
                 TextColumn::make('order')->sortable()
                     ->searchable()
-                    ->label('Numbering'),
+                    ->label('Order'),
             ])
             ->filters([
                 // Add any filters if necessary
