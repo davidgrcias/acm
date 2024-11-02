@@ -3,7 +3,13 @@
     'size' => 'md',
 ])
 
+@php
+    $user = auth()->user();
+    $avatarUrl = $user && $user->picture ? asset('storage/' . $user->picture) : asset('path/to/default/avatar.jpg');
+@endphp
+
 <img
+    src="{{ $avatarUrl }}"
     {{
         $attributes
             ->class([

@@ -59,7 +59,7 @@ class TeamMemberResource extends Resource
                     ->label('Image')
                     ->disk('public')
                     ->url(fn($record) => asset('storage/' . $record->member_image))
-                    ->size(100, 100)->circular(),
+                    ->size(100, 100)->circular()->openUrlInNewTab(),
                 TextColumn::make('name')
                     ->sortable()
                     ->searchable()

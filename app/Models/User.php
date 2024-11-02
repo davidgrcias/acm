@@ -6,9 +6,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Filament\Pages\Auth\EditProfile;
+use Filament\Panel;
+
 
 class User extends Authenticatable
 {
+    public function panel(Panel $panel): Panel
+    {
+        return $panel
+            // ...
+            ->login()
+            ->registration()
+            ->passwordReset()
+            ->emailVerification()
+            ->profile();
+    }
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->avatar_url;
+    }
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
@@ -21,6 +38,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'picture',
     ];
 
     /**

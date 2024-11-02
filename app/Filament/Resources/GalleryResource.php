@@ -56,7 +56,7 @@ class GalleryResource extends Resource
                     ->label('Image')
                     ->disk('public')
                     ->url(fn($record) => asset('storage/' . $record->image))
-                    ->width(320)->height(180),
+                    ->width(320)->height(180)->openUrlInNewTab(),
                 TextColumn::make('label')
                     ->sortable()
                     ->searchable()

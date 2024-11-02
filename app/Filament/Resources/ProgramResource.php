@@ -45,7 +45,7 @@ class ProgramResource extends Resource
                     '16:9', // You can define aspect ratios that are required
                     '4:3',
                     '1:1',
-                ])->label("Program Image")->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
+                ])->label("Program Image")->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])->openUrlInNewTab(),
         ]);
     }
 

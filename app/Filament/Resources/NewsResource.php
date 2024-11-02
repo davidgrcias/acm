@@ -70,7 +70,7 @@ class NewsResource extends Resource
                     ->label('Cover Image')
                     ->disk('public')  // Confirm this is correctly set in filesystems config
                     ->url(fn($record) => asset('storage/' . $record->cover_image))
-                    ->size(100, 100),
+                    ->size(100, 100)->openUrlInNewTab(),
                 TextColumn::make('title')
                     ->sortable()
                     ->searchable()
