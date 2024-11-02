@@ -20,6 +20,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Forms\Components\Select;
 
+
 class NewsResource extends Resource
 {
     protected static ?string $model = News::class;
@@ -36,9 +37,15 @@ class NewsResource extends Resource
                 ->required()
                 ->columnSpan(2),
             Forms\Components\FileUpload::make('cover_image')
-                ->columns(4)
                 ->directory('cover_image_news')
-                ->storeFileNamesIn('original_filename'),
+                ->storeFileNamesIn('original_filename')
+                ->image()
+                ->imageEditor()
+                ->imageEditorAspectRatios([
+                    '16:9',
+                    '4:3',
+                    '1:1',
+                ])->label("Cover Image (16x9)")->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
             Forms\Components\TextInput::make('author')
                 ->required()
                 ->maxLength(255),
@@ -52,6 +59,8 @@ class NewsResource extends Resource
                 ->label('Status'),
         ]);
     }
+
+
 
     public static function table(Table $table): Table
     {
@@ -78,7 +87,7 @@ class NewsResource extends Resource
                     ->label('Content'),
                 TextColumn::make('created_at')
                     ->dateTime() // Format as a date-time column
-                    ->label('Published Date')
+                    ->label('Created Date')
                     ->sortable(),
                 SelectColumn::make('status')
                     ->options([
@@ -88,7 +97,8 @@ class NewsResource extends Resource
                     ])
                     ->sortable()
                     ->searchable()
-                    ->label('Status'),
+                    ->label('Status')
+                    ->default('draft'),
             ])
             ->filters([
                 // Add any filters if necessary
@@ -102,6 +112,11 @@ class NewsResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    protected function redirectAfterCreate(): string
+    {
+        return $this->getResource()::getUrl('index');  // Redirects to the index page
     }
 
     public static function getRelations(): array

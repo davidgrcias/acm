@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Filament\Resources\NewsResource\Pages;
+namespace App\Filament\Resources\ProgramResource\Pages;
 
-use App\Filament\Resources\NewsResource;
+use App\Filament\Resources\ProgramResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListNews extends ListRecords
+class ListPrograms extends ListRecords
 {
-    protected static string $resource = NewsResource::class;
+    protected static string $resource = ProgramResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),
-
         ];
     }
 }

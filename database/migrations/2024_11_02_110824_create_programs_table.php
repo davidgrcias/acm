@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->text('text');
-            $table->string('cover_image')->nullable();
-            $table->string('author');
-            $table->enum('status', ['draft', 'reviewing', 'published'])->default('draft')->nullable();
+            $table->string('title');
+            $table->text('description');
+            $table->string('image')->nullable();  // Optional: use if images are not mandatory
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('programs');
     }
 };
