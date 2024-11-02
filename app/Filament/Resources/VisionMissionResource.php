@@ -19,7 +19,7 @@ class VisionMissionResource extends Resource
 {
     protected static ?string $model = VisionMission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
 
     public static function form(Form $form): Form
     {
@@ -32,6 +32,7 @@ class VisionMissionResource extends Resource
                     ])
                     ->required()
                     ->label('Category'),
+
                 TextInput::make('number')
                     ->required()
                     ->numeric()
@@ -39,12 +40,13 @@ class VisionMissionResource extends Resource
                     ->rules([
                         'required',
                         'numeric',
-                        Rule::unique('vision_missions')
+                        Rule::unique('vision_missions', 'number')
                             ->where(function ($query) {
-                                return $query->where('category', request()->input('category'));
+                                $query->where('category', request()->input('category'));
                             })
                             ->ignore(request()->route('record'))
                     ]),
+
                 Textarea::make('content')
                     ->required()
                     ->label('Content'),

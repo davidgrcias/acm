@@ -21,14 +21,4 @@ class VisionMission extends Model
         'number',
         'category',
     ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'category' => 'string',
-        'number' => 'integer',
-    ];
 }
