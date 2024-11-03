@@ -10,6 +10,22 @@ Route::get('/login', function () {
 /* end david */
 
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function() {
+    return view("index", ['title' => 'Home']);
+});
+
+Route::get('/about', function() {
+    return view("about", ['title' => 'About Us']);
+});
+
+Route::get('/visimisi', function() {
+    return view("visimisi", ['title' => 'Visi & Misi']);
+});
+
+Route::get('/activity', function() {
+    return view("activity", ['title' => 'Our Activity']);
+});
+
+Route::get('/gallery', function() {
+    return view("gallery", ['title' => 'Gallery']);
 });
