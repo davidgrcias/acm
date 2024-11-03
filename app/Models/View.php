@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class View extends Model
 {
@@ -37,4 +38,9 @@ class View extends Model
         'linktree_link',
         'gmail_link',
     ];
+
+    public function view(): HasOne
+    {
+        return $this->hasOne(View::class);
+    }
 }
