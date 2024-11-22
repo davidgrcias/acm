@@ -1,110 +1,160 @@
 <x-layout>
-    <x-slot:title>Home</x-slot:title>
+    <x-slot:title>{{ $title }}</x-slot:title>
 
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        .hero {
-            position: relative;
-            background: url('{{ asset('uploads/Indonesia.jpeg') }}') no-repeat center center/cover;
-            height: 400px;
-            border-radius: 15px; 
-            margin: 0 20px; 
-            margin-top: 20px;
+        body {
+            background: #f2f2f2;
+        }
+
+        @keyframes slide {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .logos {
             overflow: hidden;
+            padding: 60px 0;
+            background: white;
+            white-space: nowrap;
+            position: relative;
         }
 
-        .hero-overlay {
+        .logos:before,
+        .logos:after {
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparan */
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
+            width: 250px;
+            height: 100%;
+            content: "";
             z-index: 2;
-            text-align: left; /* Teks rata kiri */
-            color: white;
-            padding: 40px; /* Memberikan ruang di sekitar teks */
         }
 
-        .hero-content h2 {
-            font-size: 1.5em;
-            color: #28a745; /* Warna hijau untuk teks Ark Care Ministry */
-            margin-bottom: 10px;
+        .logos:before {
+            left: 0;
+            background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
         }
 
-        .hero-content h1 {
-            font-size: 3em;
-            font-weight: bold;
+        .logos:after {
+            right: 0;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+        }
+
+        .logos:hover .logos-slide {
+            animation-play-state: paused;
+        }
+
+        .logos-slide {
+            display: inline-block;
+            animation: 35s slide infinite linear;
+            white-space: nowrap;
+        }
+
+        .logos-slide img {
+            height: 120px;
             margin: 0;
         }
 
-        .hero-content p {
-            font-size: 1.2em;
-            margin: 10px 0 20px;
+        .container-fotowelcome {
+            background-image: url('/images/home.jpg');
+            width: 90%;
+            padding: 90px;
+            background-color: green; /* Change to image as background */
+            border-radius: 50px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
         }
 
-        .hero-content button {
-            background-color: #d9534f;
+        a.tombol-about {
+            background-color: #E23917;
             color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-
-        .hero-content button:hover {
-            background-color: #c9302c;
-        }
-
-        .quote-section {
-            background: #fff;
-            padding: 30px 20px;
+            border-radius: 50px;
+            padding: 10px;
+            width: 224px;
             text-align: center;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            opacity: 86%;
         }
 
-        .quote-section p {
-            font-size: 1.1em;
-            color: #444;
-            margin: 10px 0;
+        a.tombol-about:hover {
+            background-color: white;
+            color: black;
+            transition: 0.5s;
         }
 
-        .quote-section .author {
-            margin-top: 15px;
-            font-style: italic;
-            color: #777;
+        .quotes {
+            padding: 30px;
+            margin: 30px;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            align-text: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 20px;
         }
     </style>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h2>Ark Care Ministry</h2>
-            <h1>Welcome to ACM!</h1>
-            <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
-            <a href="{{ url('/about') }}">
-                <button>About us</button>
-            </a>            
+    <div class="container-home">
+        <!-- Welcome Section -->
+        <div class="container-fotowelcome">
+            <h3>Welcome to<br/>ARK Care Ministry!</h3>
+            <p>Gloria dei homo vivens<br/>
+            Seeking the peace and prosperity of the city</p><br/>
+            <a href="/about" class="tombol-about">About Us</a>
+        </div>
+
+        <!-- Quotes Section -->
+        <div class="quotes" align="center">
+            <p>True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry
+                it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds 
+                up that which is wounded, it has become all things to all creatures
+                <br/><br/>
+                Menno Simmons<br/>
+            </p>
+        </div>
+
+        <!-- Sliding Logos Carousel Section -->
+        <div class="logos">
+            <div class="logos-slide">
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+            </div>
+
+            <div class="logos-slide">
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+            </div>
         </div>
     </div>
 
-    <!-- Quote Section -->
-    <div class="quote-section">
-        <p>True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry, it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds up that which is wounded, it has become all things to all creatures.</p>
-        <p class="author">- Menno Simmons</p>
-    </div>
+    <script>
+        var copy = document.querySelector(".logos-slide").cloneNode(true);
+        document.querySelector(".logos").appendChild(copy);
+    </script>
 </x-layout>
