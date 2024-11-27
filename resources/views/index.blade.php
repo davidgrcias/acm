@@ -106,6 +106,40 @@
             flex-direction: column;
             font-size: 20px;
         }
+        .join-us-section {
+            padding: 30px;
+            margin: 30px;
+            width: 90%;
+            display: flex;
+            align-items: center;
+            align-text: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 20px;
+    }
+
+    .join-us-section p {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .join-us-button {
+        display: inline-block;
+        padding: 15px 50px; /* Padding lebih besar untuk memperlebar tombol */
+        background-color: #28a745; /* Hijau */
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 30px;
+        transition: background-color 0.3s ease;
+        width: auto; /* Sesuaikan dengan panjang teks */
+    }
+
+    .join-us-button:hover {
+        background-color: #218838; /* Hijau lebih gelap saat hover */
+    }
     </style>
 
     <div class="container-home">
@@ -127,7 +161,6 @@
             </p>
         </div>
 
-        <!-- Sliding Logos Carousel Section -->
         <div class="logos">
             <div class="logos-slide">
                 <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
@@ -153,8 +186,18 @@
         </div>
     </div>
 
+    <div class="join-us-section" align="center">
+        <p>
+            Join us in making a difference! Together, we can create a positive impact and support those in need. 
+            Be a part of something meaningful.
+            <br/><br/>
+            <a href="/join" class="join-us-button">Join Us!</a>
+        </p>
+    </div>
+
     <script>
         var copy = document.querySelector(".logos-slide").cloneNode(true);
         document.querySelector(".logos").appendChild(copy);
     </script>
 </x-layout>
+
