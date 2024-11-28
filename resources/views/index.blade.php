@@ -94,5 +94,9 @@
                 @endforeach
             </div>
         </div>
+        <div class="testimoni">
+            <h3 style="color: #443333;">What they say about ACM?</h3>
+            <!-- Buat testimoni: kakak RBA baik-baik yaa -->
+        </div>
     </div>
 </x-layout>
