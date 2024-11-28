@@ -3,7 +3,6 @@
     <x-slot:title>{{  $title }}</x-slot:title>
     <style>
         .container-fotowelcome {
-            /*background-image: url('../Resources/');*/
             background-color: green;
             width: 90%;
             padding: 90px;
@@ -25,7 +24,7 @@
             text-align: center;
             opacity: 86%;
         }
-        a hover{
+        a:hover{
             background-color: white;
             color: black;
             transition: 0.5s;
@@ -40,6 +39,18 @@
             justify-content: center;
             flex-direction: column;
             font-size: 20px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .ourprogram{
+            background-color: #443333;
+            align-items: center;
+            align-text:center;
+            padding-top: 30px;
+            padding-bottom:30px;
+        }
+        .ourprogram h3, h6{
+            text-align: center;
         }
     </style>
     <div class="container-home">
@@ -49,43 +60,39 @@
             Seeking the peace and prosperity of the city</p><br/>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
-        <div class="quotes" align="center">
-            <p style="color:black;">True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry
+        <div class="quotes">
+            <p style="color:black;" align="center">True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry
                 it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds 
                 up that which is wounded, it has become all things to all creatures
                 <br/><br/>
             </p>
             <p>Menno Simmons<br/></p>
         </div>
-        <!--yg carousel sampe join us dah sama nanda-->
+
+        <!-- Our Program Section -->
         <div class="ourprogram">
-            <h3>Our Program</h3>
-            <h6>We help those in need</h6>
-            <div class="beritaourprogram">
-                <div id="newsCarousel" class="carousel slide" data-bs-interval="false">
-                    <div class="carousel-inner">
-                        @php $i = 0; @endphp
-                        @foreach ($fillables as $fillable)
-                            <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
-                                <div class="news-content">
-                                    <img src="{{ asset($newsItem->photo) }}" class="d-block w-100" alt="{{ $newsItem->title }}">
-                                    <h4>{{ $newsItem->title }}</h4>
-                                    <p>{{ $newsItem->description }}</p>
-                                </div>
+            <h3 class="text-4xl font-bold text-white mb-4">Our Program</h3>
+            <h6 class="text-xl mb-12" style="color: #FFAB23;">We help those in need</h6>
+
+            <div class="flex items-center justify-center gap-8">
+                @foreach ($programs as $program)
+                <div class="bg-white rounded-2xl overflow-hidden w-[300px] h-[400px] shadow-lg">
+                    <div class="relative h-1/2">
+                        @if ($program->image)
+                            <img src="{{ asset($program->image) }}" alt="{{ $program->title }}" class="w-full h-full object-cover" />
+                        @else
+                            <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-4xl font-bold">
+                                No Image
                             </div>
-                            @php $i++; @endphp
-                        @endforeach
+                        @endif
                     </div>
-                    <a class="carousel-control-prev" href="#newsCarousel" role="button" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#newsCarousel" role="button" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </a>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">{{ $program->title }}</h4>
+                        <p class="text-gray-600 text-sm line-clamp-3">{{ $program->description }}</p>
+                    </div>
                 </div>
+                @endforeach
             </div>
-        </div>  
+        </div>
     </div>
 </x-layout>
