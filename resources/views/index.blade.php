@@ -1,12 +1,12 @@
-<!--HOME-john-->
 <x-layout>
-    <x-slot:title>{{  $title }}</x-slot:title>
+    <x-slot:title>{{ $title }}</x-slot:title>
+
     <style>
         .container-fotowelcome {
             background-color: green;
             width: 90%;
             padding: 90px;
-            border-radius:50px;
+            border-radius: 50px;
             margin-top: 30px;
             margin-bottom: 30px;
             margin-left: auto;
@@ -15,261 +15,70 @@
             justify-content: center;
             flex-direction: column;
         }
-        a.tombol-about{
+
+        a.tombol-about {
             background-color: #E23917;
             color: white;
             border-radius: 50px;
             padding: 10px;
-            width:224px;
+            width: 224px;
             text-align: center;
             opacity: 86%;
         }
-        a:hover{
+
+        a:hover {
             background-color: white;
             color: black;
             transition: 0.5s;
         }
-        .quotes{
-            padding:30px;
-            margin:30px;
-            width:90%;
+
+        .quotes {
+            padding: 30px;
+            margin: 30px;
+            width: 90%;
             display: flex;
             align-items: center;
-            align-text:center;
             justify-content: center;
             flex-direction: column;
             font-size: 20px;
-            margin-left:auto;
-            margin-right:auto;
-        }
-        
-        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style-type: none;
-            text-decoration: none;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        :root {
-            --primary: #ec994b;
-            --white: #ffffff;
-            --bg: #f5f5f5;
-        }
-
-        @media (min-width: 1440px) {
-            html {
-                zoom: 1.5;
-            }
-        }
-
-        @media (min-width: 2560px) {
-            html {
-                zoom: 1.7;
-            }
-        }
-
-        @media (min-width: 3860px) {
-            html {
-                zoom: 2.5;
-            }
-        }
-
-        ::-webkit-scrollbar {
-            width: 1.3rem;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            border-radius: 1rem;
-            background: #797979;
-            transition: all 0.5s ease-in-out;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #222224;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f9f9f9;
-        }
-
-        .container-slider {
-            max-width: 124rem;
-            padding: 0 1rem;
-            margin: 0 auto;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .section-heading {
-            font-size: 3rem;
-            color: var(--primary);
-            padding: 2rem 0;
-        }
-
-        #programslider {
-            padding: 4rem 0;
-        }
-
-        @media (max-width:1440px) {
-        #programslider {
-            padding: 7rem 0;
-        }
-        }
-
-        #programslider .programslider-slider {
-            height: 52rem;
-            padding: 2rem 0;
-            position: relative;
-        }
-
-        @media (max-width:500px) {
-            #programslider .programslider-slider {
-                height: 45rem;
-            }
-        }
-
-        .programslider-slide {
-            width: 37rem;
-            height: 42rem;
-            position: relative;
-        }
-
-        @media (max-width:500px) {
-            .programslider-slide {
-                width: 28rem !important;
-                height: 36rem !important;
-            }
-            .programslider-slide .programslider-slide-img img {
-                width: 28rem !important;
-                height: 36rem !important;
-            }
-        }
-
-        .programslider-slide .programslider-slide-img img {
-            width: 37rem;
-            height: 42rem;
-            border-radius: 2rem;
-            object-fit: cover;
-        }
-
-        .programslider-slide .programslider-slide-content {
-            position: absolute;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-        }
-
-        .programslider-slide-content .programdesc .programtitle {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            color: var(--white);
-        }
-
-        .programslider-slide-content .programslider-slide-content-bottom {
-            position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            color: var(--white);
-        }
-
-        .swiper-slide-shadow-left,
-        .swiper-slide-shadow-right {
-            display: none;
-        }
-
-        .programslider-slider-control {
-            position: relative;
-            bottom: 2rem;
+        .carousel-item {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px;
         }
 
-        .programslider-slider-control .swiper-button-next {
-            left: 58% !important;
-            transform: translateX(-58%) !important;
+        .carousel-item .card {
+            flex: 1;
+            margin: 0 5px;
         }
 
-        @media (max-width:990px) {
-            .programslider-slider-control .swiper-button-next {
-                left: 70% !important;
-                transform: translateX(-70%) !important;
+        @media (max-width: 768px) {
+            .carousel-item .card {
+                width: 45%;
             }
         }
 
-        @media (max-width:450px) {
-            .programslider-slider-control .swiper-button-next {
-                left: 80% !important;
-                transform: translateX(-80%) !important;
+        @media (max-width: 576px) {
+            .carousel-item .card {
+                width: 100%;
             }
-        }
-
-        @media (max-width:990px) {
-            .programslider-slider-control .swiper-button-prev {
-                left: 30% !important;
-                transform: translateX(-30%) !important;
-            }
-        }
-
-        @media (max-width:450px) {
-            .programslider-slider-control .swiper-button-prev {
-                left: 20% !important;
-                transform: translateX(-20%) !important;
-            }
-        }
-
-        .programslider-slider-control .slider-arrow {
-            background: var(--white);
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 50%;
-            left: 42%;
-            transform: translateX(-42%);
-            filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-        }
-
-        .programslider-slider-control .slider-arrow ion-icon {
-            font-size: 2rem;
-            color: #222224;
-        }
-
-        .programslider-slider-control .slider-arrow::after {
-            content: '';
-        }
-
-        .programslider-slider-control .swiper-pagination {
-            position: relative;
-            width: 15rem;
-            bottom: 1rem;
-        }
-
-        .programslider-slider-control .swiper-pagination .swiper-pagination-bullet {
-            filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
-        }
-
-        .programslider-slider-control .swiper-pagination .swiper-pagination-bullet-active {
-            background: var(--primary);
         }
     </style>
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-    />
-    <div class="container-home"><!--container buat keseluruhan home-->
+
+    <div class="container-home">
+        <!-- Welcome -->
         <div class="container-fotowelcome">
             <h3>Welcome to<br/>ARK Care Ministry!</h3>
-            <p>Gloria dei homo vivens<br/>
-            Seeking the peace and prosperity of the city</p><br/>
+            <p>Gloria dei homo vivens<br/>Seeking the peace and prosperity of the city</p><br/>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
+
+        <!-- Quotes -->
         <div class="quotes">
             <p style="color:black;" align="center">True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry
                 it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds 
@@ -279,108 +88,94 @@
             <p>Menno Simmons<br/></p>
         </div>
 
-        <!-- Our Program Section -->
-        <div class="ourprogram">
-            <section id="programslider">
-                <div class="container-slider">
-                    <h3 class="text-center section-subheading">Our Programs</h3>
-                    <h1 class="text-center section-heading">We Help Those in Need</h1>
+        <!-- Our Program -->
+        <div class="ourprogram w-full bg-[#3b2d2d] py-16 px-4">
+            <div class="max-w-6xl mx-auto text-center mb-12">
+                <h3 class="font-bold text-white mb-4">Our Program</h2>
+                <h6 class="text-[#ffaa23]">We help those in need</p>
+            </div>
+
+            <!-- Carousel -->
+            <div id="programCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" id="carousel-inner">
+                    <!-- Cards will be populated dynamically -->
                 </div>
-                <div class="container-slider">
-                    <div class="swiper programslider-slider">
-                        <div class="swiper-wrapper">
-                            <!--Slider start-->
-                            <div class="swiper-slide programslider-slide">
-                                <div class="programslider-slide-img">
-                                    <!--buat taro img-->
-                                </div>
-                                <div class="programslider-slide-content">
-                                    <h1 class="programtitle">Abcabhehecasajn</h1>
-                                    <div class="programslider-slide-content-bottom">
-                                        <h2 class="programdesc">Deskripsi Program disini</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Slider end-->
-                            <!--Slider start-->
-                            <div class="swiper-slide programslider-slide">
-                                <div class="programslider-slide-img">
-                                    <!--buat taro img-->
-                                </div>
-                                <div class="programslider-slide-content">
-                                    <h1 class="programtitle">Abcabcasajn</h1>
-                                    <div class="programslider-slide-content-bottom">
-                                        <h2 class="programdesc">Deskripsi Program disini</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Slider end-->
-                            <!--Slider start-->
-                            <div class="swiper-slide programslider-slide">
-                                <div class="programslider-slide-img">
-                                    <!--buat taro img-->
-                                </div>
-                                <div class="programslider-slide-content">
-                                    <h1 class="programtitle">Abcabcasajn</h1>
-                                    <div class="programslider-slide-content-bottom">
-                                        <h2 class="programdesc">Deskripsi Program disini</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Slider end-->
-                            <!--Slider start-->
-                            <div class="swiper-slide programslider-slide">
-                                <div class="programslider-slide-img">
-                                    <!--buat taro img-->
-                                </div>
-                                <div class="programslider-slide-content">
-                                    <h1 class="programtitle">Abcabcasajn</h1>
-                                    <div class="programslider-slide-content-bottom">
-                                        <h2 class="programdesc">Deskripsi Program disini</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Slider end-->
-                            <!--Slider start-->
-                            <div class="swiper-slide programslider-slide">
-                                <div class="programslider-slide-img">
-                                    <!--buat taro img-->
-                                </div>
-                                <div class="programslider-slide-content">
-                                    <h1 class="programtitle">Abcabcasajn</h1>
-                                    <div class="programslider-slide-content-bottom">
-                                        <h2 class="programdesc">Deskripsi Program disini</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Slider end-->
-                        </div>
-                        <div class="programslider-slider-control">
-                            <div class="swiper-button-prev slider-arrow">
-                                <ion-icon name="arrow-back-outline"></ion-icon>
-                            </div>
-                            <div class="swiper-button-next slider-arrow">
-                                <ion-icon name="arrow-forward-outline"></ion-icon>
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <div class="testimoni">
-            <h3 style="color: #443333;">What they say about ACM?</h3>
-            <!-- Buat testimoni: kakak RBA baik-baik yaa -->
+
+                <!-- Control -->
+                <button class="carousel-control-prev" type="button" id="prevBtn">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" id="nextBtn">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
     </div>
-    <script
-        type="module"
-        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-        nomodule
-        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-    ></script>
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-    <script src="../js/script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        const programs = @json($programs);
+
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            const carouselInner = document.getElementById('carousel-inner');
+            carouselInner.innerHTML = '';
+
+            const chunk = programs.slice(currentIndex, currentIndex + 3);
+            if (chunk.length < 3) {
+                const remaining = 3 - chunk.length;
+                chunk.push(...programs.slice(0, remaining));
+            }
+
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('carousel-item');
+            if (currentIndex === 0) {
+                itemDiv.classList.add('active');
+            }
+
+            const rowDiv = document.createElement('div');
+            rowDiv.classList.add('row', 'w-100');
+
+            chunk.forEach(program => {
+                const colDiv = document.createElement('div');
+                colDiv.classList.add('col-12', 'col-md-4', 'd-flex');
+
+                const cardDiv = document.createElement('div');
+                cardDiv.classList.add('card', 'h-100', 'w-100');
+                cardDiv.innerHTML = `
+                    <img src="${program.image}" class="card-img-top" alt="${program.title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${program.title}</h5>
+                        <p class="card-text">${program.description.slice(0, 100)}...</p>
+                        <a href="#" class="btn btn-primary">Learn more</a>
+                    </div>
+                `;
+                colDiv.appendChild(cardDiv);
+                rowDiv.appendChild(colDiv);
+            });
+
+            itemDiv.appendChild(rowDiv);
+            carouselInner.appendChild(itemDiv);
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % programs.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + programs.length) % programs.length;
+            updateCarousel();
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        updateCarousel();
+    </script>
 </x-layout>
