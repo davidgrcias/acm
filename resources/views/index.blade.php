@@ -151,7 +151,6 @@
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
-        <!-- Quotes Section -->
         <div class="quotes" align="center">
             <p>True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry
                 it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds 
@@ -163,26 +162,16 @@
 
         <div class="logos">
             <div class="logos-slide">
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
+                @if(isset($carouselImages) && count($carouselImages) > 0)
+                    @foreach($carouselImages as $image)
+                        <img src="{{ asset('uploads/' . $image) }}" alt="Carousel Image" />
+                    @endforeach
+                @else
+                    <p>No images available</p>
+                @endif
             </div>
-
-            <div class="logos-slide">
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-                <img src="{{ asset('uploads/Indonesia.jpeg') }}" />
-            </div>
+        </div>
+        
         </div>
     </div>
 
@@ -200,4 +189,3 @@
         document.querySelector(".logos").appendChild(copy);
     </script>
 </x-layout>
-
