@@ -9,6 +9,6 @@ class ActivityController extends Controller
     public function activity()
     {
         $activities = Gallery::all();
-        return view('activity', ['image' =>  $activities]);
+        return view('activity', ['activities' => $activities]);
     }
 }
