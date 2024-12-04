@@ -68,7 +68,14 @@
                 width: 100%;
             }
         }
+        #nextBtn,
+        #prevBtn {
+            width: 30px;
+        }
     </style>
+    <?php
+
+    ?>
 
     <div class="container-home">
         <!-- Welcome -->
