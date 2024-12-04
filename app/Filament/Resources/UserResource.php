@@ -12,6 +12,7 @@ use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UserResource extends Resource
@@ -52,7 +53,8 @@ class UserResource extends Resource
                 ->label('Password')
                 ->dehydrateStateUsing(fn($state) => filled($state) ? bcrypt($state) : null) // Hash password if it's provided
                 ->required(fn($record) => $record === null) // Required only when creating a new user
-                ->dehydrated(fn($state) => filled($state)), // Only update if there's a value
+                ->dehydrated(fn($state) => filled($state)) // Only update if there's a value
+                ->visible(fn($record) => Auth::id() !== optional($record)->id), // Hide the password field when editing your own profile
         ]);
     }
 
@@ -85,6 +87,7 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
