@@ -1,14 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/* david */
-
-Route::get('/login', function () {
-    return redirect(route('filament.admin.auth.login'));
-})->name('login');
-/* end david */
-
+use App\Http\Controllers\ActivityController;
 
 Route::get('/', function() {
     return view("index", ['title' => 'Home']);
@@ -22,9 +15,7 @@ Route::get('/visimisi', function() {
     return view("visimisi", ['title' => 'Visi & Misi']);
 });
 
-Route::get('/activity', function() {
-    return view("activity", ['title' => 'Our Activity']);
-});
+Route::get('/activity', [ActivityController::class, 'activity']);
 
 Route::get('/gallery', function() {
     return view("gallery", ['title' => 'Gallery']);
