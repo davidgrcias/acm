@@ -3,17 +3,24 @@
 
     <style>
         .container-fotowelcome {
-            background-color: green;
             width: 90%;
             padding: 90px;
             border-radius: 50px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 30px auto;
             display: flex;
             justify-content: center;
             flex-direction: column;
+            color: white;
+            position: relative;
+            transition: background-image 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container-fotowelcome img {
+            margin-left: auto;
+            margin-right: 0;
+            width: 20%;
         }
 
         a.tombol-about {
@@ -34,7 +41,7 @@
 
         .quotes {
             padding: 30px;
-            margin: 30px;
+            margin: 70px;
             width: 90%;
             display: flex;
             align-items: center;
@@ -43,6 +50,15 @@
             font-size: 20px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .ourprogram {
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        .carousel-inner img {
+            aspect-ratio: 16/9;
         }
 
         .carousel-item {
@@ -61,6 +77,9 @@
             .carousel-item .card {
                 width: 45%;
             }
+            .container-fotowelcome img{
+                width: 30px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -68,18 +87,107 @@
                 width: 100%;
             }
         }
+
         #nextBtn,
         #prevBtn {
             width: 30px;
+            transition: 2s;
+        }
+
+        .carousel-item {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-inner {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .testimony-item.left .testimony-content {
+            flex-direction: row; /* fotonya dikiri */
+        }
+
+        .testimony-item.left .testimony-text {
+            text-align: left; /* teksnya align kiri */
+        }
+
+        .testimony-item.right .testimony-content {
+            flex-direction: row-reverse; /* fotonya dikanan */
+        }
+
+        .testimony-item.right .testimony-text {
+            text-align: right; /* teksnya align kanan */
+        }
+
+        .testimony-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .testimony-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .testimony-content {
+            display: flex;
+            gap: 20px;
+            background-color: #8EC73D;
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .testimony-img img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffffff;
+        }
+
+        .testimony-text {
+            flex: 1;
+            color: black;
+            font-size: 16px;
+            padding: 10px;
+            word-wrap: break-word;
+        }
+
+        .testimony-text p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 720px) {
+            .testimony-content {
+                flex-direction: column !important;
+            }
+
+            .testimony-img img {
+                width: 80px;
+                height: 80px;
+            }
+            .testimony-text p {
+                text-align: center;
+            }
         }
     </style>
-    <?php
-
-    ?>
 
     <div class="container-home">
         <!-- Welcome -->
         <div class="container-fotowelcome">
+            <img src="/templateUSER/images/logoACMtransparent.png" alt="ARK Care Ministry">
             <h3>Welcome to<br/>ARK Care Ministry!</h3>
             <p>Gloria dei homo vivens<br/>Seeking the peace and prosperity of the city</p><br/>
             <a href="/about" class="tombol-about">About Us</a>
@@ -96,10 +204,10 @@
         </div>
 
         <!-- Our Program -->
-        <div class="ourprogram w-full bg-[#3b2d2d] py-16 px-4">
+        <div class="ourprogram w-full py-16 px-4" style="background-color: #443333;">
             <div class="max-w-6xl mx-auto text-center mb-12">
                 <h3 class="font-bold text-white mb-4">Our Program</h2>
-                <h6 class="text-[#ffaa23]">We help those in need</p>
+                <h6 style="color: #ffaa23;">We help those in need</p>
             </div>
 
             <!-- Carousel -->
@@ -107,8 +215,8 @@
                 <div class="carousel-inner" id="carousel-inner">
                     <!-- Cards will be populated dynamically -->
                 </div>
-
-                <!-- Control -->
+                <br/>
+                <!-- Control Carousel -->
                 <button class="carousel-control-prev" type="button" id="prevBtn">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -119,29 +227,61 @@
                 </button>
             </div>
         </div>
+
+        <!-- Testimoni -->
+        <div class="container-testimoni" align="center">
+            <h3 style="margin-top:50px;">What do they say about ACM?</h3><br/>
+            <div class="testimony-grid">
+                @foreach($testimonies as $index => $testimony)
+                    <div class="testimony-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
+                        <div class="testimony-content">
+                            <div class="testimony-img">
+                                <img src="{{ asset('storage/' . $testimony->image) }}" alt="Profil">
+                            </div>
+                            <div class="testimony-text">
+                                <p style="color:black;">"{{ $testimony->text }}"</p>
+                                <p>- {{ $testimony->status }} -</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 
     <script>
+        // Background image di "Welcome to ACM"
+        const images = @json($images);
+        let currentImageIndex = 0;
+
+        function changeBackground() {
+            const container = document.querySelector('.container-fotowelcome');
+            if (images.length > 0) {
+                container.style.backgroundImage = `url('/storage/${images[currentImageIndex]}')`;
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+            }
+        }
+
+        changeBackground();
+        setInterval(changeBackground, 3000);
+
+        // Carousel
         const programs = @json($programs);
 
-        let currentIndex = 0;
+        let carouselIndex = 0;
 
         function updateCarousel() {
             const carouselInner = document.getElementById('carousel-inner');
             carouselInner.innerHTML = '';
 
-            const chunk = programs.slice(currentIndex, currentIndex + 3);
-            if (chunk.length < 3) {
-                const remaining = 3 - chunk.length;
-                chunk.push(...programs.slice(0, remaining));
-            }
+            const chunk = programs.slice(carouselIndex, carouselIndex + 3);
 
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('carousel-item');
-            if (currentIndex === 0) {
+            if (carouselIndex === 0) {
                 itemDiv.classList.add('active');
             }
 
@@ -155,11 +295,10 @@
                 const cardDiv = document.createElement('div');
                 cardDiv.classList.add('card', 'h-100', 'w-100');
                 cardDiv.innerHTML = `
-                    <img src="${program.image}" class="card-img-top" alt="${program.title}">
+                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
                     <div class="card-body">
                         <h5 class="card-title">${program.title}</h5>
                         <p class="card-text">${program.description.slice(0, 100)}...</p>
-                        <a href="#" class="btn btn-primary">Learn more</a>
                     </div>
                 `;
                 colDiv.appendChild(cardDiv);
@@ -171,12 +310,12 @@
         }
 
         function nextSlide() {
-            currentIndex = (currentIndex + 1) % programs.length;
+            carouselIndex = (carouselIndex + 1) % programs.length;
             updateCarousel();
         }
 
         function prevSlide() {
-            currentIndex = (currentIndex - 1 + programs.length) % programs.length;
+            carouselIndex = (carouselIndex - 1 + programs.length) % programs.length;
             updateCarousel();
         }
 
