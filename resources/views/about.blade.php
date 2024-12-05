@@ -2,6 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
 
     <div class="d-flex flex-column min-vh-100" style="background-color: #fdfaf4;">
+        <!-- Header -->
         <header class="bg-white py-3 shadow-sm text-center">
             <h1 class="mb-0">About</h1>
         </header>
