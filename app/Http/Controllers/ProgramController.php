@@ -1,40 +1,45 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Program;
-use App\Models\View;
+use App\Models\Gallery;
+use App\Models\Testimony;
+use App\Models\View; // Pastikan model View sudah ada
 
 class ProgramController extends Controller
 {
     public function index()
     {
-        $programs = Program::all(); // Retrieve programs from the database
+        // Mengambil data program
+        $programs = Program::all();
+        
+        // Mengambil daftar gambar dari tabel Gallery
+        $images = Gallery::pluck('image')->toArray();
+        
+        // Mengambil data testimonies
+        $testimonies = Testimony::all();
 
-        // Ambil data banner dari tabel `views`
-        $viewData = View::select(
-            'introduction_banner_1',
-            'introduction_banner_2',
-            'introduction_banner_3',
-            'introduction_banner_4'
-        )->first();
+        // Mengambil data gambar banner dari tabel views
+        $view = View::first(); // Mengambil data pertama dari tabel 'views'
 
-        // Filter banner yang tidak null
-        $carouselImages = [];
-        if ($viewData) {
-            $carouselImages = array_filter([
-                $viewData->introduction_banner_1,
-                $viewData->introduction_banner_2,
-                $viewData->introduction_banner_3,
-                $viewData->introduction_banner_4,
-            ]);
-        }
-
-        // Kirim data ke view
         return view('index', [
-            'title' => 'Home',
-            'programs' => $programs,
-            'carouselImages' => $carouselImages,
+            'title' => 'Home', 
+            'programs' => $programs, 
+            'images' => $images, 
+            'testimonies' => $testimonies, 
+            'view' => $view // Menambahkan data view ke view
+        ]);
+    }
+
+    public function show($id)
+    {
+        $program = Program::findOrFail($id);
+
+        return view('programdetails', [
+            'title' => $program->title,
+            'program' => $program,
         ]);
     }
 }
