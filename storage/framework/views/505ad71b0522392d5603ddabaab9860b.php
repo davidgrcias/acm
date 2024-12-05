@@ -39,7 +39,7 @@ unset($__defined_vars); ?>
     $avatarUrl = $user && $user->picture ? asset('storage/' . $user->picture) : asset('path/to/default/avatar.jpg');
 ?>
 
-<?php if($user && $user->picture): ?>
+<!--[if BLOCK]><![endif]--><?php if($user && $user->picture): ?>
     <!-- If the user has a profile picture -->
     <img
         src="<?php echo e($avatarUrl); ?>"
@@ -74,5 +74,5 @@ unset($__defined_vars); ?>
                 ])); ?>
 
     />
-<?php endif; ?>
+<?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 <?php /**PATH C:\Users\dedec\OneDrive\Gambar\Dokumen\GitHub\acm\resources\views/vendor/filament/components/avatar.blade.php ENDPATH**/ ?>
