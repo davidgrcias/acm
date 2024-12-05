@@ -20,7 +20,8 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-plus';
-    protected static ?string $label = 'admin';
+    protected static ?string $label = 'Edit Admin';
+    protected static ?string $pluralLabel = 'Edit Admin';
 
     public static function form(Form $form): Form
     {
@@ -58,6 +59,11 @@ class UserResource extends Resource
         ]);
     }
 
+    public static function canCreate(): bool
+    {
+        return false; // This will disable the "Create New" button
+    }
+
     public static function table(Table $table): Table
     {
         return $table
@@ -86,8 +92,7 @@ class UserResource extends Resource
                 // Add any filters if necessary
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -100,7 +105,6 @@ class UserResource extends Resource
     {
         return [
             'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
