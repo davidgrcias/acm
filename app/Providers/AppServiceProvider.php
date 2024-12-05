@@ -7,6 +7,7 @@ namespace App\Filament\Resources;
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationGroup;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Artisan;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,5 +22,14 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void {}
+    public function boot(): void
+    {
+        // Automatically run db:seed after migrate:fresh command
+        if ($this->app->runningInConsole()) {
+            Artisan::command('migrate:fresh', function () {
+                Artisan::call('migrate');
+                Artisan::call('db:seed');
+            });
+        }
+    }
 }
