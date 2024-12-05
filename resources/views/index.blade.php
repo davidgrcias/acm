@@ -109,22 +109,34 @@
             padding: 30px;
             margin: 70px;
         }
-        .join-us-button {
-        display: inline-block;
-        padding: 15px 50px;
-        background-color: #28a745; 
-        color: white;
-        font-size: 16px;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 30px;
-        transition: background-color 0.3s ease;
-        width: auto; 
-    }
+        .donate-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            font-size: 18px;
+            color: white;
+            text-decoration: none;
+            background-color: #28a745; /* Warna hijau */
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-    .join-us-button:hover {
-        background-color: #218838; 
-    }
+        .donate-button:hover {
+            background-color: #218838; /* Hijau lebih gelap saat hover */
+            transform: translateY(-2px); /* Efek sedikit terangkat */
+        }
+
+        .button-icon {
+            width: 24px; /* Ukuran ikon */
+            height: 24px;
+            margin-right: 10px; /* Jarak antara ikon dan teks */
+            filter: brightness(0) invert(1); /* Mengubah ikon menjadi putih */
+        }
+
 
         .ourprogram {
             padding: 40px;
@@ -299,9 +311,13 @@
                 Join us in making a difference! Together, we can create a positive impact and support those in need. 
                 Be a part of something meaningful.
                 <br/><br/>
-                <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="join-us-button">Join Us!</a>
+                <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
+                    Donate Now
+                </a>
             </p>
         </div>        
+        
 
         <!-- Our Program -->
         <div class="ourprogram w-full py-16 px-4" style="background-color: #443333;">
