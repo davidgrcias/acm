@@ -88,12 +88,12 @@
 </footer>
 
 <!-- JAVASCRIPT FILES -->
-<script src="templateUSER/js/jquery.min.js"></script>
-<script src="templateUSER/js/bootstrap.min.js"></script>
-<script src="templateUSER/js/jquery.sticky.js"></script>
-<script src="templateUSER/js/click-scroll.js"></script>
-<script src="templateUSER/js/counter.js"></script>
-<script src="templateUSER/js/custom.js"></script>
+<script src="{{ asset('templateUSER/js/jquery.min.js') }}"></script>
+<script src="{{ asset('templateUSER/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('templateUSER/js/jquery.sticky.js') }}"></script>
+<script src="{{ asset('templateUSER/js/click-scroll.js') }}"></script>
+<script src="{{ asset('templateUSER/js/counter.js') }}"></script>
+<script src="{{ asset('templateUSER/js/custom.js') }}"></script>
 
 </body>
 
