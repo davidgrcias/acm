@@ -3,6 +3,9 @@
 
     <style>
         .container-fotowelcome {
+            position: relative;
+            overflow: hidden;
+            color: white;
             width: 90%;
             padding: 90px;
             border-radius: 50px;
@@ -10,11 +13,19 @@
             display: flex;
             justify-content: center;
             flex-direction: column;
-            color: white;
-            position: relative;
-            transition: background-image 1s ease-in-out;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-size: cover;
             background-position: center;
+            transition: opacity 1s ease-in-out;
+            opacity: 0;
+            z-index: -1;
         }
 
         .container-fotowelcome img {
@@ -22,6 +33,7 @@
             margin-right: 0;
             width: 20%;
         }
+
 
         a.tombol-about {
             background-color: #E23917;
@@ -73,12 +85,12 @@
             margin: 0 5px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 720px) {
             .carousel-item .card {
                 width: 45%;
             }
             .container-fotowelcome img{
-                width: 30px;
+                width: 50px;
             }
         }
 
@@ -187,11 +199,13 @@
     <div class="container-home">
         <!-- Welcome -->
         <div class="container-fotowelcome">
+            <div class="background-image"></div>
             <img src="/templateUSER/images/logoACMtransparent.png" alt="ARK Care Ministry">
             <h3>Welcome to<br/>ARK Care Ministry!</h3>
             <p>Gloria dei homo vivens<br/>Seeking the peace and prosperity of the city</p><br/>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
+
 
         <!-- Quotes -->
         <div class="quotes">
@@ -259,14 +273,21 @@
 
         function changeBackground() {
             const container = document.querySelector('.container-fotowelcome');
+            const backgroundImage = container.querySelector('.background-image');
+
             if (images.length > 0) {
-                container.style.backgroundImage = `url('/storage/${images[currentImageIndex]}')`;
+                backgroundImage.style.opacity = 0; 
+
+                setTimeout(() => {
+                    backgroundImage.style.backgroundImage = `url('/storage/${images[currentImageIndex]}')`;
+                    backgroundImage.style.opacity = 1; 
+                }, 1000); 
                 currentImageIndex = (currentImageIndex + 1) % images.length;
             }
         }
 
         changeBackground();
-        setInterval(changeBackground, 3000);
+        setInterval(changeBackground, 4000);
 
         // id carousel-inner
         const programs = @json($programs);
