@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\TeamMember;
 
 /* david */
 
@@ -14,9 +15,13 @@ Route::get('/', function() {
     return view("index", ['title' => 'Home']);
 });
 
-Route::get('/about', function() {
-    return view("about", ['title' => 'About Us']);
-});
+Route::get('/about', function () {
+    $teamMembers = TeamMember::orderBy('order')->get();
+    return view('about', [
+        'title' => 'About Us',
+        'teamMembers' => $teamMembers,
+    ]);
+})->name('about');
 
 Route::get('/visimisi', function() {
     return view("visimisi", ['title' => 'Visi & Misi']);
