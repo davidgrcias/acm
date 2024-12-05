@@ -45,7 +45,7 @@ class ProgramResource extends Resource
                     '16:9', // You can define aspect ratios that are required
                     '4:3',
                     '1:1',
-                ])->label("Program Image")->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])->openUrlInNewTab(),
+                ])->label("Program Image")->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
         ]);
     }
 
@@ -57,7 +57,7 @@ class ProgramResource extends Resource
                     ->label('Program Image')
                     ->disk('public')
                     ->url(fn($record) => asset('storage/' . $record->image))
-                    ->size(200, 200),
+                    ->size(200, 200)->openUrlInNewTab(),
                 TextColumn::make('title')
                     ->sortable()
                     ->searchable()
