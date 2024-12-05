@@ -9,20 +9,20 @@ Route::get('/login', function () {
 
 Route::get('/', [ProgramController::class, 'index']);
 
+use App\Http\Controllers\ActivityController;
+
 Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
 
-Route::get('/about', function() {
+Route::get('/about', function () {
     return view("about", ['title' => 'About Us']);
 });
 
-Route::get('/visimisi', function() {
+Route::get('/visimisi', function () {
     return view("visimisi", ['title' => 'Visi & Misi']);
 });
 
-Route::get('/activity', function() {
-    return view("activity", ['title' => 'Our Activity']);
-});
+Route::get('/activity', [ActivityController::class, 'activity']);
 
-Route::get('/gallery', function() {
+Route::get('/gallery', function () {
     return view("gallery", ['title' => 'Gallery']);
 });
