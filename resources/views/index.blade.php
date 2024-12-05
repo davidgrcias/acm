@@ -202,7 +202,9 @@
             <div class="background-image" style="background-image: url('{{ $images[0] ?? '' }}');"></div>
             <img src="{{ asset('storage/' . $views->favicon_logo) }}" alt="ARK Care Ministry">
             <h3>{{ $views->title }}</h3>
-            <p>{{ $views->greeting_message }}</p><br/>
+            <h3>{{ $views->greeting_message }}</h3>
+            <p>{{ $views->tagline }},<br/>
+            {{ $views->tagline_meaning }}</p>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
