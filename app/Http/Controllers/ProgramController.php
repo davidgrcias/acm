@@ -30,13 +30,4 @@ class ProgramController extends Controller
             'images' => $backgroundImages,
         ]);
     }
-    public function show($id)
-    {
-        $program = Program::findOrFail($id);
-
-        return view('programdetails', [
-            'title' => $program->title,
-            'program' => $program,
-        ]);
-    }
 }

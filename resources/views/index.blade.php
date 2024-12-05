@@ -203,8 +203,7 @@
             <img src="{{ asset('storage/' . $views->favicon_logo) }}" alt="ARK Care Ministry">
             <h3>{{ $views->title }}</h3>
             <h3>{{ $views->greeting_message }}</h3>
-            <p>{{ $views->tagline }},<br/>
-            {{ $views->tagline_meaning }}</p>
+            <p>{{ $views->placeholder_text }}</p>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
@@ -324,11 +323,8 @@
                     <div class="card-body">
                         <h5 class="card-title">${program.title}</h5>
                         <p class="card-text">
-                            ${program.description.slice(0, 100)}...
+                            ${program.description.slice(0, 100)}
                         </p>
-                        <a href="{{ asset('/program/${program.id}') }}" class="btn btn-outline-primary rounded-pill px-3 py-2 mt-2">
-                            Read More
-                        </a>
                     </div>
                 `;
                 colDiv.appendChild(cardDiv);
@@ -354,4 +350,5 @@
 
         updateCarousel();
     </script>
+    @include('components.footer', ['views' => $views])
 </x-layout>
