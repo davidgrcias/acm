@@ -10,10 +10,10 @@
 
     <title>{{ $slot }}</title>
 
-    <link href="templateUSER/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('templateUSER/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="templateUSER/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{  asset('templateUSER/css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="templateUSER/css/templatemo-kind-heart-charity.css" rel="stylesheet">
+    <link href="{{  asset('templateUSER/css/templatemo-kind-heart-charity.css') }}" rel="stylesheet">
 
 </head>
