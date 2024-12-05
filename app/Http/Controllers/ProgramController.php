@@ -13,7 +13,16 @@ class ProgramController extends Controller
     {
         $programs = Program::all();
         $images = Gallery::pluck('image')->toArray();
-        $testimonies = Testimony::all(); 
+        $testimonies = Testimony::all();
         return view('index', ['title' => 'Home', 'programs' => $programs, 'images' => $images, 'testimonies' => $testimonies]);
+    }
+    public function show($id)
+    {
+        $program = Program::findOrFail($id);
+
+        return view('programdetails', [
+            'title' => $program->title,
+            'program' => $program,
+        ]);
     }
 }

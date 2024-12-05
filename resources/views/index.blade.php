@@ -213,7 +213,7 @@
             <!-- Carousel -->
             <div id="programCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner" id="carousel-inner">
-                    <!-- Cards will be populated dynamically -->
+                    <!-- Cardsnya dipake id carousel-inner -->
                 </div>
                 <br/>
                 <!-- Control Carousel -->
@@ -230,7 +230,7 @@
 
         <!-- Testimoni -->
         <div class="container-testimoni" align="center">
-            <h3 style="margin-top:50px;">What do they say about ACM?</h3><br/>
+            <h3 style="margin-top:100px;">What do they say about ACM?</h3><br/>
             <div class="testimony-grid">
                 @foreach($testimonies as $index => $testimony)
                     <div class="testimony-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
@@ -268,7 +268,7 @@
         changeBackground();
         setInterval(changeBackground, 3000);
 
-        // Carousel
+        // id carousel-inner
         const programs = @json($programs);
 
         let carouselIndex = 0;
@@ -298,7 +298,12 @@
                     <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
                     <div class="card-body">
                         <h5 class="card-title">${program.title}</h5>
-                        <p class="card-text">${program.description.slice(0, 100)}...</p>
+                        <p class="card-text">
+                            ${program.description.slice(0, 100)}...
+                        </p>
+                        <a href="/program/${program.id}" class="btn btn-outline-primary rounded-pill px-3 py-2 mt-2">
+                            Read More
+                        </a>
                     </div>
                 `;
                 colDiv.appendChild(cardDiv);
