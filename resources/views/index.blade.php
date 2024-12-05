@@ -322,7 +322,7 @@
                         <p class="card-text">
                             ${program.description.slice(0, 100)}...
                         </p>
-                        <a href="/program/${program.id}" class="btn btn-outline-primary rounded-pill px-3 py-2 mt-2">
+                        <a href="{{ asset('/program/${program.id}') }}" class="btn btn-outline-primary rounded-pill px-3 py-2 mt-2">
                             Read More
                         </a>
                     </div>
