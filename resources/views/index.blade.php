@@ -24,14 +24,14 @@
             background-size: cover;
             background-position: center;
             transition: opacity 1s ease-in-out;
-            opacity: 0;
-            z-index: -1;
+            opacity: 0; /* Hidden by default */
+            z-index: -1; /* Keep it behind other content */
         }
 
         .container-fotowelcome img {
             margin-left: auto;
             margin-right: 0;
-            width: 20%;
+            width: 10%;
         }
 
 
@@ -199,22 +199,19 @@
     <div class="container-home">
         <!-- Welcome -->
         <div class="container-fotowelcome">
-            <div class="background-image"></div>
-            <img src="/templateUSER/images/logoACMtransparent.png" alt="ARK Care Ministry">
-            <h3>Welcome to<br/>ARK Care Ministry!</h3>
-            <p>Gloria dei homo vivens<br/>Seeking the peace and prosperity of the city</p><br/>
+            <div class="background-image" style="background-image: url('{{ $images[0] ?? '' }}');"></div>
+            <img src="{{ asset('storage/' . $views->favicon_logo) }}" alt="ARK Care Ministry">
+            <h3>{{ $views->title }}</h3>
+            <p>{{ $views->greeting_message }}</p><br/>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
 
         <!-- Quotes -->
         <div class="quotes">
-            <p style="color:black;" align="center">True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry
-                it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds 
-                up that which is wounded, it has become all things to all creatures
+            <p style="color:black;" align="center">{{ $views->explanation }}
                 <br/><br/>
             </p>
-            <p>Menno Simmons<br/></p>
         </div>
 
         <!-- Our Program -->
@@ -244,7 +241,7 @@
 
         <!-- Testimoni -->
         <div class="container-testimoni" align="center">
-            <h3 style="margin-top:100px;">What do they say about ACM?</h3><br/>
+            <h3 style="margin-top:100px;">{{ $views->testimonial_title }}</h3><br/>
             <div class="testimony-grid">
                 @foreach($testimonies as $index => $testimony)
                     <div class="testimony-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
@@ -276,16 +273,21 @@
             const backgroundImage = container.querySelector('.background-image');
 
             if (images.length > 0) {
-                backgroundImage.style.opacity = 0; 
+                // Fade out the current image
+                backgroundImage.style.opacity = 0;
 
+                // Update background after fade-out
                 setTimeout(() => {
-                    backgroundImage.style.backgroundImage = `url('/storage/${images[currentImageIndex]}')`;
-                    backgroundImage.style.opacity = 1; 
-                }, 1000); 
+                    backgroundImage.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+                    backgroundImage.style.opacity = 1; // Fade in
+                }, 1000);
+
+                // Increment index and loop back if needed
                 currentImageIndex = (currentImageIndex + 1) % images.length;
             }
         }
 
+        // Start the background change
         changeBackground();
         setInterval(changeBackground, 4000);
 
