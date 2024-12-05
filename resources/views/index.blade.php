@@ -11,48 +11,37 @@
             }
         }
 
-        .logos {
-            overflow: hidden;
-            padding: 60px 0;
-            background: white;
-            white-space: nowrap;
-            position: relative;
-        }
+    .logos {
+         overflow: hidden; 
+        width: 100%; 
+        height: 150px; 
+        position: relative;
+        margin-bottom: 30px;
+    }
 
-        .logos:before,
-        .logos:after {
-            position: absolute;
-            top: 0;
-            width: 250px;
-            height: 100%;
-            content: "";
-            z-index: 2;
-        }
 
-        .logos:before {
-            left: 0;
-            background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
-        }
+    .logos-slide {
+    display: flex; 
+    animation: scroll 10s linear infinite; 
+    }
 
-        .logos:after {
-            right: 0;
-            background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-        }
+/* Gambar */
+.logos-slide img {
+    width: 25%; /* Setiap gambar 1/4 dari kontainer */
+    height: 100%; /* Tinggi gambar penuh */
+    object-fit: cover; /* Proporsi gambar tetap */
+}
 
-        .logos:hover .logos-slide {
-            animation-play-state: paused;
-        }
+/* Animasi bergerak */
+@keyframes scroll {
+    0% {
+        transform: translateX(0); /* Awal posisi */
+    }
+    100% {
+        transform: translateX(-100%); /* Geser sepanjang kontainer */
+    }
+}
 
-        .logos-slide {
-            display: inline-block;
-            animation: 35s slide infinite linear;
-            white-space: nowrap;
-        }
-
-        .logos-slide img {
-            height: 120px;
-            margin: 0;
-        }
 
         .container-fotowelcome {
             position: relative;
@@ -116,21 +105,25 @@
             margin-right: auto;
         }
 
+        .join-us-section {
+            padding: 30px;
+            margin: 70px;
+        }
         .join-us-button {
         display: inline-block;
-        padding: 15px 50px; /* Padding lebih besar untuk memperlebar tombol */
-        background-color: #28a745; /* Hijau */
+        padding: 15px 50px;
+        background-color: #28a745; 
         color: white;
         font-size: 16px;
         font-weight: bold;
         text-decoration: none;
         border-radius: 30px;
         transition: background-color 0.3s ease;
-        width: auto; /* Sesuaikan dengan panjang teks */
+        width: auto; 
     }
 
     .join-us-button:hover {
-        background-color: #218838; /* Hijau lebih gelap saat hover */
+        background-color: #218838; 
     }
 
         .ourprogram {
@@ -298,7 +291,7 @@
                     <p>No images available</p>
                 @endif
             </div>
-        </div>
+        </div>        
         
 
     <div class="join-us-section" align="center">
@@ -381,9 +374,28 @@
 
         changeBackground();
         setInterval(changeBackground, 4000);
+        
+        document.addEventListener("DOMContentLoaded", function () {
+    const logosSlide = document.querySelector(".logos-slide");
+    const logosContainer = document.querySelector(".logos");
 
-        var copy = document.querySelector(".logos-slide").cloneNode(true);
-        document.querySelector(".logos").appendChild(copy);
+    // Hitung total lebar container dan satu gambar
+    const containerWidth = logosContainer.offsetWidth;
+    const imageWidth = logosSlide.querySelector("img").offsetWidth;
+
+    // Hitung jumlah minimum duplikat agar memenuhi container
+    const imagesNeeded = Math.ceil(containerWidth / imageWidth);
+
+    // Gandakan gambar hingga jumlah mencukupi
+    for (let i = 0; i < imagesNeeded; i++) {
+        logosSlide.innerHTML += logosSlide.innerHTML;
+    }
+
+    // Pastikan flex untuk elemen agar semuanya horizontal
+    logosSlide.style.display = "flex";
+});
+
+
 
         // id carousel-inner
         const programs = @json($programs);
