@@ -15,12 +15,13 @@
                 @forelse ($teamMembers as $member)
                     <div class="col">
                         <div class="text-center">
-                            <img 
-                                src="{{ Storage::url($member->image) }}" 
-                                class="rounded-circle mx-auto mb-2" 
-                                alt="Profile picture of {{ $member->name }}" 
-                                width="150" height="150" 
-                                loading="lazy">
+                        <img 
+                            src="{{ asset('storage/' . $member->member_image) }}"
+                            class="rounded-circle mx-auto mb-2" 
+                            alt="Profile picture of {{ $member->name }}" 
+                            width="150" height="150" 
+                            loading="lazy">
+
                             <h5 class="fw-bold mb-1">{{ $member->name }}</h5>
                         <p class="text-muted mb-0">{{ $member->role }}</p>
                         </div>
