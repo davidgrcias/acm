@@ -3,19 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProgramController;
 
-/* david */
-
 Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));
 })->name('login');
-/* end david */
-
-
-// Route::get('/', function() {
-//     return view("index", ['title' => 'Home']);
-// });
 
 Route::get('/', [ProgramController::class, 'index']);
+
+Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
 
 Route::get('/about', function() {
     return view("about", ['title' => 'About Us']);
