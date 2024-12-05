@@ -294,14 +294,14 @@
         </div>        
         
 
-    <div class="join-us-section" align="center">
-        <p>
-            Join us in making a difference! Together, we can create a positive impact and support those in need. 
-            Be a part of something meaningful.
-            <br/><br/>
-            <a href="/join" class="join-us-button">Join Us!</a>
-        </p>
-    </div>
+        <div class="join-us-section" align="center">
+            <p>
+                Join us in making a difference! Together, we can create a positive impact and support those in need. 
+                Be a part of something meaningful.
+                <br/><br/>
+                <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="join-us-button">Join Us!</a>
+            </p>
+        </div>        
 
         <!-- Our Program -->
         <div class="ourprogram w-full py-16 px-4" style="background-color: #443333;">
