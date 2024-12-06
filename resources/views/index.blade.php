@@ -271,14 +271,14 @@
             <div id="background-slider" style="background-size: cover; background-position: center;"></div>
             <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry">
             <h3>{{ $view->greeting_message }}</h3>
-            <p>{{ $view->tagline }}<br />{{ $view->tagline_meaning }}</p>
+            <p>{{ $view->tagline }}</p>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
 
         <!-- Quotes -->
         <div class="quotes">
-            <p style="color:black;" align="center">{{ $view->explanation }}
+            <p style="color:black;" align="center">
                 <br/><br/>
             </p>
         </div>
@@ -297,6 +297,7 @@
             </div>
         </div>        
         
+        <div class="explanation">{{ $view->explanation }}</div>
 
         <div class="join-us-section" align="center">
             <p>
