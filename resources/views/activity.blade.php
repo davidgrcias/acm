@@ -14,18 +14,25 @@
         .NewsComponents img {
             display: block;
             width: 100%;
-            height: 600px;
+            height: auto;
             max-height: 600px;
             margin: 0 auto;
             border-radius: 60px;
+            object-fit: cover;
         }
 
         @media (max-width: 768px) {
             .NewsComponents img {
-                width: 100%;
-                height: auto;
-                max-width: 100%;
                 border-radius: 30px;
+                height: 400px;
+            }
+
+            .title-container {
+                padding: 20px;
+            }
+
+            .NewsTitle p {
+                font-size: 18px;
             }
         }
 
@@ -51,7 +58,7 @@
 
         .title-container .btn {
             color: white;
-            background-color: #B3A7A8;
+            background-color: rgba(179, 167, 168, 0.71);
             border: none;
             padding: 5px 10px;
             border-radius: 15px;
@@ -59,7 +66,6 @@
             position: absolute;
             bottom: 10px;
             right: 10px;
-            background-color: rgba(179, 167, 168, 0.71);
         }
 
         .title-container .btn:hover {
@@ -179,7 +185,7 @@
         <div id="NewsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner NewsComponents">
                 @foreach($activities as $key => $activity)
-                    <div class="carousel-item NewsImage {{ $key === 0 ? 'active' : '' }}">
+                    <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                         @isset($activity->cover_image)
                             <img src="{{ asset('storage/' . $activity->cover_image) }}" alt="{{ $activity->title }}">
                         @endisset
@@ -192,12 +198,12 @@
                     </div>
                 @endforeach
             </div>
-            <button class="carousel-control-prev NewsPrev" type="button" data-bs-target="#NewsCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon NewsPrevIcon" aria-hidden="true"></span>
+            <button class="carousel-control-prev" type="button" data-bs-target="#NewsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next NewsNext" type="button" data-bs-target="#NewsCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon NewsNextIcon" aria-hidden="true"></span>
+            <button class="carousel-control-next" type="button" data-bs-target="#NewsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
