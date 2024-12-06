@@ -5,8 +5,6 @@ use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\ActivityController;
 use App\Models\TeamMember;
 
-/* david */
-
 Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));
 })->name('login');
@@ -36,6 +34,14 @@ Route::get('/about', function () {
         'teamMembers' => $teamMembers,
     ]);
 })->name('about');
+
+Route::get('/', [ProgramController::class, 'index']);
+
+Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
+
+Route::get('/about', function () {
+    return view("about", ['title' => 'About Us']);
+});
 
 Route::get('/visimisi', function () {
     return view("visimisi", ['title' => 'Visi & Misi']);

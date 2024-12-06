@@ -1,5 +1,14 @@
-<x-layout>
-    <x-slot:title>{{ $title }}</x-slot:title>
+<?php if (isset($component)) { $__componentOriginal23a33f287873b564aaf305a1526eada4 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal23a33f287873b564aaf305a1526eada4 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.layout','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+     <?php $__env->slot('title', null, []); ?> <?php echo e($title); ?> <?php $__env->endSlot(); ?>
 
     <style>
          @keyframes slide {
@@ -12,17 +21,17 @@
         }
 
     .logos {
-         overflow: hidden;
-        width: 100%;
-        height: 150px;
+         overflow: hidden; 
+        width: 100%; 
+        height: 150px; 
         position: relative;
         margin-bottom: 30px;
     }
 
 
     .logos-slide {
-    display: flex;
-    animation: scroll 10s linear infinite;
+    display: flex; 
+    animation: scroll 10s linear infinite; 
     }
 
 /* Gambar */
@@ -65,8 +74,6 @@
             background-size: cover;
             background-position: center;
             transition: opacity 1s ease-in-out;
-            opacity: 0; /* Hidden by default */
-            z-index: -1; /* Keep it behind other content */
             opacity: 0;
             z-index: -1;
         }
@@ -74,7 +81,6 @@
         .container-fotowelcome img {
             margin-left: auto;
             margin-right: 0;
-            width: 10%;
             width: 20%;
         }
 
@@ -115,47 +121,19 @@
         .join-us-button {
         display: inline-block;
         padding: 15px 50px;
-        background-color: #28a745;
+        background-color: #28a745; 
         color: white;
         font-size: 16px;
         font-weight: bold;
         text-decoration: none;
         border-radius: 30px;
         transition: background-color 0.3s ease;
-        width: auto;
+        width: auto; 
     }
 
     .join-us-button:hover {
-        background-color: #218838;
+        background-color: #218838; 
     }
-        .donate-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 24px;
-            font-size: 18px;
-            color: white;
-            text-decoration: none;
-            background-color: #28a745; /* Warna hijau */
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .donate-button:hover {
-            background-color: #218838; /* Hijau lebih gelap saat hover */
-            transform: translateY(-2px); /* Efek sedikit terangkat */
-        }
-
-        .button-icon {
-            width: 24px; /* Ukuran ikon */
-            height: 24px;
-            margin-right: 10px; /* Jarak antara ikon dan teks */
-            filter: brightness(0) invert(1); /* Mengubah ikon menjadi putih */
-        }
-
 
         .ourprogram {
             padding: 40px;
@@ -292,30 +270,18 @@
     <div class="container-home">
         <!-- Welcome -->
         <div class="container-fotowelcome">
-            <div class="background-image" style="background-image: url('{{ $images[0] ?? '' }}');"></div>
-            <img src="{{ asset('storage/' . $views->favicon_logo) }}" alt="ARK Care Ministry">
-            <h3>{{ $views->title }}</h3>
-            <h3>{{ $views->greeting_message }}</h3>
-            <p>{{ $views->tagline }},<br/>
-            {{ $views->tagline_meaning }}</p>
             <div class="background-image"></div>
             <img src="/templateUSER/images/logoACMtransparent.png" alt="ARK Care Ministry">
             <h3>Welcome to<br/>ARK Care Ministry!</h3>
             <p>Gloria dei homo vivens<br/>Seeking the peace and prosperity of the city</p><br/>
-            <p>{{ $views->placeholder_text }}</p>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
 
         <!-- Quotes -->
         <div class="quotes">
-            <p style="color:black;" align="center">{{ $views->explanation }}
-                <br/><br/>
-            </p>
-        </div>
-
             <p style="color:black;" align="center">True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry
-                it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds
+                it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds 
                 up that which is wounded, it has become all things to all creatures
                 <br/><br/>
             </p>
@@ -324,39 +290,27 @@
 
         <div class="logos">
             <div class="logos-slide">
-                @if($view)
-                    @foreach(['introduction_banner_1', 'introduction_banner_2', 'introduction_banner_3', 'introduction_banner_4'] as $banner)
-                        @if($view->$banner)
-                            <img src="{{ asset('storage/' . $view->$banner) }}" alt="Carousel Image" />
-                        @endif
-                    @endforeach
-                @else
+                <?php if($view): ?>
+                    <?php $__currentLoopData = ['introduction_banner_1', 'introduction_banner_2', 'introduction_banner_3', 'introduction_banner_4']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $banner): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php if($view->$banner): ?>
+                            <img src="<?php echo e(asset('storage/' . $view->$banner)); ?>" alt="Carousel Image" />
+                        <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php else: ?>
                     <p>No images available</p>
-                @endif
+                <?php endif; ?>
             </div>
-        </div>
-
+        </div>        
+        
 
     <div class="join-us-section" align="center">
         <p>
-            Join us in making a difference! Together, we can create a positive impact and support those in need.
+            Join us in making a difference! Together, we can create a positive impact and support those in need. 
             Be a part of something meaningful.
             <br/><br/>
             <a href="/join" class="join-us-button">Join Us!</a>
         </p>
     </div>
-        <div class="join-us-section" align="center">
-            <p>
-                Join us in making a difference! Together, we can create a positive impact and support those in need.
-                Be a part of something meaningful.
-                <br/><br/>
-                <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
-                    Donate Now
-                </a>
-            </p>
-        </div>
-
 
         <!-- Our Program -->
         <div class="ourprogram w-full py-16 px-4" style="background-color: #443333;">
@@ -385,22 +339,21 @@
 
         <!-- Testimoni -->
         <div class="container-testimoni" align="center">
-            <h3 style="margin-top:100px;">{{ $views->testimonial_title }}</h3><br/>
             <h3 style="margin-top:100px;">What do they say about ACM?</h3><br/>
             <div class="testimony-grid">
-                @foreach($testimonies as $index => $testimony)
-                    <div class="testimony-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
+                <?php $__currentLoopData = $testimonies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $testimony): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="testimony-item <?php echo e($index % 2 == 0 ? 'left' : 'right'); ?>">
                         <div class="testimony-content">
                             <div class="testimony-img">
-                                <img src="{{ asset('storage/' . $testimony->image) }}" alt="Profil">
+                                <img src="<?php echo e(asset('storage/' . $testimony->image)); ?>" alt="Profil">
                             </div>
                             <div class="testimony-text">
-                                <p style="color:black;">"{{ $testimony->text }}"</p>
-                                <p>- {{ $testimony->status }} -</p>
+                                <p style="color:black;">"<?php echo e($testimony->text); ?>"</p>
+                                <p>- <?php echo e($testimony->status); ?> -</p>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
     </div>
@@ -410,7 +363,7 @@
 
     <script>
         // Background image di "Welcome to ACM"
-        const images = @json($images);
+        const images = <?php echo json_encode($images, 15, 512) ?>;
         let currentImageIndex = 0;
 
         function changeBackground() {
@@ -418,32 +371,19 @@
             const backgroundImage = container.querySelector('.background-image');
 
             if (images.length > 0) {
-                // Fade out the current image
-                backgroundImage.style.opacity = 0;
-
-                // Update background after fade-out
-                setTimeout(() => {
-                    backgroundImage.style.backgroundImage = `url('${images[currentImageIndex]}')`;
-                    backgroundImage.style.opacity = 1; // Fade in
-                }, 1000);
-
-                // Increment index and loop back if needed
-                backgroundImage.style.opacity = 0;
+                backgroundImage.style.opacity = 0; 
 
                 setTimeout(() => {
                     backgroundImage.style.backgroundImage = `url('/storage/${images[currentImageIndex]}')`;
-                    backgroundImage.style.opacity = 1;
-                }, 1000);
+                    backgroundImage.style.opacity = 1; 
+                }, 1000); 
                 currentImageIndex = (currentImageIndex + 1) % images.length;
             }
         }
 
-        // Start the background change
         changeBackground();
         setInterval(changeBackground, 4000);
-        changeBackground();
-        setInterval(changeBackground, 4000);
-
+        
         document.addEventListener("DOMContentLoaded", function () {
     const logosSlide = document.querySelector(".logos-slide");
     const logosContainer = document.querySelector(".logos");
@@ -467,7 +407,7 @@
 
 
         // id carousel-inner
-        const programs = @json($programs);
+        const programs = <?php echo json_encode($programs, 15, 512) ?>;
 
         let carouselIndex = 0;
 
@@ -497,8 +437,11 @@
                     <div class="card-body">
                         <h5 class="card-title">${program.title}</h5>
                         <p class="card-text">
-                            ${program.description.slice(0, 100)}
+                            ${program.description.slice(0, 100)}...
                         </p>
+                        <a href="<?php echo e(asset('/program/${program.id}')); ?>" class="btn btn-outline-primary rounded-pill px-3 py-2 mt-2">
+                            Read More
+                        </a>
                     </div>
                 `;
                 colDiv.appendChild(cardDiv);
@@ -524,5 +467,13 @@
 
         updateCarousel();
     </script>
-    @include('components.footer', ['views' => $views])
-</x-layout>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal23a33f287873b564aaf305a1526eada4)): ?>
+<?php $attributes = $__attributesOriginal23a33f287873b564aaf305a1526eada4; ?>
+<?php unset($__attributesOriginal23a33f287873b564aaf305a1526eada4); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal23a33f287873b564aaf305a1526eada4)): ?>
+<?php $component = $__componentOriginal23a33f287873b564aaf305a1526eada4; ?>
+<?php unset($__componentOriginal23a33f287873b564aaf305a1526eada4); ?>
+<?php endif; ?><?php /**PATH C:\Users\ASUS\Documents\UAS WEBPROG\acm\resources\views/index.blade.php ENDPATH**/ ?>
