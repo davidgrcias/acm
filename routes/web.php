@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Models\TeamMember;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ActivityController;
 
 /* david */
 
@@ -11,7 +13,6 @@ Route::get('/login', function () {
 
 Route::get('/', [ProgramController::class, 'index']);
 
-use App\Http\Controllers\ActivityController;
 
 Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
 
