@@ -13,11 +13,19 @@
 
         .NewsComponents img {
             display: block;
-            width: 80%;
-            height: auto;
-            max-height: 400px;
+            width: 100%;
+            height: 600px;
+            max-height: 600px;
             margin: 0 auto;
             border-radius: 60px;
+        }
+        @media (max-width: 768px) {
+            .NewsComponents img {
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+                border-radius: 30px;
+            }
         }
 
         .NewsTitle p {
@@ -162,7 +170,7 @@
         <br></br>
         <h1>Berita ACM</h1>
         <br></br>
-        <div id="NewsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="NewsCarousel" class="carousel slide">
             <div class="carousel-inner NewsComponents">
                 @foreach($activities as $key => $activity)
                     <div class="carousel-item NewsImage {{ $key === 0 ? 'active' : '' }}">
