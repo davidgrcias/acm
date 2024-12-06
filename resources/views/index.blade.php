@@ -2,7 +2,11 @@
     <x-slot:title>{{ $title }}</x-slot:title>
 
     <style>
-         @keyframes slide {
+        *{
+            font-family: 'Poppins';
+        }
+        
+        @keyframes slide {
             from {
                 transform: translateX(0);
             }
@@ -56,6 +60,7 @@
             display: flex;
             justify-content: center;
             flex-direction: column;
+            aspect-ratio:16/9;
         }
 
         #background-slider {
@@ -160,6 +165,7 @@
         @media (max-width: 720px) {
             .carousel-item .card {
                 width: 45%;
+                margin-bottom: 10px;
             }
             .container-fotowelcome img{
                 width: 50px;
@@ -169,6 +175,7 @@
         @media (max-width: 576px) {
             .carousel-item .card {
                 width: 100%;
+                margin-bottom:10px;
             }
         }
 
@@ -282,7 +289,7 @@
         <!-- Quotes -->
         <div class="quotes">
             <p align="center">
-                <p styles="color: #2B2525;" align="center">{{ $view->quotes }}</p>
+                <p style="color:#2B2525;" align="center"><strong>{{ $view->quotes }}</strong></p>
                 <p>{{ $view->quotesby }}</p>
                 <br/>
             </p>
@@ -304,7 +311,7 @@
 
         <div class="join-us-section" align="center">
             <p>
-                <b style="color:#2B2525;">{{ $view->explanation }}</b>
+                <p style="color:#2B2525;"><strong>{{ $view->explanation }}</strong></p>
                 <br/><br/>
                 <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
                     <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
