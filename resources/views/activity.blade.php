@@ -31,6 +31,7 @@
         .NewsTitle p {
             color: white;
             margin-bottom: 20px;
+            font-size: 24px;
         }
 
         .title-container {
@@ -46,7 +47,7 @@
 
         .title-container .btn {
             color: white;
-            background-color: #6c757d;
+            background-color: #B3A7A8;
             border: none;
             padding: 5px 10px;
             border-radius: 15px;
