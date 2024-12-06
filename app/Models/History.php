@@ -18,6 +18,7 @@ class History extends Model
         'content',
         'image_one',
         'image_two',
+        'image_three',
         'order',
     ];
 

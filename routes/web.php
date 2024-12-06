@@ -8,12 +8,12 @@ use App\Models\TeamMember;
 Route::get('/login', function () {
     return redirect(route('filament.admin.auth.login'));
 })->name('login');
-/* end david */
 
+Route::get('/', [ProgramController::class, 'index']);
 
-Route::get('/', function() {
-    return view("index", ['title' => 'Home']);
-});
+use App\Http\Controllers\ActivityController;
+
+Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
 
 Route::get('/about', function () {
     $teamMembers = TeamMember::orderBy('order')->get();
@@ -23,14 +23,12 @@ Route::get('/about', function () {
     ]);
 })->name('about');
 
-Route::get('/visimisi', function() {
+Route::get('/visimisi', function () {
     return view("visimisi", ['title' => 'Visi & Misi']);
 });
 
-Route::get('/activity', function() {
-    return view("activity", ['title' => 'Our Activity']);
-});
+Route::get('/activity', [ActivityController::class, 'activity']);
 
-Route::get('/gallery', function() {
+Route::get('/gallery', function () {
     return view("gallery", ['title' => 'Gallery']);
 });

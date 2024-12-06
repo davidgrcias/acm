@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg shadow-lg" style="background-color: #F8F8F8">
     <div class="container">
         <a class="navbar-brand" href="index.html">
-            <img src="templateUSER/images/logoACM.png" class="logo img-fluid" alt="Kind Heart Charity">
+            <img src="{{  asset('templateUSER/images/logoACM.png') }}" class="logo img-fluid" alt="Kind Heart Charity">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
