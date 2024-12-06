@@ -279,8 +279,7 @@
         <!-- Quotes -->
         <div class="quotes">
             <p style="color:black;" align="center">
-                <p><b>{{ $view->quotes }}</b></p>
-                <br/>
+                <p styles="color: black;"><b>{{ $view->quotes }}</b></p>
                 <p>-{{ $view->quotesby }}-</p>
                 <br/>
             </p>
@@ -300,7 +299,7 @@
             </div>
         </div>        
         
-        <div class="explanation">{{ $view->explanation }}</div>
+        <div class="explanation" align="center" styles="color:black;">{{ $view->explanation }}</div>
 
         <div class="join-us-section" align="center">
             <p>
