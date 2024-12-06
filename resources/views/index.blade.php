@@ -279,7 +279,10 @@
         <!-- Quotes -->
         <div class="quotes">
             <p style="color:black;" align="center">
-                <br/><br/>
+                <p><b>{{ $view->quotes }}</b></p>
+                <br/>
+                <p>-{{ $view->quotesby }}-</p>
+                <br/>
             </p>
         </div>
 
