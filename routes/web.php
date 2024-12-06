@@ -10,7 +10,7 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::get('/', [ProgramController::class, 'index']);
-
+Route::get('/', [ProgramController::class, 'navbar']);
 /* end david */
 
 Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
@@ -40,8 +40,12 @@ Route::get('/', [ProgramController::class, 'index']);
 Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
 
 Route::get('/about', function () {
-    return view("about", ['title' => 'About Us']);
-});
+    $teamMembers = TeamMember::orderBy('order')->get();
+    return view('about', [
+        'title' => 'About Us',
+        'teamMembers' => $teamMembers,
+    ]);
+})->name('about');
 
 Route::get('/visimisi', function () {
     return view("visimisi", ['title' => 'Visi & Misi']);
