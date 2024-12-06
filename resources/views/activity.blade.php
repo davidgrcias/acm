@@ -59,7 +59,7 @@
             position: absolute;
             bottom: 10px;
             right: 10px;
-            opacity: 0.7;
+            background-color: rgba(179, 167, 168, 0.71);
         }
 
         .title-container .btn:hover {
