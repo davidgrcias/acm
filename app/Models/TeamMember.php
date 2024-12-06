@@ -25,4 +25,19 @@ class TeamMember extends Model
     protected $casts = [
         'order' => 'integer',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($teamMember) {
+            if ($teamMember->order <= 0) {
+                throw new \Exception('Order must be a positive integer.');
+            }
+        });
+
+        static::updating(function ($teamMember) {
+            if ($teamMember->order <= 0) {
+                throw new \Exception('Order must be a positive integer.');
+            }
+        });
+    }
 }

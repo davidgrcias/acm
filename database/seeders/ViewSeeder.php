@@ -14,9 +14,8 @@ class ViewSeeder extends Seeder
     public function run(): void
     {
         View::create([
-            'title' => 'ACM',
+            'title' => 'Ark Care Ministry',
             'favicon_logo' => null,  // Add default value or leave it null
-            'organization_name' => 'ACM Organization',
             'greeting_message' => 'Welcome to ACM!',
             // Add any other default columns you want to set
         ]);

@@ -45,7 +45,8 @@
     41 => 'Termwind\\Laravel\\TermwindServiceProvider',
     42 => 'RyanChandler\\BladeCaptureDirective\\BladeCaptureDirectiveServiceProvider',
     43 => 'Spatie\\MediaLibrary\\MediaLibraryServiceProvider',
-    44 => 'App\\Providers\\Filament\\AdminPanelProvider',
+    44 => 'App\\Providers\\FilamentServiceProvider',
+    45 => 'App\\Providers\\Filament\\AdminPanelProvider',
   ),
   'eager' => 
   array (
@@ -78,7 +79,8 @@
     26 => 'Termwind\\Laravel\\TermwindServiceProvider',
     27 => 'RyanChandler\\BladeCaptureDirective\\BladeCaptureDirectiveServiceProvider',
     28 => 'Spatie\\MediaLibrary\\MediaLibraryServiceProvider',
-    29 => 'App\\Providers\\Filament\\AdminPanelProvider',
+    29 => 'App\\Providers\\FilamentServiceProvider',
+    30 => 'App\\Providers\\Filament\\AdminPanelProvider',
   ),
   'deferred' => 
   array (

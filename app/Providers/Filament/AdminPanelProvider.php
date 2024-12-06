@@ -22,19 +22,29 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
+        // Fetch the View data from the database
+        $viewData = \App\Models\View::first(); // Assuming View model contains the title and favicon logo
+
+        // Default values if no data is found
+        $title = $viewData ? $viewData->title : 'Filament Admin Panel';
+        $favicon = $viewData && $viewData->favicon_logo
+            ? asset('storage/' . $viewData->favicon_logo)
+            : asset('storage/default-favicon.ico'); // Use a default favicon if none exists
         return $panel
             ->default()
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName($title)
             ->colors([
-                'primary' => Color::Amber,
-            ])
+                'primary' => 'rgb(99, 102, 241)',
+            ])->font('Roboto')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
+            ->favicon($favicon) // Set dynamic favicon here
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
