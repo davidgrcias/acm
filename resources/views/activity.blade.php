@@ -19,6 +19,7 @@
             margin: 0 auto;
             border-radius: 60px;
         }
+
         @media (max-width: 768px) {
             .NewsComponents img {
                 width: 100%;
@@ -32,12 +33,15 @@
             color: white;
             margin-bottom: 20px;
             font-size: 24px;
+            font-weight: 400;
+            text-align: left;
+            padding-left: 20px;
         }
 
         .title-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             background: rgba(0, 0, 0, 0.2);
             border-radius: 10px;
@@ -55,6 +59,7 @@
             position: absolute;
             bottom: 10px;
             right: 10px;
+            opacity: 0.7;
         }
 
         .title-container .btn:hover {
@@ -171,7 +176,7 @@
         <br></br>
         <h1>Berita ACM</h1>
         <br></br>
-        <div id="NewsCarousel" class="carousel slide">
+        <div id="NewsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
             <div class="carousel-inner NewsComponents">
                 @foreach($activities as $key => $activity)
                     <div class="carousel-item NewsImage {{ $key === 0 ? 'active' : '' }}">
