@@ -485,8 +485,6 @@
                                     loading="lazy">
                                 <h4 class="fw-bold mb-1">{{ $member->name }}</h4>
                                 <h6 class="text-muted mb-0">{{ $member->role }}</h6>
-                                <h4 class="fw-bold mb-1">{{ $member->name }}</h4>
-                                <h6 class="text-muted mb-0">{{ $member->role }}</h6>
                             </div>
                         </div>
                     @empty
