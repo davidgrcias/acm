@@ -52,11 +52,13 @@ class EditView extends Page implements HasForms
 
                 TextInput::make('title')->label('Title'),
 
-                TextInput::make('organization_name')->label('Organization Name'),
+                // TextInput::make('organization_name')->label('Organization Name'),
 
                 Textarea::make('greeting_message')->label('Greeting Message'),
 
-                Textarea::make('placeholder_text')->label('Placeholder Text'),
+                // Textarea::make('placeholder_text')->label('Placeholder Text'),
+
+                TextInput::make('tagline')->label('Tagline'),
 
                 FileUpload::make('introduction_banner_1')
                     ->label('Introduction Banner 1 (16:9)')
@@ -106,9 +108,9 @@ class EditView extends Page implements HasForms
                         '1:1',
                     ])->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
 
-                TextInput::make('tagline')->label('Tagline'),
+                TextInput::make('quotes')->label('Quotes'),
 
-                TextInput::make('tagline_meaning')->label('Tagline Meaning'),
+                TextInput::make('quotesby')->label('Quotes By'),
 
                 Textarea::make('explanation')->label('Explanation'),
 

@@ -65,8 +65,6 @@
             background-size: cover;
             background-position: center;
             transition: opacity 1s ease-in-out;
-            opacity: 0; /* Hidden by default */
-            z-index: -1; /* Keep it behind other content */
             opacity: 0;
             z-index: -1;
         }
@@ -74,7 +72,6 @@
         .container-fotowelcome img {
             margin-left: auto;
             margin-right: 0;
-            width: 10%;
             width: 20%;
         }
 
@@ -112,22 +109,6 @@
             padding: 30px;
             margin: 70px;
         }
-        .join-us-button {
-        display: inline-block;
-        padding: 15px 50px;
-        background-color: #28a745;
-        color: white;
-        font-size: 16px;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 30px;
-        transition: background-color 0.3s ease;
-        width: auto;
-    }
-
-    .join-us-button:hover {
-        background-color: #218838;
-    }
         .donate-button {
             display: inline-flex;
             align-items: center;
@@ -293,33 +274,19 @@
         <!-- Welcome -->
         <div class="container-fotowelcome">
             <div class="background-image" style="background-image: url('{{ $images[0] ?? '' }}');"></div>
-            <img src="{{ asset('storage/' . $views->favicon_logo) }}" alt="ARK Care Ministry">
-            <h3>{{ $views->title }}</h3>
-            <h3>{{ $views->greeting_message }}</h3>
-            <p>{{ $views->tagline }},<br/>
-            {{ $views->tagline_meaning }}</p>
-            <div class="background-image"></div>
-            <img src="/templateUSER/images/logoACMtransparent.png" alt="ARK Care Ministry">
-            <h3>Welcome to<br/>ARK Care Ministry!</h3>
-            <p>Gloria dei homo vivens<br/>Seeking the peace and prosperity of the city</p><br/>
-            <p>{{ $views->placeholder_text }}</p>
+            <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry">
+            <h3>{{ $view->title }}</h3>
+            <h3>{{ $view->greeting_message }}</h3>
+            <p>{{ $view->placeholder_text }}</p>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
 
         <!-- Quotes -->
         <div class="quotes">
-            <p style="color:black;" align="center">{{ $views->explanation }}
+            <p style="color:black;" align="center">{{ $view->explanation }}
                 <br/><br/>
             </p>
-        </div>
-
-            <p style="color:black;" align="center">True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry
-                it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds
-                up that which is wounded, it has become all things to all creatures
-                <br/><br/>
-            </p>
-            <p>Menno Simmons<br/></p>
         </div>
 
         <div class="logos">
@@ -337,14 +304,6 @@
         </div>
 
 
-    <div class="join-us-section" align="center">
-        <p>
-            Join us in making a difference! Together, we can create a positive impact and support those in need.
-            Be a part of something meaningful.
-            <br/><br/>
-            <a href="/join" class="join-us-button">Join Us!</a>
-        </p>
-    </div>
         <div class="join-us-section" align="center">
             <p>
                 Join us in making a difference! Together, we can create a positive impact and support those in need.
@@ -385,8 +344,7 @@
 
         <!-- Testimoni -->
         <div class="container-testimoni" align="center">
-            <h3 style="margin-top:100px;">{{ $views->testimonial_title }}</h3><br/>
-            <h3 style="margin-top:100px;">What do they say about ACM?</h3><br/>
+            <h3 style="margin-top:100px;">{{ $view->testimonial_title }}</h3><br/>
             <div class="testimony-grid">
                 @foreach($testimonies as $index => $testimony)
                     <div class="testimony-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
@@ -418,16 +376,6 @@
             const backgroundImage = container.querySelector('.background-image');
 
             if (images.length > 0) {
-                // Fade out the current image
-                backgroundImage.style.opacity = 0;
-
-                // Update background after fade-out
-                setTimeout(() => {
-                    backgroundImage.style.backgroundImage = `url('${images[currentImageIndex]}')`;
-                    backgroundImage.style.opacity = 1; // Fade in
-                }, 1000);
-
-                // Increment index and loop back if needed
                 backgroundImage.style.opacity = 0;
 
                 setTimeout(() => {
@@ -438,31 +386,28 @@
             }
         }
 
-        // Start the background change
-        changeBackground();
-        setInterval(changeBackground, 4000);
         changeBackground();
         setInterval(changeBackground, 4000);
 
         document.addEventListener("DOMContentLoaded", function () {
-    const logosSlide = document.querySelector(".logos-slide");
-    const logosContainer = document.querySelector(".logos");
+        const logosSlide = document.querySelector(".logos-slide");
+        const logosContainer = document.querySelector(".logos");
 
-    // Hitung total lebar container dan satu gambar
-    const containerWidth = logosContainer.offsetWidth;
-    const imageWidth = logosSlide.querySelector("img").offsetWidth;
+        // Hitung total lebar container dan satu gambar
+        const containerWidth = logosContainer.offsetWidth;
+        const imageWidth = logosSlide.querySelector("img").offsetWidth;
 
-    // Hitung jumlah minimum duplikat agar memenuhi container
-    const imagesNeeded = Math.ceil(containerWidth / imageWidth);
+        // Hitung jumlah minimum duplikat agar memenuhi container
+        const imagesNeeded = Math.ceil(containerWidth / imageWidth);
 
-    // Gandakan gambar hingga jumlah mencukupi
-    for (let i = 0; i < imagesNeeded; i++) {
+        // Gandakan gambar hingga jumlah mencukupi
+        for (let i = 0; i < imagesNeeded; i++) {
         logosSlide.innerHTML += logosSlide.innerHTML;
     }
 
-    // Pastikan flex untuk elemen agar semuanya horizontal
-    logosSlide.style.display = "flex";
-});
+        // Pastikan flex untuk elemen agar semuanya horizontal
+        logosSlide.style.display = "flex";
+    });
 
 
 
@@ -524,5 +469,4 @@
 
         updateCarousel();
     </script>
-    @include('components.footer', ['views' => $views])
 </x-layout>
