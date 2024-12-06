@@ -278,8 +278,8 @@
 
         <!-- Quotes -->
         <div class="quotes">
-            <p style="color:black;" align="center">
-                <p styles="color: black;"><b>{{ $view->quotes }}</b></p>
+            <p align="center">
+                <p styles="color: black;">{{ $view->quotes }}</p>
                 <p>-{{ $view->quotesby }}-</p>
                 <br/>
             </p>
@@ -298,13 +298,10 @@
                 @endif
             </div>
         </div>        
-        
-        <div class="explanation" align="center" styles="color:black;">{{ $view->explanation }}</div>
 
         <div class="join-us-section" align="center">
             <p>
-                Join us in making a difference! Together, we can create a positive impact and support those in need. 
-                Be a part of something meaningful.
+                {{ $view->explanation }}
                 <br/><br/>
                 <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
                     <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
