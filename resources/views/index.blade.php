@@ -273,22 +273,20 @@
     <div class="container-home">
         <!-- Welcome -->
         <div class="container-fotowelcome">
-            <div class="background-image"></div>
-            <img src="/templateUSER/images/logoACMtransparent.png" alt="ARK Care Ministry">
-            <h3>Welcome to<br/>ARK Care Ministry!</h3>
-            <p>Gloria dei homo vivens<br/>Seeking the peace and prosperity of the city</p><br/>
+            <div class="background-image" style="background-image: url('{{ $images[0] ?? '' }}');"></div>
+            <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry">
+            <h3>{{ $view->title }}</h3>
+            <h3>{{ $view->greeting_message }}</h3>
+            <p>{{ $view->placeholder_text }}</p>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
 
         <!-- Quotes -->
         <div class="quotes">
-            <p style="color:black;" align="center">True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry
-                it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds 
-                up that which is wounded, it has become all things to all creatures
+            <p style="color:black;" align="center">{{ $view->explanation }}
                 <br/><br/>
             </p>
-            <p>Menno Simmons<br/></p>
         </div>
 
         <div class="logos">
@@ -346,7 +344,7 @@
 
         <!-- Testimoni -->
         <div class="container-testimoni" align="center">
-            <h3 style="margin-top:100px;">What do they say about ACM?</h3><br/>
+            <h3 style="margin-top:100px;">{{ $view->testimonial_title }}</h3><br/>
             <div class="testimony-grid">
                 @foreach($testimonies as $index => $testimony)
                     <div class="testimony-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
@@ -392,24 +390,24 @@
         setInterval(changeBackground, 4000);
         
         document.addEventListener("DOMContentLoaded", function () {
-    const logosSlide = document.querySelector(".logos-slide");
-    const logosContainer = document.querySelector(".logos");
+        const logosSlide = document.querySelector(".logos-slide");
+        const logosContainer = document.querySelector(".logos");
 
-    // Hitung total lebar container dan satu gambar
-    const containerWidth = logosContainer.offsetWidth;
-    const imageWidth = logosSlide.querySelector("img").offsetWidth;
+        // Hitung total lebar container dan satu gambar
+        const containerWidth = logosContainer.offsetWidth;
+        const imageWidth = logosSlide.querySelector("img").offsetWidth;
 
-    // Hitung jumlah minimum duplikat agar memenuhi container
-    const imagesNeeded = Math.ceil(containerWidth / imageWidth);
+        // Hitung jumlah minimum duplikat agar memenuhi container
+        const imagesNeeded = Math.ceil(containerWidth / imageWidth);
 
-    // Gandakan gambar hingga jumlah mencukupi
-    for (let i = 0; i < imagesNeeded; i++) {
+        // Gandakan gambar hingga jumlah mencukupi
+        for (let i = 0; i < imagesNeeded; i++) {
         logosSlide.innerHTML += logosSlide.innerHTML;
     }
 
-    // Pastikan flex untuk elemen agar semuanya horizontal
-    logosSlide.style.display = "flex";
-});
+        // Pastikan flex untuk elemen agar semuanya horizontal
+        logosSlide.style.display = "flex";
+    });
 
 
 
@@ -444,11 +442,8 @@
                     <div class="card-body">
                         <h5 class="card-title">${program.title}</h5>
                         <p class="card-text">
-                            ${program.description.slice(0, 100)}...
+                            ${program.description.slice(0, 100)}
                         </p>
-                        <a href="{{ asset('/program/${program.id}') }}" class="btn btn-outline-primary rounded-pill px-3 py-2 mt-2">
-                            Read More
-                        </a>
                     </div>
                 `;
                 colDiv.appendChild(cardDiv);
