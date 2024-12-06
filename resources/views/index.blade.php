@@ -2,6 +2,47 @@
     <x-slot:title>{{ $title }}</x-slot:title>
 
     <style>
+         @keyframes slide {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+    .logos {
+         overflow: hidden;
+        width: 100%;
+        height: 150px;
+        position: relative;
+        margin-bottom: 30px;
+    }
+
+
+    .logos-slide {
+    display: flex;
+    animation: scroll 10s linear infinite;
+    }
+
+/* Gambar */
+.logos-slide img {
+    width: 25%; /* Setiap gambar 1/4 dari kontainer */
+    height: 100%; /* Tinggi gambar penuh */
+    object-fit: cover; /* Proporsi gambar tetap */
+}
+
+/* Animasi bergerak */
+@keyframes scroll {
+    0% {
+        transform: translateX(0); /* Awal posisi */
+    }
+    100% {
+        transform: translateX(-100%); /* Geser sepanjang kontainer */
+    }
+}
+
+
         .container-fotowelcome {
             position: relative;
             overflow: hidden;
@@ -26,12 +67,15 @@
             transition: opacity 1s ease-in-out;
             opacity: 0; /* Hidden by default */
             z-index: -1; /* Keep it behind other content */
+            opacity: 0;
+            z-index: -1;
         }
 
         .container-fotowelcome img {
             margin-left: auto;
             margin-right: 0;
             width: 10%;
+            width: 20%;
         }
 
 
@@ -63,6 +107,27 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        .join-us-section {
+            padding: 30px;
+            margin: 70px;
+        }
+        .join-us-button {
+        display: inline-block;
+        padding: 15px 50px;
+        background-color: #28a745;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 30px;
+        transition: background-color 0.3s ease;
+        width: auto;
+    }
+
+    .join-us-button:hover {
+        background-color: #218838;
+    }
 
         .ourprogram {
             padding: 40px;
@@ -205,6 +270,10 @@
             <h3>{{ $views->greeting_message }}</h3>
             <p>{{ $views->tagline }},<br/>
             {{ $views->tagline_meaning }}</p>
+            <div class="background-image"></div>
+            <img src="/templateUSER/images/logoACMtransparent.png" alt="ARK Care Ministry">
+            <h3>Welcome to<br/>ARK Care Ministry!</h3>
+            <p>Gloria dei homo vivens<br/>Seeking the peace and prosperity of the city</p><br/>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
@@ -215,6 +284,38 @@
                 <br/><br/>
             </p>
         </div>
+
+            <p style="color:black;" align="center">True Evangelical faith, cannot lie dormant, it clothes the naked, it feeds the hungry
+                it comforts the sorrowful, it shelters the destitute, it serves those that harm, it binds
+                up that which is wounded, it has become all things to all creatures
+                <br/><br/>
+            </p>
+            <p>Menno Simmons<br/></p>
+        </div>
+
+        <div class="logos">
+            <div class="logos-slide">
+                @if($view)
+                    @foreach(['introduction_banner_1', 'introduction_banner_2', 'introduction_banner_3', 'introduction_banner_4'] as $banner)
+                        @if($view->$banner)
+                            <img src="{{ asset('storage/' . $view->$banner) }}" alt="Carousel Image" />
+                        @endif
+                    @endforeach
+                @else
+                    <p>No images available</p>
+                @endif
+            </div>
+        </div>
+
+
+    <div class="join-us-section" align="center">
+        <p>
+            Join us in making a difference! Together, we can create a positive impact and support those in need.
+            Be a part of something meaningful.
+            <br/><br/>
+            <a href="/join" class="join-us-button">Join Us!</a>
+        </p>
+    </div>
 
         <!-- Our Program -->
         <div class="ourprogram w-full py-16 px-4" style="background-color: #443333;">
@@ -244,6 +345,7 @@
         <!-- Testimoni -->
         <div class="container-testimoni" align="center">
             <h3 style="margin-top:100px;">{{ $views->testimonial_title }}</h3><br/>
+            <h3 style="margin-top:100px;">What do they say about ACM?</h3><br/>
             <div class="testimony-grid">
                 @foreach($testimonies as $index => $testimony)
                     <div class="testimony-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
@@ -285,6 +387,12 @@
                 }, 1000);
 
                 // Increment index and loop back if needed
+                backgroundImage.style.opacity = 0;
+
+                setTimeout(() => {
+                    backgroundImage.style.backgroundImage = `url('/storage/${images[currentImageIndex]}')`;
+                    backgroundImage.style.opacity = 1;
+                }, 1000);
                 currentImageIndex = (currentImageIndex + 1) % images.length;
             }
         }
@@ -292,6 +400,30 @@
         // Start the background change
         changeBackground();
         setInterval(changeBackground, 4000);
+        changeBackground();
+        setInterval(changeBackground, 4000);
+
+        document.addEventListener("DOMContentLoaded", function () {
+    const logosSlide = document.querySelector(".logos-slide");
+    const logosContainer = document.querySelector(".logos");
+
+    // Hitung total lebar container dan satu gambar
+    const containerWidth = logosContainer.offsetWidth;
+    const imageWidth = logosSlide.querySelector("img").offsetWidth;
+
+    // Hitung jumlah minimum duplikat agar memenuhi container
+    const imagesNeeded = Math.ceil(containerWidth / imageWidth);
+
+    // Gandakan gambar hingga jumlah mencukupi
+    for (let i = 0; i < imagesNeeded; i++) {
+        logosSlide.innerHTML += logosSlide.innerHTML;
+    }
+
+    // Pastikan flex untuk elemen agar semuanya horizontal
+    logosSlide.style.display = "flex";
+});
+
+
 
         // id carousel-inner
         const programs = @json($programs);

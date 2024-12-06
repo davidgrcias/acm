@@ -23,6 +23,11 @@ Route::get('/about', function () {
 Route::get('/', function () {
     return view("index", ['title' => 'Home']);
 });
+// Route::get('/', function() {
+//     return view("index", ['title' => 'Home']);
+// });
+
+Route::get('/', [ProgramController::class, 'index']);
 
 Route::get('/about', function () {
     $teamMembers = TeamMember::orderBy('order')->get();
