@@ -12,7 +12,7 @@
         }
 
     .logos {
-         overflow: hidden; 
+        overflow: hidden; 
         width: 100%; 
         height: 150px; 
         position: relative;
@@ -47,7 +47,10 @@
             overflow: hidden;
             color: white;
             width: 98%;
-            padding: 90px;
+            padding-top: 40px;
+            padding-left: 90px;
+            padding-right:90px;
+            padding-bottom:90px;
             border-radius: 50px;
             margin: 30px auto;
             display: flex;
@@ -279,7 +282,7 @@
         <!-- Quotes -->
         <div class="quotes">
             <p align="center">
-                <p styles="color: #2B2525;" align="center"><b>{{ $view->quotes }}</b></p>
+                <p styles="color: #2B2525;" align="center">{{ $view->quotes }}</p>
                 <p>{{ $view->quotesby }}</p>
                 <br/>
             </p>
@@ -337,7 +340,7 @@
         </div>
 
         <!-- Testimoni -->
-        <div class="container-testimoni" align="center">
+        <div class="container-testimoni" align="center" style="margin-bottom:20px;">
             <h3 style="margin-top:100px;">{{ $view->testimonial_title }}</h3><br/>
             <div class="testimony-grid">
                 @foreach($testimonies as $index => $testimony)
