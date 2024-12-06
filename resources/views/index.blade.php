@@ -434,10 +434,10 @@
                 const cardDiv = document.createElement('div');
                 cardDiv.classList.add('card', 'h-100', 'w-100');
                 cardDiv.innerHTML = `
-                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
+                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="color:black;">
                     <div class="card-body">
                         <h5 class="card-title">${program.title}</h5>
-                        <p class="card-text">
+                        <p class="card-text" style="color:black;">
                             ${program.description.slice(0, 100)}
                         </p>
                     </div>
