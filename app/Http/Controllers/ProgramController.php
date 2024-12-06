@@ -7,30 +7,11 @@ use App\Models\Program;
 use App\Models\Gallery;
 use App\Models\Testimony;
 use App\Models\View;
-use App\Models\View; // Pastikan model View sudah ada
 
 class ProgramController extends Controller
 {
     public function index()
     {
-        $programs = Program::all();
-        $testimonies = Testimony::all();
-        $views = View::first();
-
-        $backgroundImages = [
-            asset('storage/' . $views->introduction_banner_1),
-            asset('storage/' . $views->introduction_banner_2),
-            asset('storage/' . $views->introduction_banner_3),
-            asset('storage/' . $views->introduction_banner_4),
-        ];
-        return view('index', [
-            'title' => 'Home',
-            'programs' => $programs,
-            'testimonies' => $testimonies,
-            'views' => $views,
-            'images' => $backgroundImages,
-        ]);
-    }
         // Mengambil data program
         $programs = Program::all();
 
@@ -41,14 +22,41 @@ class ProgramController extends Controller
         $testimonies = Testimony::all();
 
         // Mengambil data gambar banner dari tabel views
-        $view = View::first(); // Mengambil data pertama dari tabel 'views'
+        $view = View::first();
+
+        // Gambar background dari tabel views (jika ada)
+        $backgroundImages = [];
+        if ($view) {
+            $backgroundImages = [
+                asset('storage/' . $view->introduction_banner_1),
+                asset('storage/' . $view->introduction_banner_2),
+                asset('storage/' . $view->introduction_banner_3),
+                asset('storage/' . $view->introduction_banner_4),
+            ];
+        }
 
         return view('index', [
             'title' => 'Home',
             'programs' => $programs,
             'images' => $images,
             'testimonies' => $testimonies,
-            'view' => $view // Menambahkan data view ke view
+            'backgroundImages' => $backgroundImages,
+            'view' => $view,
+        ]);
+    }
+
+    public function navbar()
+    {
+        $view = View::first();
+        $faviconLogo = null;
+
+        if ($view) {
+            $faviconLogo = asset('storage/' . $view->favicon_logo);
+        }
+
+        return view('components.navbar', [
+            'favicon' => $faviconLogo,
+            'view' => $view,
         ]);
     }
 
@@ -61,5 +69,4 @@ class ProgramController extends Controller
             'program' => $program,
         ]);
     }
-}
 }
