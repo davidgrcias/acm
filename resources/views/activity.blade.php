@@ -3,7 +3,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f5f5dc;
+            background-color: #FFFBF4;
         }
 
         .GalleryImage {
@@ -30,7 +30,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             padding: 40px;
             position: relative;
@@ -41,7 +41,7 @@
             background-color: #6c757d;
             border: none;
             padding: 5px 10px;
-            border-radius: 5px;
+            border-radius: 15px;
             text-decoration: none;
             position: absolute;
             bottom: 10px;
@@ -145,6 +145,18 @@
         .nav-icon:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 10px;
+        }
     </style>
     <div class="container">
         <br></br>
@@ -179,10 +191,10 @@
             <br></br>
             <h1>Galeri ACM</h1>
             <br></br>
-            <div class="row">
+            <div class="gallery-container">
                 @foreach($activitygalleries as $galleryItem)
                     @isset($galleryItem->image)
-                        <div class="col">
+                        <div class="gallery-item">
                             <div class="GalleryImage">
                                 <img src="{{ asset('storage/' . $galleryItem->image) }}" alt="{{ $galleryItem->label }}" data-bs-toggle="modal" data-bs-target="#galleryModal" data-index="{{ $loop->index }}">
                             </div>
