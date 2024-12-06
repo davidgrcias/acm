@@ -10,30 +10,57 @@
             width: 100%;
             margin-bottom: 15px;
         }
+
         .NewsComponents img {
             display: block;
             width: 80%;
             height: auto;
             max-height: 400px;
             margin: 0 auto;
-            border-radius : 50px;
+            border-radius: 60px;
         }
 
-        .NewsTitle h5 {
+        .NewsTitle p {
             color: white;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
+        }
+
+        .title-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
-            padding: 10px 20px;
-            display: inline-block;
+            padding: 40px;
+            position: relative;
         }
+
+        .title-container .btn {
+            color: white;
+            background-color: #6c757d;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .title-container .btn:hover {
+            background-color: #5a6268;
+        }
+
         .GalleryImage img {
             width: 100%;
             aspect-ratio: 16/9;
             object-fit: cover;
             border-radius: 70px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
+
         .Paging {
             justify-content: center;
             display: flex;
@@ -41,6 +68,7 @@
             margin-top: 20px;
             margin-bottom: 30px;
         }
+
         .Paging .PagingLink {
             padding: 6px 12px;
             background-color: #f0f0f0;
@@ -48,40 +76,74 @@
             color: #333;
             border-radius: 5px;
         }
+
         .Paging .PagingLink:hover {
             background-color: #ddd;
         }
+
         .Paging .page-item.active .PagingLink {
             font-weight: bold;
             background-color: #007bff;
             color: white;
         }
+
         .Paging .page-item.disabled .PagingLink {
             background-color: #e9ecef;
             cursor: not-allowed;
         }
-        .NewsPrevIcon,
-        .NewsNextIcon {
-            background-color: #000;
-            width: 20px;
-            height: 20px;
-        }
-        
-        .NewsTitle .btn {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            padding: 7px 13px;
-            border-radius: 5px;
-            color: white;
-            background-color: rgba(128, 128, 128, 0.5);
-            font-size: 1rem;
-        }
-        .NewsTitle .btn:hover {
-            background-color: rgba(128, 128, 128, 0.7);
-        }
+
         h1, h2 {
             text-align: center;
+        }
+
+        .modal-dialog {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: transparent;
+            border: none;
+        }
+
+        .modal-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #modalImage {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .nav-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+
+        #prevIcon {
+            left: 10px;
+        }
+
+        #nextIcon {
+            right: 10px;
+        }
+
+        .nav-icon:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
     </style>
     <div class="container">
@@ -96,8 +158,10 @@
                             <img src="{{ asset('storage/' . $activity->cover_image) }}" alt="{{ $activity->title }}">
                         @endisset
                         <div class="carousel-caption NewsTitle d-block">
-                            <h5>{{ $activity->title }}</h5>
-                            <a href="{{ route('activity.show', $activity->id) }}" class="btn">Selengkapnya --></a>
+                            <div class="title-container">
+                                <p>{{ $activity->title }}</p>
+                                <a href="{{ route('activity.show', $activity->id) }}" class="btn">Selengkapnya --></a>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -120,7 +184,7 @@
                     @isset($galleryItem->image)
                         <div class="col">
                             <div class="GalleryImage">
-                                <img src="{{ asset('storage/' . $galleryItem->image) }}" alt="{{ $galleryItem->label }}">
+                                <img src="{{ asset('storage/' . $galleryItem->image) }}" alt="{{ $galleryItem->label }}" data-bs-toggle="modal" data-bs-target="#galleryModal" data-index="{{ $loop->index }}">
                             </div>
                         </div>
                     @endisset
@@ -139,7 +203,49 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body text-center position-relative">
+                    <button id="prevIcon" class="btn nav-icon" style="left: 10px;">‹</button>
+                    <img id="modalImage" class="img-fluid" src="" alt="">
+                    <button id="nextIcon" class="btn nav-icon" style="right: 10px;">›</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const modalImage = document.getElementById('modalImage');
+        const prevIcon = document.getElementById('prevIcon');
+        const nextIcon = document.getElementById('nextIcon');
+        const galleryImages = document.querySelectorAll('.GalleryImage img');
+        let currentIndex = 0;
+
+        galleryImages.forEach((img, index) => {
+            img.addEventListener('click', function() {
+                currentIndex = index;
+                modalImage.src = this.src;
+                prevIcon.style.display = 'block';
+                nextIcon.style.display = 'block';
+            });
+        });
+
+        function updateModalImage(index) {
+            currentIndex = index;
+            modalImage.src = galleryImages[currentIndex].src;
+        }
+
+        prevIcon.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : galleryImages.length - 1;
+            updateModalImage(currentIndex);
+        });
+
+        nextIcon.addEventListener('click', () => {
+            currentIndex = (currentIndex < galleryImages.length - 1) ? currentIndex + 1 : 0;
+            updateModalImage(currentIndex);
+        });
+    </script>
 </x-layout>
-
-
