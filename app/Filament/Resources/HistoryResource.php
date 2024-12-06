@@ -52,6 +52,18 @@ class HistoryResource extends Resource
                         '1:1',
                     ])
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
+                FileUpload::make('image_three')
+                    ->label('Image Three')
+                    ->directory('history-images')
+                    ->storeFileNamesIn('original_filename')
+                    ->image()
+                    ->imageEditor()
+                    ->imageEditorAspectRatios([
+                        '16:9',
+                        '4:3',
+                        '1:1',
+                    ])
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
                 TextInput::make('order')
                     ->numeric()
                     ->required()
@@ -79,6 +91,11 @@ class HistoryResource extends Resource
                     ->label('Image Two')
                     ->disk('public')
                     ->url(fn($record) => asset('storage/' . $record->image_two))
+                    ->size(100, 100)->openUrlInNewTab(),
+                ImageColumn::make('image_three')
+                    ->label('Image Three')
+                    ->disk('public')
+                    ->url(fn($record) => asset('storage/' . $record->image_three))
                     ->size(100, 100)->openUrlInNewTab(),
                 TextColumn::make('order')
                     ->sortable()

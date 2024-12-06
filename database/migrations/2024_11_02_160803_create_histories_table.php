@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('content'); // Text content for history
             $table->string('image_one')->nullable(); // First image
             $table->string('image_two')->nullable(); // Second image
+            $table->string('image_three')->nullable(); // Third image
             $table->integer('order')->unique(); // Ordering (must be unique)
             $table->timestamps();
         });
