@@ -332,10 +332,10 @@
             <!-- Carousel Section -->
             <div id="programCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner" id="carousel-content">
-                    @foreach ($testimonials as $key => $testimonial)
+                    @foreach ($testimonies as $key => $testimony)
                         <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
                             <div class="carousel-item-content">
-                                @foreach ($testimonial['items'] as $item)
+                                @foreach ($testimony['items'] as $item)
                                     <div class="card mb-3">
                                         <img src="{{ asset('storage/' . $item['image']) }}" class="card-img-top" alt="Image">
                                         <div class="card-body">
