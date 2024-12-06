@@ -72,7 +72,7 @@
         .container-fotowelcome img {
             margin-left: auto;
             margin-right: 0;
-            width: 20%;
+            width: 10%;
         }
 
 
@@ -279,8 +279,8 @@
         <!-- Quotes -->
         <div class="quotes">
             <p align="center">
-                <p styles="color: black;">{{ $view->quotes }}</p>
-                <p>-{{ $view->quotesby }}-</p>
+                <p styles="color: black;"><b>{{ $view->quotes }}</b></p>
+                <p>{{ $view->quotesby }}</p>
                 <br/>
             </p>
         </div>
@@ -301,7 +301,7 @@
 
         <div class="join-us-section" align="center">
             <p>
-                {{ $view->explanation }}
+                <b style="color:black;">{{ $view->explanation }}</b>
                 <br/><br/>
                 <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
                     <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
