@@ -38,6 +38,8 @@ Route::get('/visimisi', function () {
 
 Route::get('/activity', [ActivityController::class, 'activity']);
 
+Route::get('/activity/{id}', [ActivityController::class, 'show'])->name('activity.show');
+
 Route::get('/gallery', function () {
     return view("gallery", ['title' => 'Gallery']);
 });

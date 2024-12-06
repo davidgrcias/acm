@@ -15,19 +15,20 @@ return new class extends Migration
             $table->id();
             $table->string('favicon_logo')->nullable(); // Circular image
             $table->string('title')->nullable();
-            $table->string('organization_name')->nullable();
+            // $table->string('organization_name')->nullable();
             $table->string('greeting_message')->nullable();
-            $table->text('placeholder_text')->nullable();
+            // $table->text('placeholder_text')->nullable();
+            $table->string('tagline')->nullable();
             $table->string('introduction_banner_1')->nullable(); // Image (16:9)
             $table->string('introduction_banner_2')->nullable(); // Image (16:9)
             $table->string('introduction_banner_3')->nullable(); // Image (16:9)
             $table->string('introduction_banner_4')->nullable(); // Image (16:9)
-            $table->string('tagline')->nullable();
-            $table->string('tagline_meaning')->nullable();
+            $table->string('quotes')->nullable();
+            $table->string('quotesby')->nullable();
             $table->text('explanation')->nullable();
             $table->string('testimonial_title')->nullable();
-            $table->string('testimonial_image_1')->nullable(); // Image
-            $table->string('testimonial_image_2')->nullable(); // Image
+            // $table->string('testimonial_image_1')->nullable(); // Image
+            // $table->string('testimonial_image_2')->nullable(); // Image
             $table->string('contact_title')->nullable();
             $table->string('contact_name')->nullable();
             $table->string('contact_phone_number')->nullable();

@@ -1,3 +1,7 @@
+@php
+    $viewData = \App\Models\View::first(); // You can adjust this to get the correct view data
+@endphp
+
 <!doctype html>
 <html lang="en">
 
@@ -8,7 +12,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ $slot }}</title>
+    <title>{{ $viewData->title }}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('storage/' . $viewData->favicon_logo) }}" type="image/png">
 
     <link href="{{ asset('templateUSER/css/bootstrap.min.css') }}" rel="stylesheet">
 

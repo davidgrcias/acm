@@ -52,11 +52,17 @@ class EditView extends Page implements HasForms
 
                 TextInput::make('title')->label('Title'),
 
-                TextInput::make('organization_name')->label('Organization Name'),
+                // TextInput::make('organization_name')->label('Organization Name'),
 
                 Textarea::make('greeting_message')->label('Greeting Message'),
 
-                Textarea::make('placeholder_text')->label('Placeholder Text'),
+                // Textarea::make('placeholder_text')->label('Placeholder Text'),
+
+                TextInput::make('tagline')->label('Tagline'),
+
+                TextInput::make('quotes')->label('Quotes'),
+
+                TextInput::make('quotesby')->label('Quotes By'),
 
                 FileUpload::make('introduction_banner_1')
                     ->label('Introduction Banner 1 (16:9)')
@@ -106,37 +112,9 @@ class EditView extends Page implements HasForms
                         '1:1',
                     ])->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
 
-                TextInput::make('tagline')->label('Tagline'),
-
-                TextInput::make('tagline_meaning')->label('Tagline Meaning'),
-
                 Textarea::make('explanation')->label('Explanation'),
 
                 TextInput::make('testimonial_title')->label('Testimonial Title'),
-
-                FileUpload::make('testimonial_image_1')
-                    ->label('Testimonial Image 1')
-                    ->image()
-                    ->disk('public')
-                    ->directory('view-assets')->image()
-                    ->imageEditor()
-                    ->imageEditorAspectRatios([
-                        '16:9', // You can define aspect ratios that are required
-                        '4:3',
-                        '1:1',
-                    ])->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
-
-                FileUpload::make('testimonial_image_2')
-                    ->label('Testimonial Image 2')
-                    ->image()
-                    ->disk('public')
-                    ->directory('view-assets')->image()
-                    ->imageEditor()
-                    ->imageEditorAspectRatios([
-                        '16:9', // You can define aspect ratios that are required
-                        '4:3',
-                        '1:1',
-                    ])->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg']),
 
                 TextInput::make('contact_title')->label('Contact Title'),
 
