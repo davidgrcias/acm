@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg shadow-lg" style="background-color: #F8F8F8">
     <div class="container">
         <a class="navbar-brand" href="index.html">
-            <img src="{{  asset('templateUSER/images/logoACM.png') }}" class="logo img-fluid" alt="Kind Heart Charity">
+            <img src="templateUSER/images/logoACM.png" class="logo img-fluid" alt="Kind Heart Charity">
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -24,16 +24,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link click-scroll {{ request()->is('visimisi') ? 'active' : '' }}" href="/visimisi">Visi & Misi</a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link click-scroll {{ request()->is('activity') ? 'active' : '' }}" href="/activity">Our Activity</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link click-scroll {{ request()->is('gallery') ? 'active' : '' }}" href="/gallery">Gallery</a>
-                </li>
             </ul>
         </div>
     </div>
