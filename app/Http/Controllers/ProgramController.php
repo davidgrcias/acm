@@ -7,6 +7,7 @@ use App\Models\Program;
 use App\Models\Gallery;
 use App\Models\Testimony;
 use App\Models\View;
+use App\Models\Slider;
 
 class ProgramController extends Controller
 {
@@ -24,23 +25,15 @@ class ProgramController extends Controller
         // Mengambil data gambar banner dari tabel views
         $view = View::first();
 
-        // Gambar background dari tabel views (jika ada)
-        $backgroundImages = [];
-        if ($view) {
-            $backgroundImages = [
-                asset('storage/' . $view->introduction_banner_1),
-                asset('storage/' . $view->introduction_banner_2),
-                asset('storage/' . $view->introduction_banner_3),
-                asset('storage/' . $view->introduction_banner_4),
-            ];
-        }
+        //mengambil data dari slider.php
+        $slider = Slider::all();
 
         return view('index', [
             'title' => 'Home',
             'programs' => $programs,
             'images' => $images,
             'testimonies' => $testimonies,
-            'backgroundImages' => $backgroundImages,
+            'slider' => $slider,
             'view' => $view,
         ]);
     }

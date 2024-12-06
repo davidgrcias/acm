@@ -25,29 +25,28 @@
     animation: scroll 10s linear infinite; 
     }
 
-/* Gambar */
-.logos-slide img {
-    width: 25%; /* Setiap gambar 1/4 dari kontainer */
-    height: 100%; /* Tinggi gambar penuh */
-    object-fit: cover; /* Proporsi gambar tetap */
-}
+        /* Gambar */
+        .logos-slide img {
+            width: 25%; /* Setiap gambar 1/4 dari kontainer */
+            height: 100%; /* Tinggi gambar penuh */
+            object-fit: cover; /* Proporsi gambar tetap */
+        }
 
-/* Animasi bergerak */
-@keyframes scroll {
-    0% {
-        transform: translateX(0); /* Awal posisi */
-    }
-    100% {
-        transform: translateX(-100%); /* Geser sepanjang kontainer */
-    }
-}
-
+        /* Animasi bergerak */
+        @keyframes scroll {
+            0% {
+                transform: translateX(0); /* Awal posisi */
+            }
+            100% {
+                transform: translateX(-100%); /* Geser sepanjang kontainer */
+            }
+        }
 
         .container-fotowelcome {
             position: relative;
             overflow: hidden;
             color: white;
-            width: 90%;
+            width: 98%;
             padding: 90px;
             border-radius: 50px;
             margin: 30px auto;
@@ -56,7 +55,7 @@
             flex-direction: column;
         }
 
-        .background-image {
+        #background-slider {
             position: absolute;
             top: 0;
             left: 0;
@@ -69,6 +68,7 @@
             z-index: -1;
         }
 
+        /*buat logo ACM kanan atas */
         .container-fotowelcome img {
             margin-left: auto;
             margin-right: 0;
@@ -273,11 +273,10 @@
     <div class="container-home">
         <!-- Welcome -->
         <div class="container-fotowelcome">
-            <div class="background-image" style="background-image: url('{{ $images[0] ?? '' }}');"></div>
+            <div id="background-slider" style="background-size: cover; background-position: center;"></div>
             <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry">
-            <h3>{{ $view->title }}</h3>
             <h3>{{ $view->greeting_message }}</h3>
-            <p>{{ $view->placeholder_text }}</p>
+            <p>{{ $view->tagline }}<br />{{ $view->tagline_meaning }}</p>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
@@ -320,7 +319,7 @@
         <!-- Our Program -->
         <div class="ourprogram w-full py-16 px-4" style="background-color: #443333;">
             <div class="max-w-6xl mx-auto text-center mb-12">
-                <h3 class="font-bold text-white mb-4">Our Program</h2>
+                <h3 class="font-bold text-white">Our Program</h2>
                 <h6 style="color: #ffaa23;">We help those in need</p>
             </div>
 
@@ -368,26 +367,28 @@
 
     <script>
         // Background image di "Welcome to ACM"
-        const images = @json($images);
-        let currentImageIndex = 0;
+        const sliderData = @json($slider); 
+        let currentIndex = 0;
 
-        function changeBackground() {
-            const container = document.querySelector('.container-fotowelcome');
-            const backgroundImage = container.querySelector('.background-image');
+        function updateBackground() {
+            const sliderDiv = document.getElementById('background-slider');
 
-            if (images.length > 0) {
-                backgroundImage.style.opacity = 0; 
+            if (sliderData.length > 0) {
+                const image = sliderData[currentIndex].image;
 
-                setTimeout(() => {
-                    backgroundImage.style.backgroundImage = `url('/storage/${images[currentImageIndex]}')`;
-                    backgroundImage.style.opacity = 1; 
-                }, 1000); 
-                currentImageIndex = (currentImageIndex + 1) % images.length;
+                sliderDiv.style.opacity = 0;
+
+                setTimeout(function () {
+                    sliderDiv.style.backgroundImage = `url('storage/${image}')`;
+                    sliderDiv.style.opacity = 1;
+                }, 700); 
+
+                currentIndex = (currentIndex + 1) % sliderData.length;
             }
         }
 
-        changeBackground();
-        setInterval(changeBackground, 4000);
+        updateBackground();
+        setInterval(updateBackground, 4000); 
         
         document.addEventListener("DOMContentLoaded", function () {
         const logosSlide = document.querySelector(".logos-slide");
