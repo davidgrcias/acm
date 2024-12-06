@@ -109,25 +109,20 @@
             padding: 30px;
             margin: 70px;
         }
-        .donate-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 24px;
-            font-size: 18px;
+        .join-us-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Warna tombol */
             color: white;
             text-decoration: none;
-            background-color: #28a745; /* Warna hijau */
-            border: none;
-            border-radius: 8px;
+            border-radius: 5px;
+            font-size: 16px;
             font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
         }
 
-        .donate-button:hover {
-            background-color: #218838; /* Hijau lebih gelap saat hover */
-            transform: translateY(-2px); /* Efek sedikit terangkat */
+        .join-us-button:hover {
+            background-color: #45a049; /* Warna saat tombol dihover */
         }
 
         .button-icon {
