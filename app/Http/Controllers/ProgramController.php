@@ -56,7 +56,22 @@ class ProgramController extends Controller
 
         return view('components.navbar', [
             'favicon' => $faviconLogo,
-            'view' => $view,
+            'view' => $view,  
+        ]);
+    }
+
+    public function footer()
+    {
+        $view = View::first();
+        $faviconLogo = null;
+
+        if ($view) {
+            $faviconLogo = asset('storage/' . $view->favicon_logo);
+        }
+
+        return view('components.navbar', [
+            'favicon' => $faviconLogo,
+            'view' => $view,  
         ]);
     }
 
