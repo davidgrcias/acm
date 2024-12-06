@@ -92,7 +92,7 @@
 }
 
 /* List styling */
-.body-misi ul {
+.body-misi {
     margin: 0; /* Remove default margin */
     padding-left: 20px; /* Indent list items */
     list-style-position: inside; /* Align numbers inside the box */
@@ -100,7 +100,7 @@
     padding-bottom: 25px;
 }
 
-.body-misi ul li {
+.body-misi li {
     color: #466E08; /* Darker green for list items */
     font-size: 16px; /* Font size */
     line-height: 1.6; /* Adjust line height */
@@ -108,6 +108,7 @@
     text-align: left;
     font-weight: 600;
     font-size: 150%;
+    padding-left: 20px;
 }
 
 
@@ -444,31 +445,29 @@
                     </div>
 
                     <div class="row mt-5">
-                        <div class="col">
-                            <div class="d-flex flex-column-reverse flex-lg-row justify-content-between align-items-start">
-                                <div class="col-lg-6"></div>
-                                <div class="judul-misi col-lg-6 text-lg-end mb-3">
-                                    <h3>Misi (Mission)</h3>
-                                </div>
-                            </div>
+                        <!-- Empty Space on the Left (For Alignment) -->
+                        <div class="col-lg-6 d-none d-lg-block"></div>
+                    
+                        <!-- Title Section (On the Right) -->
+                        <div class="col-12 col-lg-6 text-center text-lg-end judul-misi mb-3">
+                            <h3>Misi (Mission)</h3>
+                        </div>
+                    
+                        <!-- List Section -->
+                        <div class="col-12 col-lg-12">
+                            <ul class="body-misi">
+                                @if ($misi->isEmpty())
+                                    <li>Tidak ada misi</li>
+                                @else
+                                    @foreach ($misi as $mission)
+                                        <li>{{ $mission->number }}. {{ $mission->content }}</li>
+                                    @endforeach
+                                @endif
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="body-misi col-lg-12">
-                                <ul>
-                                    @if ($misi->isEmpty())
-                                        <li>Tidak ada misi</li>
-                                    @else
-                                        @foreach ($misi as $mission)
-                                            <li>{{ $mission->number }}. {{ $mission->content }}</li>
-                                        @endforeach
-                                    @endif
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
                     
 
                 <h1 class="mb-3 mt-5">Meet Our Team</h1>
