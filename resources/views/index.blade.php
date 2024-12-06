@@ -270,8 +270,8 @@
         <div class="container-fotowelcome">
             <div id="background-slider" style="background-size: cover; background-position: center;"></div>
             <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry">
-            <h3>{{ $view->greeting_message }}</h3>
-            <p>{{ $view->tagline }}</p>
+            <h3 style="color:white;"><b>{{ $view->greeting_message }}</b></h3>
+            <p style="color:white;">{{ $view->tagline }}</p>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
@@ -279,7 +279,7 @@
         <!-- Quotes -->
         <div class="quotes">
             <p align="center">
-                <p styles="color: black;" align="center"><b>{{ $view->quotes }}</b></p>
+                <p styles="color: #2B2525;" align="center"><b>{{ $view->quotes }}</b></p>
                 <p>{{ $view->quotesby }}</p>
                 <br/>
             </p>
@@ -301,7 +301,7 @@
 
         <div class="join-us-section" align="center">
             <p>
-                <b style="color:black;">{{ $view->explanation }}</b>
+                <b style="color:#2B2525;">{{ $view->explanation }}</b>
                 <br/><br/>
                 <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
                     <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
@@ -347,7 +347,7 @@
                                 <img src="{{ asset('storage/' . $testimony->image) }}" alt="Profil">
                             </div>
                             <div class="testimony-text">
-                                <p style="color:black;">"{{ $testimony->text }}"</p>
+                                <p style="color:#2B2525;">"{{ $testimony->text }}"</p>
                                 <p>- {{ $testimony->status }} -</p>
                             </div>
                         </div>
@@ -434,10 +434,10 @@
                 const cardDiv = document.createElement('div');
                 cardDiv.classList.add('card', 'h-100', 'w-100');
                 cardDiv.innerHTML = `
-                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="color:black;">
+                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="color:#2B2525;">
                     <div class="card-body">
                         <h5 class="card-title">${program.title}</h5>
-                        <p class="card-text" style="color:black;">
+                        <p class="card-text" style="color:#2B2525;">
                             ${program.description.slice(0, 100)}
                         </p>
                     </div>
