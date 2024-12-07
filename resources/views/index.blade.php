@@ -80,6 +80,7 @@
         .container-fotowelcome img {
             margin-left: auto;
             margin-right: 0;
+            margin-top:0;
             width: 10%;
         }
 
@@ -146,6 +147,14 @@
             margin-bottom: 20px;
         }
 
+        #programCarousel {
+            padding:0;
+        }
+
+        .carousel {
+            padding:0;
+        }
+
         .carousel-inner img {
             aspect-ratio: 16/9;
         }
@@ -154,12 +163,16 @@
             display: flex;
             justify-content: space-between;
             gap: 15px;
-            padding: 15px;
+            margin-left: 12px;
         }
 
         .carousel-item .card {
             flex: 1;
             margin: 0 5px;
+        }
+
+        .row {
+            justify-content: center;
         }
 
         @media (max-width: 720px) {
@@ -324,14 +337,14 @@
         
 
         <!-- Our Program -->
-        <div class="ourprogram w-full py-16 px-4" style="background-color: #443333;">
+        <div class="ourprogram w-full py-16 px-4" align="center;" style="background-color: #443333;">
             <div class="max-w-6xl mx-auto text-center mb-12">
                 <h3 class="font-bold text-white">Our Program</h2>
                 <h6 style="color: #ffaa23;">We help those in need</p>
             </div>
 
             <!-- Carousel -->
-            <div id="programCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div id="programCarousel" class="carousel slide container-fluid" data-bs-ride="carousel">
                 <div class="carousel-inner" id="carousel-inner">
                     <!-- Cardsnya dipake id carousel-inner -->
                 </div>
@@ -431,17 +444,17 @@
             const chunk = programs.slice(carouselIndex, carouselIndex + 3);
 
             const itemDiv = document.createElement('div');
-            itemDiv.classList.add('carousel-item');
+            itemDiv.classList.add('carousel-item', 'justify-content-center');
             if (carouselIndex === 0) {
                 itemDiv.classList.add('active');
             }
 
             const rowDiv = document.createElement('div');
-            rowDiv.classList.add('row', 'w-100');
+            rowDiv.classList.add('row','w-100', 'container-fluid');
 
             chunk.forEach(program => {
                 const colDiv = document.createElement('div');
-                colDiv.classList.add('col-12', 'col-md-4', 'd-flex');
+                colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-3');
 
                 const cardDiv = document.createElement('div');
                 cardDiv.classList.add('card', 'h-100', 'w-100');
