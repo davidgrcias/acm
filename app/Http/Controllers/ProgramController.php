@@ -7,6 +7,7 @@ use App\Models\Program;
 use App\Models\Gallery;
 use App\Models\Testimony;
 use App\Models\View;
+use App\Models\Slider;
 
 class ProgramController extends Controller
 {
@@ -24,6 +25,8 @@ class ProgramController extends Controller
         // Mengambil data gambar banner dari tabel views
         $view = View::first();
 
+        $slider = Slider::all();
+
         // Gambar background dari tabel views (jika ada)
         $backgroundImages = [];
         if ($view) {
@@ -40,7 +43,23 @@ class ProgramController extends Controller
             'programs' => $programs,
             'images' => $images,
             'testimonies' => $testimonies,
+            'slider' => $slider,
             'backgroundImages' => $backgroundImages,
+            'view' => $view,
+        ]);
+    }
+
+    public function navbar()
+    {
+        $view = View::first();
+        $faviconLogo = null;
+
+        if ($view) {
+            $faviconLogo = asset('storage/' . $view->favicon_logo);
+        }
+
+        return view('components.navbar', [
+            'favicon' => $faviconLogo,
             'view' => $view,
         ]);
     }

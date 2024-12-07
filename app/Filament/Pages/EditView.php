@@ -40,7 +40,6 @@ class EditView extends Page implements HasForms
                     ->label('Favicon/Logo')
                     ->image()
                     ->disk('public')
-                    ->avatar()
                     ->directory('view-assets')
                     ->image()
                     ->imageEditor()
