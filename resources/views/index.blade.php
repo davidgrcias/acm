@@ -51,10 +51,10 @@
             overflow: hidden;
             color: white;
             width: 98%;
-            padding-top: 40px;
-            padding-left: 90px;
-            padding-right:90px;
-            padding-bottom:90px;
+            padding-top: 0;
+            padding-left: 5%;
+            padding-right:5%;
+            padding-bottom:0;
             border-radius: 50px;
             margin: 30px auto;
             display: flex;
@@ -81,6 +81,7 @@
             margin-left: auto;
             margin-right: 0;
             margin-top:0;
+            margin-bottom:15%;
             width: 10%;
         }
 
@@ -303,7 +304,6 @@
         <div class="quotes">
             <p align="center">
                 <p styles="color: #2B2525;" align="center">{{ $view->quotes }}</p>
-                <p style="color:#2B2525;" align="center"><strong>{{ $view->quotes }}</strong></p>
                 <p>{{ $view->quotesby }}</p>
                 <br/>
             </p>
@@ -325,8 +325,7 @@
 
         <div class="join-us-section" align="center">
             <p>
-                <b style="color:#2B2525;">{{ $view->explanation }}</b>
-                <p style="color:#2B2525;"><strong>{{ $view->explanation }}</strong></p>
+                <p style="color:#2B2525;">{{ $view->explanation }}</p>
                 <br/><br/>
                 <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
                     <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
