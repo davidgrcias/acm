@@ -317,8 +317,7 @@
             <p style="color:#2B2525;"><strong>{{ $view->explanation }}</strong></p>
             <br/><br/>
             <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
-                <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
-                Donate Now
+                Join ua
             </a>
         </div>
 
