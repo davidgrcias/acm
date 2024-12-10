@@ -18,5 +18,13 @@ class ActivityController extends Controller
             'title' => 'Our Activities'
         ]);
     }
+
+        public function show($id)
+    {
+        $activities = News::findOrFail($id);
+        $title = 'News'; 
+        return view('show', compact('activities', 'title')); 
+
+    }
 }
 
