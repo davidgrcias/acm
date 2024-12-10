@@ -45,10 +45,8 @@ Route::get('/about', function () {
     ]);
 })->name('about');
 
-Route::get('/', [ProgramController::class, 'index']);
 
 Route::get('/program/{id}', [ProgramController::class, 'show'])->name('program.show');
-
 
 
 Route::get('/visimisi', function () {

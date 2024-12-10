@@ -64,6 +64,21 @@ class ProgramController extends Controller
         ]);
     }
 
+    public function footer()
+    {
+        $view = View::first();
+        $faviconLogo = null;
+
+        if ($view) {
+            $faviconLogo = asset('storage/' . $view->favicon_logo);
+        }
+
+        return view('components.navbar', [
+            'favicon' => $faviconLogo,
+            'view' => $view,
+        ]);
+    }
+
     public function show($id)
     {
         $program = Program::findOrFail($id);

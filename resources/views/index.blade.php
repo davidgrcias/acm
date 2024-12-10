@@ -2,16 +2,8 @@
     <x-slot:title>{{ $title }}</x-slot:title>
 
     <style>
-        * {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* General Reset for the Layout */
-        body, html {
-            height: 100%;
+        *{
+            font-family: 'Poppins';
         }
 
         @keyframes slide {
@@ -23,49 +15,52 @@
             }
         }
 
-        /* Logos Section */
-        .logos {
-            overflow: hidden;
-            width: 100%;
-            height: 150px;
-            position: relative;
-            margin-bottom: 30px;
-        }
+    .logos {
+        overflow: hidden;
+        width: 100%;
+        height: 150px;
+        position: relative;
+        margin-bottom: 30px;
+    }
 
-        .logos-slide {
-            display: flex;
-            animation: scroll 10s linear infinite;
-        }
 
+    .logos-slide {
+    display: flex;
+    animation: scroll 10s linear infinite;
+    }
+
+        /* Gambar */
         .logos-slide img {
-            width: 25%;
-            height: 100%;
-            object-fit: cover;
+            width: 25%; /* Setiap gambar 1/4 dari kontainer */
+            height: 100%; /* Tinggi gambar penuh */
+            object-fit: cover; /* Proporsi gambar tetap */
         }
 
+        /* Animasi bergerak */
         @keyframes scroll {
             0% {
-                transform: translateX(0);
+                transform: translateX(0); /* Awal posisi */
             }
             100% {
-                transform: translateX(-100%);
+                transform: translateX(-100%); /* Geser sepanjang kontainer */
             }
         }
 
-        /* Welcome Section */
         .container-fotowelcome {
             position: relative;
             overflow: hidden;
             color: white;
             width: 98%;
-            height: 50%;
-            padding: 0 90px;
+            padding-top: 0;
+            padding-left: 5%;
+            padding-right:5%;
+            padding-bottom:0;
             border-radius: 50px;
             margin: 30px auto;
             display: flex;
             justify-content: center;
             flex-direction: column;
-            aspect-ratio: 16/9;
+            aspect-ratio:16/9;
         }
 
         #background-slider {
@@ -81,11 +76,15 @@
             z-index: -1;
         }
 
+        /*buat logo ACM kanan atas */
         .container-fotowelcome img {
-            width: 10%;
             margin-left: auto;
             margin-right: 0;
+            margin-top:0;
+            margin-bottom:15%;
+            width: 10%;
         }
+
 
         a.tombol-about {
             background-color: #E23917;
@@ -95,12 +94,12 @@
             width: 224px;
             text-align: center;
             opacity: 86%;
-            transition: 0.5s;
         }
 
-        a.tombol-about:hover {
+        a:hover {
             background-color: white;
             color: black;
+            transition: 0.5s;
         }
 
         .quotes {
@@ -119,13 +118,11 @@
         .join-us-section {
             padding: 30px;
             margin: 70px;
-            text-align: center;
         }
-
         .join-us-button {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #4CAF50; /* Warna tombol */
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -135,21 +132,31 @@
         }
 
         .join-us-button:hover {
-            background-color: #45a049;
+            background-color: #45a049; /* Warna saat tombol dihover */
         }
 
         .button-icon {
-            width: 24px;
+            width: 24px; /* Ukuran ikon */
             height: 24px;
-            margin-right: 10px;
-            filter: brightness(0) invert(1);
+            margin-right: 10px; /* Jarak antara ikon dan teks */
+            filter: brightness(0) invert(1); /* Mengubah ikon menjadi putih */
         }
 
-        /* Carousel Section */
+
+        .ourprogram {
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        #programCarousel {
+            padding:0;
+        }
+
+        .carousel {
+            padding:0;
+        }
+
         .carousel-inner img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
             aspect-ratio: 16/9;
         }
 
@@ -157,7 +164,7 @@
             display: flex;
             justify-content: space-between;
             gap: 15px;
-            padding: 15px;
+            margin-left: 12px;
         }
 
         .carousel-item .card {
@@ -165,12 +172,16 @@
             margin: 0 5px;
         }
 
+        .row {
+            justify-content: center;
+        }
+
         @media (max-width: 720px) {
             .carousel-item .card {
                 width: 45%;
                 margin-bottom: 10px;
             }
-            .container-fotowelcome img {
+            .container-fotowelcome img{
                 width: 50px;
             }
         }
@@ -178,7 +189,7 @@
         @media (max-width: 576px) {
             .carousel-item .card {
                 width: 100%;
-                margin-bottom: 10px;
+                margin-bottom:10px;
             }
         }
 
@@ -199,21 +210,20 @@
             width: 100%;
         }
 
-        /* Testimonial Section */
         .testimony-item.left .testimony-content {
-            flex-direction: row;
+            flex-direction: row; /* fotonya dikiri */
         }
 
         .testimony-item.left .testimony-text {
-            text-align: left;
+            text-align: left; /* teksnya align kiri */
         }
 
         .testimony-item.right .testimony-content {
-            flex-direction: row-reverse;
+            flex-direction: row-reverse; /* fotonya dikanan */
         }
 
         .testimony-item.right .testimony-text {
-            text-align: right;
+            text-align: right; /* teksnya align kanan */
         }
 
         .testimony-grid {
@@ -273,16 +283,14 @@
                 width: 80px;
                 height: 80px;
             }
-
             .testimony-text p {
                 text-align: center;
             }
         }
-
     </style>
 
     <div class="container-home">
-        <!-- Welcome Section -->
+        <!-- Welcome -->
         <div class="container-fotowelcome">
             <div id="background-slider" style="background-size: cover; background-position: center;"></div>
             <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry">
@@ -291,13 +299,16 @@
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
-        <!-- Quotes Section -->
+
+        <!-- Quotes -->
         <div class="quotes">
-            <p style="color:#2B2525;" align="center"><strong>{{ $view->quotes }}</strong></p>
-            <p>{{ $view->quotesby }}</p>
+            <p align="center">
+                <p styles="color: #2B2525;" align="center">{{ $view->quotes }}</p>
+                <p>{{ $view->quotesby }}</p>
+                <br/>
+            </p>
         </div>
 
-        <!-- Logos Section -->
         <div class="logos">
             <div class="logos-slide">
                 @if($view)
@@ -312,51 +323,170 @@
             </div>
         </div>
 
-        <!-- Join Us Section -->
-        <div class="join-us-section">
-            <p style="color:#2B2525;"><strong>{{ $view->explanation }}</strong></p>
-            <br/><br/>
-            <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
-                <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
-                Donate Now
-            </a>
+        <div class="join-us-section" align="center">
+            <p>
+                <p style="color:#2B2525;">{{ $view->explanation }}</p>
+                <br/><br/>
+                <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
+                    Donate Now
+                </a>
+            </p>
         </div>
 
-        <!-- Our Program Section -->
-        <div class="ourprogram w-full py-16 px-4" style="background-color: #443333;">
+
+        <!-- Our Program -->
+        <div class="ourprogram w-full py-16 px-4" align="center;" style="background-color: #443333;">
             <div class="max-w-6xl mx-auto text-center mb-12">
-                <h3 class="font-bold text-white">Our Program</h3>
-                <h6 style="color: #ffaa23;">We help those in need</h6>
+                <h3 class="font-bold text-white">Our Program</h2>
+                <h6 style="color: #ffaa23;">We help those in need</p>
             </div>
 
-            <!-- Carousel Section -->
-            <div id="programCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner" id="carousel-content">
-                    @foreach ($testimonials as $key => $testimonial)
-                        <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
-                            <div class="carousel-item-content">
-                                @foreach ($testimonial['items'] as $item)
-                                    <div class="card mb-3">
-                                        <img src="{{ asset('storage/' . $item['image']) }}" class="card-img-top" alt="Image">
-                                        <div class="card-body">
-                                            <h5 class="card-title">{{ $item['title'] }}</h5>
-                                            <p class="card-text">{{ $item['description'] }}</p>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endforeach
+            <!-- Carousel -->
+            <div id="programCarousel" class="carousel slide container-fluid" data-bs-ride="carousel">
+                <div class="carousel-inner" id="carousel-inner">
+                    <!-- Cardsnya dipake id carousel-inner -->
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#programCarousel" data-bs-slide="prev">
+                <br/>
+                <!-- Control Carousel -->
+                <button class="carousel-control-prev" type="button" id="prevBtn">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#programCarousel" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" id="nextBtn">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
+
+        <!-- Testimoni -->
+        <div class="container-testimoni" align="center" style="margin-bottom:20px;">
+            <h3 style="margin-top:100px;">{{ $view->testimonial_title }}</h3><br/>
+            <div class="testimony-grid">
+                @foreach($testimonies as $index => $testimony)
+                    <div class="testimony-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
+                        <div class="testimony-content">
+                            <div class="testimony-img">
+                                <img src="{{ asset('storage/' . $testimony->image) }}" alt="Profil">
+                            </div>
+                            <div class="testimony-text">
+                                <p style="color:#2B2525;">"{{ $testimony->text }}"</p>
+                                <p>- {{ $testimony->status }} -</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        // Background image di "Welcome to ACM"
+        const sliderData = @json($slider);
+        let currentIndex = 0;
+
+        function updateBackground() {
+            const sliderDiv = document.getElementById('background-slider');
+
+            if (sliderData.length > 0) {
+                const image = sliderData[currentIndex].image;
+
+                sliderDiv.style.opacity = 0;
+
+                setTimeout(function () {
+                    sliderDiv.style.backgroundImage = `url('storage/${image}')`;
+                    sliderDiv.style.opacity = 1;
+                }, 700);
+
+                currentIndex = (currentIndex + 1) % sliderData.length;
+            }
+        }
+
+        updateBackground();
+        setInterval(updateBackground, 4000);
+
+        document.addEventListener("DOMContentLoaded", function () {
+        const logosSlide = document.querySelector(".logos-slide");
+        const logosContainer = document.querySelector(".logos");
+
+        // Hitung total lebar container dan satu gambar
+        const containerWidth = logosContainer.offsetWidth;
+        const imageWidth = logosSlide.querySelector("img").offsetWidth;
+
+        // Hitung jumlah minimum duplikat agar memenuhi container
+        const imagesNeeded = Math.ceil(containerWidth / imageWidth);
+
+        // Gandakan gambar hingga jumlah mencukupi
+        for (let i = 0; i < imagesNeeded; i++) {
+        logosSlide.innerHTML += logosSlide.innerHTML;
+    }
+
+        // Pastikan flex untuk elemen agar semuanya horizontal
+        logosSlide.style.display = "flex";
+    });
+
+
+
+        // id carousel-inner
+        const programs = @json($programs);
+
+        let carouselIndex = 0;
+
+        function updateCarousel() {
+            const carouselInner = document.getElementById('carousel-inner');
+            carouselInner.innerHTML = '';
+
+            const chunk = programs.slice(carouselIndex, carouselIndex + 3);
+
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('carousel-item', 'justify-content-center');
+            if (carouselIndex === 0) {
+                itemDiv.classList.add('active');
+            }
+
+            const rowDiv = document.createElement('div');
+            rowDiv.classList.add('row','w-100', 'container-fluid');
+
+            chunk.forEach(program => {
+                const colDiv = document.createElement('div');
+                colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-3');
+
+                const cardDiv = document.createElement('div');
+                cardDiv.classList.add('card', 'h-100', 'w-100');
+                cardDiv.innerHTML = `
+                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="color:#2B2525;">
+                    <div class="card-body">
+                        <h5 class="card-title">${program.title}</h5>
+                        <p class="card-text" style="color:#2B2525;">
+                            ${program.description.slice(0, 100)}
+                        </p>
+                    </div>
+                `;
+                colDiv.appendChild(cardDiv);
+                rowDiv.appendChild(colDiv);
+            });
+
+            itemDiv.appendChild(rowDiv);
+            carouselInner.appendChild(itemDiv);
+        }
+
+        function nextSlide() {
+            carouselIndex = (carouselIndex + 1) % programs.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            carouselIndex = (carouselIndex - 1 + programs.length) % programs.length;
+            updateCarousel();
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        updateCarousel();
+    </script>
 </x-layout>
