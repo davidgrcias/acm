@@ -459,81 +459,75 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         const programs = @json($programs);
+let carouselIndex = 0;
 
-        function renderProgramsForMobile() {
-            const carouselInner = document.getElementById("carousel-inner");
-            carouselInner.innerHTML = ''; // hapus konten lama
+function updateCarousel() {
+    const carouselInner = document.getElementById('carousel-inner');
+    carouselInner.innerHTML = '';
 
-            programs.forEach(program => {
-                const cardDiv = document.createElement('div');
-                cardDiv.classList.add('card', 'mb-3', 'w-100');
-                cardDiv.innerHTML = `
-                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="aspect-ratio:16/9;">
-                    <div class="card-body">
-                        <h5 class="card-title">${program.title}</h5>
-                        <p class="card-text">${program.description.slice(0, 100)}</p>
-                    </div>
-                `;
-                carouselInner.appendChild(cardDiv);
-            });
+    // Get the next three programs
+    const chunk = programs.slice(carouselIndex, carouselIndex + 3);
+    
+    // If there are less than 3 programs left, loop back to the start
+    if (chunk.length < 3) {
+        const remaining = 3 - chunk.length;
+        const additionalPrograms = programs.slice(0, remaining);
+        chunk.push(...additionalPrograms);
+    }
+
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('carousel-item', 'justify-content-center');
+    if (carouselIndex === 0) {
+        itemDiv.classList.add('active');
+    }
+
+    const rowDiv = document.createElement('div');
+    rowDiv.classList.add('row', 'w-100', 'container-fluid');
+
+    chunk.forEach((program, index) => {
+        const colDiv = document.createElement('div');
+        colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-3');
+
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('card', 'h-100', 'w-100');
+        cardDiv.innerHTML = `
+            <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
+            <div class="card-body">
+                <h5 class="card-title">${program.title}</h5>
+                <p class="card-text">
+                    ${program.description.slice(0, 100)}
+                </p>
+            </div>
+        `;
+        
+        // Add active class to the center image
+        if (index === 1) {
+            cardDiv.classList.add('active');
         }
 
-        function renderCarouselForDesktop() {
-            let carouselIndex = 0;
+        colDiv.appendChild(cardDiv);
+        rowDiv.appendChild(colDiv);
+    });
 
-            function updateCarousel() {
-                const carouselInner = document.getElementById('carousel-inner');
-                carouselInner.innerHTML = '';
+    itemDiv.appendChild(rowDiv);
+    carouselInner.appendChild(itemDiv);
+}
 
-                const chunk = [
-                    programs[carouselIndex % programs.length],
-                    programs[(carouselIndex + 1) % programs.length],
-                    programs[(carouselIndex + 2) % programs.length]
-                ];
+function nextSlide() {
+    carouselIndex = (carouselIndex + 1) % Math.ceil(programs.length);
+    updateCarousel();
+}
 
-                const itemDiv = document.createElement('div');
-                itemDiv.classList.add('carousel-item', 'justify-content-center', 'active');
+function prevSlide() {
+    carouselIndex = (carouselIndex - 1 + Math.ceil(programs.length)) % Math.ceil(programs.length);
+    updateCarousel();
+}
 
-                const rowDiv = document.createElement('div');
-                rowDiv.classList.add('row', 'w-75', 'mx-auto', 'align-items-center');
+document.getElementById('nextBtn').addEventListener('click', nextSlide);
+document.getElementById('prevBtn').addEventListener('click', prevSlide);
 
-                chunk.forEach(program => {
-                    const colDiv = document.createElement('div');
-                    colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-3');
-
-                    const cardDiv = document.createElement('div');
-                    cardDiv.classList.add('card', 'h-100', 'w-75');
-                    cardDiv.innerHTML = `
-                        <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="aspect-ratio:16/9;">
-                        <div class="card-body">
-                            <h5 class="card-title">${program.title}</h5>
-                            <p class="card-text">
-                                ${program.description.slice(0, 100)}
-                            </p>
-                        </div>
-                    `;
-                    colDiv.appendChild(cardDiv);
-                    rowDiv.appendChild(colDiv);
-                });
-
-                itemDiv.appendChild(rowDiv);
-                carouselInner.appendChild(itemDiv);
-            }
-
-            function nextSlide() {
-                carouselIndex = (carouselIndex + 1) % programs.length;
-                updateCarousel();
-            }
-
-            function prevSlide() {
-                carouselIndex = (carouselIndex - 1 + programs.length) % programs.length;
-                updateCarousel();
-            }
-
-            document.getElementById('nextBtn').addEventListener('click', nextSlide);
-            document.getElementById('prevBtn').addEventListener('click', prevSlide);
-
-            updateCarousel();
+// Initialize the carousel
+updateCarousel();
         }
 
         function adjustLayout() {
