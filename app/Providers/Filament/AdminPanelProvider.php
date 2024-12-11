@@ -28,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
         // Default values if no data is found
         $title = $viewData ? $viewData->title : 'Filament Admin Panel';
         $favicon = $viewData && $viewData->favicon_logo
-            ? asset('storage/' . $viewData->favicon_logo)
+            ? asset('storage/app/public/' . $viewData->favicon_logo)
             : asset('storage/default-favicon.ico'); // Use a default favicon if none exists
         return $panel
             ->default()

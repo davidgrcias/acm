@@ -12,7 +12,6 @@ use Filament\Panel;
 
 class User extends Authenticatable
 {
-    protected $table = 'users';
     public function panel(Panel $panel): Panel
     {
         return $panel

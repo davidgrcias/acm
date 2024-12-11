@@ -2,11 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
 
     <style>
-        *{
-            font-family: 'Poppins';
-        }
-
-        @keyframes slide {
+         @keyframes slide {
             from {
                 transform: translateX(0);
             }
@@ -16,7 +12,7 @@
         }
 
     .logos {
-        overflow: hidden;
+         overflow: hidden;
         width: 100%;
         height: 150px;
         position: relative;
@@ -29,41 +25,38 @@
     animation: scroll 10s linear infinite;
     }
 
-        /* Gambar */
-        .logos-slide img {
-            width: 25%; /* Setiap gambar 1/4 dari kontainer */
-            height: 100%; /* Tinggi gambar penuh */
-            object-fit: cover; /* Proporsi gambar tetap */
-        }
+/* Gambar */
+.logos-slide img {
+    width: 25%; /* Setiap gambar 1/4 dari kontainer */
+    height: 100%; /* Tinggi gambar penuh */
+    object-fit: cover; /* Proporsi gambar tetap */
+}
 
-        /* Animasi bergerak */
-        @keyframes scroll {
-            0% {
-                transform: translateX(0); /* Awal posisi */
-            }
-            100% {
-                transform: translateX(-100%); /* Geser sepanjang kontainer */
-            }
-        }
+/* Animasi bergerak */
+@keyframes scroll {
+    0% {
+        transform: translateX(0); /* Awal posisi */
+    }
+    100% {
+        transform: translateX(-100%); /* Geser sepanjang kontainer */
+    }
+}
+
 
         .container-fotowelcome {
             position: relative;
             overflow: hidden;
             color: white;
-            width: 98%;
-            padding-top: 0;
-            padding-left: 5%;
-            padding-right:5%;
-            padding-bottom:0;
+            width: 90%;
+            padding: 90px;
             border-radius: 50px;
             margin: 30px auto;
             display: flex;
             justify-content: center;
             flex-direction: column;
-            aspect-ratio:16/9;
         }
 
-        #background-slider {
+        .background-image {
             position: absolute;
             top: 0;
             left: 0;
@@ -76,13 +69,10 @@
             z-index: -1;
         }
 
-        /*buat logo ACM kanan atas */
         .container-fotowelcome img {
             margin-left: auto;
             margin-right: 0;
-            margin-top:0;
-            margin-bottom:15%;
-            width: 10%;
+            width: 20%;
         }
 
 
@@ -119,20 +109,25 @@
             padding: 30px;
             margin: 70px;
         }
-        .join-us-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50; /* Warna tombol */
+        .donate-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            font-size: 18px;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
+            background-color: #28a745; /* Warna hijau */
+            border: none;
+            border-radius: 8px;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .join-us-button:hover {
-            background-color: #45a049; /* Warna saat tombol dihover */
+        .donate-button:hover {
+            background-color: #218838; /* Hijau lebih gelap saat hover */
+            transform: translateY(-2px); /* Efek sedikit terangkat */
         }
 
         .button-icon {
@@ -148,14 +143,6 @@
             margin-bottom: 20px;
         }
 
-        #programCarousel {
-            padding:0;
-        }
-
-        .carousel {
-            padding:0;
-        }
-
         .carousel-inner img {
             aspect-ratio: 16/9;
         }
@@ -164,7 +151,7 @@
             display: flex;
             justify-content: space-between;
             gap: 15px;
-            margin-left: 12px;
+            padding: 15px;
         }
 
         .carousel-item .card {
@@ -172,14 +159,9 @@
             margin: 0 5px;
         }
 
-        .row {
-            justify-content: center;
-        }
-
         @media (max-width: 720px) {
             .carousel-item .card {
                 width: 45%;
-                margin-bottom: 10px;
             }
             .container-fotowelcome img{
                 width: 50px;
@@ -189,7 +171,6 @@
         @media (max-width: 576px) {
             .carousel-item .card {
                 width: 100%;
-                margin-bottom:10px;
             }
         }
 
@@ -292,20 +273,19 @@
     <div class="container-home">
         <!-- Welcome -->
         <div class="container-fotowelcome">
-            <div id="background-slider" style="background-size: cover; background-position: center;"></div>
+            <div class="background-image" style="background-image: url('{{ $images[0] ?? '' }}');"></div>
             <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry">
-            <h3 style="color:white;"><b>{{ $view->greeting_message }}</b></h3>
-            <p style="color:white;">{{ $view->tagline }}</p>
+            <h3>{{ $view->title }}</h3>
+            <h3>{{ $view->greeting_message }}</h3>
+            <p>{{ $view->placeholder_text }}</p>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
 
         <!-- Quotes -->
         <div class="quotes">
-            <p align="center">
-                <p styles="color: #2B2525;" align="center">{{ $view->quotes }}</p>
-                <p>{{ $view->quotesby }}</p>
-                <br/>
+            <p style="color:black;" align="center">{{ $view->explanation }}
+                <br/><br/>
             </p>
         </div>
 
@@ -323,9 +303,11 @@
             </div>
         </div>
 
+
         <div class="join-us-section" align="center">
             <p>
-                <p style="color:#2B2525;">{{ $view->explanation }}</p>
+                Join us in making a difference! Together, we can create a positive impact and support those in need.
+                Be a part of something meaningful.
                 <br/><br/>
                 <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
                     <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
@@ -336,14 +318,14 @@
 
 
         <!-- Our Program -->
-        <div class="ourprogram w-full py-16 px-4" align="center;" style="background-color: #443333;">
+        <div class="ourprogram w-full py-16 px-4" style="background-color: #443333;">
             <div class="max-w-6xl mx-auto text-center mb-12">
-                <h3 class="font-bold text-white">Our Program</h2>
+                <h3 class="font-bold text-white mb-4">Our Program</h2>
                 <h6 style="color: #ffaa23;">We help those in need</p>
             </div>
 
             <!-- Carousel -->
-            <div id="programCarousel" class="carousel slide container-fluid" data-bs-ride="carousel">
+            <div id="programCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner" id="carousel-inner">
                     <!-- Cardsnya dipake id carousel-inner -->
                 </div>
@@ -361,7 +343,7 @@
         </div>
 
         <!-- Testimoni -->
-        <div class="container-testimoni" align="center" style="margin-bottom:20px;">
+        <div class="container-testimoni" align="center">
             <h3 style="margin-top:100px;">{{ $view->testimonial_title }}</h3><br/>
             <div class="testimony-grid">
                 @foreach($testimonies as $index => $testimony)
@@ -371,7 +353,7 @@
                                 <img src="{{ asset('storage/' . $testimony->image) }}" alt="Profil">
                             </div>
                             <div class="testimony-text">
-                                <p style="color:#2B2525;">"{{ $testimony->text }}"</p>
+                                <p style="color:black;">"{{ $testimony->text }}"</p>
                                 <p>- {{ $testimony->status }} -</p>
                             </div>
                         </div>
@@ -386,28 +368,26 @@
 
     <script>
         // Background image di "Welcome to ACM"
-        const sliderData = @json($slider);
-        let currentIndex = 0;
+        const images = @json($images);
+        let currentImageIndex = 0;
 
-        function updateBackground() {
-            const sliderDiv = document.getElementById('background-slider');
+        function changeBackground() {
+            const container = document.querySelector('.container-fotowelcome');
+            const backgroundImage = container.querySelector('.background-image');
 
-            if (sliderData.length > 0) {
-                const image = sliderData[currentIndex].image;
+            if (images.length > 0) {
+                backgroundImage.style.opacity = 0;
 
-                sliderDiv.style.opacity = 0;
-
-                setTimeout(function () {
-                    sliderDiv.style.backgroundImage = `url('storage/${image}')`;
-                    sliderDiv.style.opacity = 1;
-                }, 700);
-
-                currentIndex = (currentIndex + 1) % sliderData.length;
+                setTimeout(() => {
+                    backgroundImage.style.backgroundImage = `url('/storage/${images[currentImageIndex]}')`;
+                    backgroundImage.style.opacity = 1;
+                }, 1000);
+                currentImageIndex = (currentImageIndex + 1) % images.length;
             }
         }
 
-        updateBackground();
-        setInterval(updateBackground, 4000);
+        changeBackground();
+        setInterval(changeBackground, 4000);
 
         document.addEventListener("DOMContentLoaded", function () {
         const logosSlide = document.querySelector(".logos-slide");
@@ -443,25 +423,25 @@
             const chunk = programs.slice(carouselIndex, carouselIndex + 3);
 
             const itemDiv = document.createElement('div');
-            itemDiv.classList.add('carousel-item', 'justify-content-center');
+            itemDiv.classList.add('carousel-item');
             if (carouselIndex === 0) {
                 itemDiv.classList.add('active');
             }
 
             const rowDiv = document.createElement('div');
-            rowDiv.classList.add('row','w-100', 'container-fluid');
+            rowDiv.classList.add('row', 'w-100');
 
             chunk.forEach(program => {
                 const colDiv = document.createElement('div');
-                colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-3');
+                colDiv.classList.add('col-12', 'col-md-4', 'd-flex');
 
                 const cardDiv = document.createElement('div');
                 cardDiv.classList.add('card', 'h-100', 'w-100');
                 cardDiv.innerHTML = `
-                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="color:#2B2525;">
+                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
                     <div class="card-body">
                         <h5 class="card-title">${program.title}</h5>
-                        <p class="card-text" style="color:#2B2525;">
+                        <p class="card-text">
                             ${program.description.slice(0, 100)}
                         </p>
                     </div>

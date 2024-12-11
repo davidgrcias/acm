@@ -1,24 +1,20 @@
-@php
-    $view = \App\Models\View::first(); // You can adjust this to get the correct view data
-@endphp
-
 <footer class="site-footer">
     <div class="container">
         <div class="row align-items-center">
 
             <!-- Contact Section -->
             <div class="col-lg-6 col-md-6 col-12 mb-4">
-                <h5 class="text-white mx-auto px-3 py-6 text-center text-md-start">{{ $view->contact_title }}</h5>
+                <h5 class="text-white mx-auto px-3 py-6 text-center text-md-start">Contact</h5>
                 <ul class="container flex flex-column pt-4 pb-4 px-3 text-center text-md-start">
-                    <li class="text-white footer-menu-item pt-1 pb-1">{{  $view->contact_name }}</li>
-                    <li class="text-white footer-menu-item pt-1 pb-1">{{ $view->contact_phone_number }}</li>
-                    <li class="text-white footer-menu-item pt-1 pb-1">{{ $view->contact_email }}</li>
+                    <li class="text-white footer-menu-item pt-1 pb-1">ARK Care Ministry</li>
+                    <li class="text-white footer-menu-item pt-1 pb-1">096-907-097</li>
+                    <li class="text-white footer-menu-item pt-1 pb-1">arkcareministry@acm.org.id</li>
                 </ul>
             </div>
 
             <!-- Logo Section -->
             <div class="col-lg-6 col-md-6 col-12 text-center text-md-end mb-4">
-                <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry"
+                <img src="templateUSER/images/logoACM.png" alt="ARK Care Ministry"
                     class="object-cover w-75 h-auto">
             </div>
 
@@ -40,13 +36,13 @@
                 <div class="col-lg-6 col-md-6 col-12 text-center text-md-end">
                     <ul class="social-icon d-flex justify-content-center justify-content-md-end gap-3" style="padding-right: 1rem;">
                         <li class="social-icon-item px-1">
-                            <a href="{{ asset('storage/' . $view->instagram_link) }}" class="social-icon-link bi-instagram px"></a>
+                            <a href="#" class="social-icon-link bi-instagram px"></a>
                         </li>
                         <li class="social-icon-item px-1">
-                            <a href="{{ asset('storage/' . $view->whatsapp_link) }}" class="social-icon-link bi-whatsapp"></a>
+                            <a href="#" class="social-icon-link bi-whatsapp"></a>
                         </li>
                         <li class="social-icon-item px-1">
-                            <a href="{{ asset('storage/' . $view->linktree_link) }}" class="social-icon-link bi-line"></a>
+                            <a href="#" class="social-icon-link bi-line"></a>
                         </li>
                     </ul>
                 </div>

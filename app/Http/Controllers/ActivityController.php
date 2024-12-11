@@ -9,8 +9,8 @@ class ActivityController extends Controller
 {
     public function activity()
     {
-        $activities = News::where('status', 'Published')->get();
-        $activitygalleries = Gallery::orderBy('order', 'asc')->paginate(9);
+        $activities = News::latest()->get();
+        $activitygalleries = Gallery::latest()->paginate(9);
 
         return view('activity', [
             'activities' => $activities,
