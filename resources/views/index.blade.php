@@ -203,6 +203,29 @@
             }
         }
 
+        @media (max-width: 768px) {
+            #programCarousel .carousel-control-prev,
+            #programCarousel .carousel-control-next {
+                display: none; /* kalo layar kecil, tombolnya diilangin */
+            }
+
+            .carousel-inner {
+                flex-wrap: wrap;
+                display: flex;
+            }
+
+            .carousel-item {
+                flex: 1 1 100%;
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            .carousel-item .card {
+                margin: auto;
+            }
+        }
+
+
         #nextBtn,
         #prevBtn {
             width: 30px;
@@ -434,63 +457,97 @@
         logosSlide.style.display = "flex";
     });
 
+    document.addEventListener("DOMContentLoaded", function () {
         const programs = @json($programs);
 
-        let carouselIndex = 0;
+        function renderProgramsForMobile() {
+            const carouselInner = document.getElementById("carousel-inner");
+            carouselInner.innerHTML = ''; // hapus konten lama
 
-        function updateCarousel() {
-            const carouselInner = document.getElementById('carousel-inner');
-            carouselInner.innerHTML = '';
-
-            const chunk = [
-                programs[carouselIndex % programs.length],
-                programs[(carouselIndex + 1) % programs.length],
-                programs[(carouselIndex + 2) % programs.length]
-            ];
-
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('carousel-item', 'justify-content-center', 'active');
-
-            const rowDiv = document.createElement('div');
-            rowDiv.classList.add('row', 'w-75', 'mx-auto', 'align-items-center');
-
-            chunk.forEach(program => {
-                const colDiv = document.createElement('div');
-                colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-3');
-
+            programs.forEach(program => {
                 const cardDiv = document.createElement('div');
-                cardDiv.classList.add('card', 'h-100', 'w-100');
+                cardDiv.classList.add('card', 'mb-3', 'w-100');
                 cardDiv.innerHTML = `
-                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="color:#2B2525;">
+                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="aspect-ratio:16/9;">
                     <div class="card-body">
                         <h5 class="card-title">${program.title}</h5>
-                        <p class="card-text" style="color:#2B2525;">
-                            ${program.description.slice(0, 100)}
-                        </p>
+                        <p class="card-text">${program.description.slice(0, 100)}</p>
                     </div>
                 `;
-                colDiv.appendChild(cardDiv);
-                rowDiv.appendChild(colDiv);
+                carouselInner.appendChild(cardDiv);
             });
-
-            itemDiv.appendChild(rowDiv);
-            carouselInner.appendChild(itemDiv);
         }
 
-        function nextSlide() {
-            carouselIndex = (carouselIndex + 1) % programs.length;
+        function renderCarouselForDesktop() {
+            let carouselIndex = 0;
+
+            function updateCarousel() {
+                const carouselInner = document.getElementById('carousel-inner');
+                carouselInner.innerHTML = '';
+
+                const chunk = [
+                    programs[carouselIndex % programs.length],
+                    programs[(carouselIndex + 1) % programs.length],
+                    programs[(carouselIndex + 2) % programs.length]
+                ];
+
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('carousel-item', 'justify-content-center', 'active');
+
+                const rowDiv = document.createElement('div');
+                rowDiv.classList.add('row', 'w-75', 'mx-auto', 'align-items-center');
+
+                chunk.forEach(program => {
+                    const colDiv = document.createElement('div');
+                    colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-3');
+
+                    const cardDiv = document.createElement('div');
+                    cardDiv.classList.add('card', 'h-100', 'w-75');
+                    cardDiv.innerHTML = `
+                        <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="aspect-ratio:16/9;">
+                        <div class="card-body">
+                            <h5 class="card-title">${program.title}</h5>
+                            <p class="card-text">
+                                ${program.description.slice(0, 100)}
+                            </p>
+                        </div>
+                    `;
+                    colDiv.appendChild(cardDiv);
+                    rowDiv.appendChild(colDiv);
+                });
+
+                itemDiv.appendChild(rowDiv);
+                carouselInner.appendChild(itemDiv);
+            }
+
+            function nextSlide() {
+                carouselIndex = (carouselIndex + 1) % programs.length;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                carouselIndex = (carouselIndex - 1 + programs.length) % programs.length;
+                updateCarousel();
+            }
+
+            document.getElementById('nextBtn').addEventListener('click', nextSlide);
+            document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
             updateCarousel();
         }
 
-        function prevSlide() {
-            carouselIndex = (carouselIndex - 1 + programs.length) % programs.length;
-            updateCarousel();
+        function adjustLayout() {
+            if (window.innerWidth <= 768) {
+                renderProgramsForMobile();
+            } else {
+                renderCarouselForDesktop();
+            }
         }
 
-        document.getElementById('nextBtn').addEventListener('click', nextSlide);
-        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+        window.addEventListener("resize", adjustLayout);
+        adjustLayout(); //diadjust layout saat halaman dimuat
+    });
 
-        updateCarousel();
 
     </script>
 </x-layout>
