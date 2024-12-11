@@ -120,16 +120,16 @@
             margin: 70px;
         }
         .join-us-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50; /* Warna tombol */
-            color: white;
+            background-color: #28a745; 
+            color: white; 
             text-decoration: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 25px; 
+            border: none; 
+            display: inline-block; 
+            transition: background-color 0.3s ease; 
+}
 
         .join-us-button:hover {
             background-color: #45a049; /* Warna saat tombol dihover */
@@ -323,13 +323,12 @@
             </div>
         </div>        
 
-        <div class="join-us-section" align="center">
+       <div class="join-us-section" align="center">
             <p>
                 <p style="color:#2B2525;">{{ $view->explanation }}</p>
                 <br/><br/>
-                <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
-                    Donate Now
+                <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="join-us-button">
+                    Join Us
                 </a>
             </p>
         </div>        
