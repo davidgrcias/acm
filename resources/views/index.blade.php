@@ -50,14 +50,13 @@
             overflow: hidden;
             color: white;
             width: 98%;
-            padding-top: 0;
+            padding-top: 2%;
             padding-left: 5%;
             padding-right:5%;
             padding-bottom:0;
             border-radius: 50px;
             margin: 30px auto;
             display: flex;
-            justify-content: center;
             flex-direction: column;
             aspect-ratio:16/9;
         }
@@ -80,7 +79,7 @@
             margin-left: auto;
             margin-right: 0;
             margin-top:0;
-            margin-bottom:15%;
+            margin-bottom:10%;
             width: 10%;
         }
 
@@ -90,9 +89,9 @@
             color: white;
             border-radius: 50px;
             padding: 10px;
-            width:20%;
             text-align: center;
             opacity: 86%;
+            width: 20%;
         }
 
         a:hover {
@@ -182,6 +181,8 @@
             }
             .container-fotowelcome img{
                 width: 50px;
+                padding-top: 10px;
+                margin-bottom: 10px;
             }
         }
 
@@ -189,6 +190,13 @@
             .carousel-item .card {
                 width: 100%;
                 margin-bottom:10px;
+            }
+            a.tombol-about{
+                width: 28%;
+            }
+            container-fotowelcome img{
+                padding-top: 10px;
+                margin-bottom: 10px;
             }
         }
 
@@ -291,7 +299,7 @@
     <div class="container-home">
         <!-- Welcome -->
         <div class="container-fotowelcome">
-            <div id="background-slider" style="background-size: cover; background-position: center;"></div>
+            <div id="background-slider"></div>
             <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry">
             <h3 style="color:white;"><b>{{ $view->greeting_message }}</b></h3>
             <p style="color:white;">{{ $view->tagline }}</p>
