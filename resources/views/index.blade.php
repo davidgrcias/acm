@@ -1,11 +1,10 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
         *{
-            font-family: 'Poppins';
+            font-family: 'Poppins', sans-serif;
         }
-        
         @keyframes slide {
             from {
                 transform: translateX(0);
@@ -31,18 +30,18 @@
 
         /* Gambar */
         .logos-slide img {
-            width: 25%; /* Setiap gambar 1/4 dari kontainer */
-            height: 100%; /* Tinggi gambar penuh */
-            object-fit: cover; /* Proporsi gambar tetap */
+            width: 25%; 
+            height: 100%; 
+            object-fit: cover; 
         }
 
         /* Animasi bergerak */
         @keyframes scroll {
             0% {
-                transform: translateX(0); /* Awal posisi */
+                transform: translateX(0); 
             }
             100% {
-                transform: translateX(-100%); /* Geser sepanjang kontainer */
+                transform: translateX(-100%); 
             }
         }
 
@@ -91,7 +90,7 @@
             color: white;
             border-radius: 50px;
             padding: 10px;
-            width: 224px;
+            width:20%;
             text-align: center;
             opacity: 86%;
         }
@@ -132,14 +131,14 @@
 }
 
         .join-us-button:hover {
-            background-color: #45a049; /* Warna saat tombol dihover */
+            background-color: #45a049; /* berubah warna saat tombol dihover */
         }
 
         .button-icon {
-            width: 24px; /* Ukuran ikon */
+            width: 24px;
             height: 24px;
-            margin-right: 10px; /* Jarak antara ikon dan teks */
-            filter: brightness(0) invert(1); /* Mengubah ikon menjadi putih */
+            margin-right: 10px; 
+            filter: brightness(0) invert(1);
         }
 
 
@@ -244,7 +243,7 @@
         .testimony-content {
             display: flex;
             gap: 20px;
-            background-color: #8EC73D;
+            background-color: #ffc78f;
             border-radius: 15px;
             padding: 20px;
             width: 100%;
@@ -303,7 +302,7 @@
         <!-- Quotes -->
         <div class="quotes">
             <p align="center">
-                <p styles="color: #2B2525;" align="center">{{ $view->quotes }}</p>
+                <p styles="color: #2B2525;" align="center"><b>{{ $view->quotes }}</b></p>
                 <p>{{ $view->quotesby }}</p>
                 <br/>
             </p>
@@ -325,7 +324,7 @@
 
        <div class="join-us-section" align="center">
             <p>
-                <p style="color:#2B2525;">{{ $view->explanation }}</p>
+                <p style="color:#2B2525;"><b>{{ $view->explanation }}</b></p>
                 <br/><br/>
                 <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="join-us-button">
                     Join Us
@@ -412,25 +411,18 @@
         const logosSlide = document.querySelector(".logos-slide");
         const logosContainer = document.querySelector(".logos");
 
-        // Hitung total lebar container dan satu gambar
         const containerWidth = logosContainer.offsetWidth;
         const imageWidth = logosSlide.querySelector("img").offsetWidth;
 
-        // Hitung jumlah minimum duplikat agar memenuhi container
         const imagesNeeded = Math.ceil(containerWidth / imageWidth);
 
-        // Gandakan gambar hingga jumlah mencukupi
         for (let i = 0; i < imagesNeeded; i++) {
         logosSlide.innerHTML += logosSlide.innerHTML;
     }
 
-        // Pastikan flex untuk elemen agar semuanya horizontal
         logosSlide.style.display = "flex";
     });
 
-
-
-        // id carousel-inner
         const programs = @json($programs);
 
         let carouselIndex = 0;
@@ -439,16 +431,17 @@
             const carouselInner = document.getElementById('carousel-inner');
             carouselInner.innerHTML = '';
 
-            const chunk = programs.slice(carouselIndex, carouselIndex + 3);
+            const chunk = [
+                programs[carouselIndex % programs.length],
+                programs[(carouselIndex + 1) % programs.length],
+                programs[(carouselIndex + 2) % programs.length]
+            ];
 
             const itemDiv = document.createElement('div');
-            itemDiv.classList.add('carousel-item', 'justify-content-center');
-            if (carouselIndex === 0) {
-                itemDiv.classList.add('active');
-            }
+            itemDiv.classList.add('carousel-item', 'justify-content-center', 'active');
 
             const rowDiv = document.createElement('div');
-            rowDiv.classList.add('row','w-100', 'container-fluid');
+            rowDiv.classList.add('row', 'w-100', 'container-fluid');
 
             chunk.forEach(program => {
                 const colDiv = document.createElement('div');
@@ -487,5 +480,6 @@
         document.getElementById('prevBtn').addEventListener('click', prevSlide);
 
         updateCarousel();
+
     </script>
 </x-layout>
