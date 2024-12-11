@@ -17,7 +17,7 @@
     .logos {
         overflow: hidden; 
         width: 100%; 
-        height: 150px; 
+        height: auto; 
         position: relative;
         margin-bottom: 30px;
     }
@@ -101,8 +101,10 @@
         }
 
         .quotes {
-            padding: 30px;
-            margin: 70px;
+            margin-left: 30%;
+            margin-right:30%;
+            margin-top: 10%;
+            margin-bottom: 10%;
             width: 90%;
             display: flex;
             align-items: center;
@@ -114,8 +116,10 @@
         }
 
         .join-us-section {
-            padding: 30px;
-            margin: 70px;
+            margin-left: 10%;
+            margin-right: 10%;
+            margin-bottom:10%;
+            margin-top:10%;
         }
         .join-us-button {
             background-color: #28a745; 
@@ -162,7 +166,6 @@
             display: flex;
             justify-content: space-between;
             gap: 15px;
-            margin-left: 12px;
         }
 
         .carousel-item .card {
@@ -321,7 +324,7 @@
                 @if($view)
                     @foreach(['introduction_banner_1', 'introduction_banner_2', 'introduction_banner_3', 'introduction_banner_4'] as $banner)
                         @if($view->$banner)
-                            <img src="{{ asset('storage/' . $view->$banner) }}" alt="Carousel Image" />
+                            <img src="{{ asset('storage/' . $view->$banner) }}" alt="Carousel Image"/>
                         @endif
                     @endforeach
                 @else
@@ -342,7 +345,7 @@
         
 
         <!-- Our Program -->
-        <div class="ourprogram w-full py-16 px-4" align="center;" style="background-color: #443333;">
+        <div class="ourprogram w-full py-16 px-4" style="background-color: #443333; align-items:center;">
             <div class="max-w-6xl mx-auto text-center mb-12">
                 <h3 class="font-bold text-white">Our Program</h2>
                 <h6 style="color: #ffaa23;">We help those in need</p>
@@ -449,7 +452,7 @@
             itemDiv.classList.add('carousel-item', 'justify-content-center', 'active');
 
             const rowDiv = document.createElement('div');
-            rowDiv.classList.add('row', 'w-100', 'container-fluid');
+            rowDiv.classList.add('row', 'w-75', 'mx-auto', 'align-items-center');
 
             chunk.forEach(program => {
                 const colDiv = document.createElement('div');
