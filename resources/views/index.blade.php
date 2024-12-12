@@ -2,47 +2,33 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
-        *{
+        * {
             font-family: 'Poppins', sans-serif;
-        }
-        @keyframes slide {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-100%);
-            }
+            box-sizing: border-box; /* Added for better box model handling */
         }
 
-    .logos {
-        overflow: hidden; 
-        width: 100%; 
-        height: auto; 
-        position: relative;
-        margin-bottom: 30px;
-    }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
 
+        .logos {
+            overflow: hidden; 
+            width: 100%; 
+            height: auto; 
+            position: relative;
+            margin-bottom: 30px;
+        }
 
-    .logos-slide {
-    display: flex; 
-    animation: scroll 10s linear infinite; 
-    }
+        .logos-slide {
+            display: flex; 
+            animation: scroll 10s linear infinite; 
+        }
 
-        /* Gambar */
         .logos-slide img {
             width: 25%; 
-            height: 100%; 
+            height: auto; 
             object-fit: cover; 
-        }
-
-        /* Animasi bergerak */
-        @keyframes scroll {
-            0% {
-                transform: translateX(0); 
-            }
-            100% {
-                transform: translateX(-100%); 
-            }
         }
 
         .container-fotowelcome {
@@ -50,15 +36,12 @@
             overflow: hidden;
             color: white;
             width: 98%;
-            padding-top: 2%;
-            padding-left: 5%;
-            padding-right:5%;
-            padding-bottom:0;
+            padding: 2% 5% 0;
             border-radius: 50px;
             margin: 30px auto;
             display: flex;
             flex-direction: column;
-            aspect-ratio:16/9;
+            aspect-ratio: 16/9;
         }
 
         #background-slider {
@@ -74,15 +57,12 @@
             z-index: -1;
         }
 
-        /*buat logo ACM kanan atas */
         .container-fotowelcome img {
             margin-left: auto;
             margin-right: 0;
-            margin-top:0;
-            margin-bottom:10%;
+            margin-bottom: 10%;
             width: 10%;
         }
-
 
         a.tombol-about {
             background-color: #E23917;
@@ -92,35 +72,29 @@
             text-align: center;
             opacity: 86%;
             width: 20%;
+            transition: background-color 0.5s, color 0.5s;
         }
 
-        a:hover {
+        a.tombol-about:hover {
             background-color: white;
             color: black;
-            transition: 0.5s;
         }
 
         .quotes {
-            margin-left: 30%;
-            margin-right:30%;
-            margin-top: 10%;
-            margin-bottom: 10%;
+            margin: 10% auto;
             width: 90%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             font-size: 20px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .join-us-section {
-            margin-left: 10%;
-            margin-right: 10%;
-            margin-bottom:10%;
-            margin-top:10%;
+            margin: 10%;
+            text-align: center;
         }
+
         .join-us-button {
             background-color: #28a745; 
             color: white; 
@@ -131,35 +105,23 @@
             border: none; 
             display: inline-block; 
             transition: background-color 0.3s ease; 
-}
+        }
 
         .join-us-button:hover {
-            background-color: #45a049; /* berubah warna saat tombol dihover */
+            background-color: #45a049; 
         }
-
-        .button-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px; 
-            filter: brightness(0) invert(1);
-        }
-
 
         .ourprogram {
             padding: 40px;
             margin-bottom: 20px;
-        }
-
-        #programCarousel {
-            padding:0;
-        }
-
-        .carousel {
-            padding:0;
+            background-color: #443333;
+            align-items: center;
         }
 
         .carousel-inner img {
             aspect-ratio: 16/9;
+            width: 100%; /* Make images responsive */
+            height: auto; /* Maintain aspect ratio */
         }
 
         .carousel-item {
@@ -172,11 +134,9 @@
             flex: 1;
             margin: 0 5px;
         }
-
-        .row {
-            justify-content: center;
+        .row{
+            justify-content:center;
         }
-
         @media (max-width: 720px) {
             .carousel-item .card {
                 width: 45%;
@@ -225,40 +185,11 @@
             }
         }
 
-
         #nextBtn,
         #prevBtn {
             width: 30px;
             transition: 2s;
         }
-
-        .carousel-item {
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-inner {
-            display: flex;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-        }
-
-        .testimony-item.left .testimony-content {
-            flex-direction: row; /* fotonya dikiri */
-        }
-
-        .testimony-item.left .testimony-text {
-            text-align: left; /* teksnya align kiri */
-        }
-
-        .testimony-item.right .testimony-content {
-            flex-direction: row-reverse; /* fotonya dikanan */
-        }
-
-        .testimony-item.right .testimony-text {
-            text-align: right; /* teksnya align kanan */
-        }
-
         .testimony-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -275,7 +206,7 @@
         }
 
         .testimony-content {
-            display: flex;
+            display : flex;
             gap: 20px;
             background-color: #ffc78f;
             border-radius: 15px;
@@ -308,22 +239,47 @@
         }
 
         @media (max-width: 720px) {
+            .logos-slide img {
+                width: 50%;
+            }
+
+            .container-fotowelcome img {
+                width: 50px;
+                padding-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .join-us-button {
+                width: 80%;
+            }
+
+            .carousel-item .card {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
             .testimony-content {
-                flex-direction: column !important;
+                flex-direction: column !important; 
             }
 
             .testimony-img img {
                 width: 80px;
                 height: 80px;
             }
+
             .testimony-text p {
                 text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            a.tombol-about {
+                width: 80%; 
             }
         }
     </style>
 
     <div class="container-home">
-        <!-- Welcome -->
         <div class="container-fotowelcome">
             <div id="background-slider"></div>
             <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry">
@@ -332,14 +288,9 @@
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
-
-        <!-- Quotes -->
         <div class="quotes">
-            <p align="center">
-                <p styles="color: #2B2525;" align="center"><b>{{ $view->quotes }}</b></p>
-                <p>{{ $view->quotesby }}</p>
-                <br/>
-            </p>
+            <p style="color: #2B2525;"><b>{{ $view->quotes }}</b></p>
+            <p>{{ $view->quotesby }}</p>
         </div>
 
         <div class="logos">
@@ -356,31 +307,20 @@
             </div>
         </div>        
 
-       <div class="join-us-section" align="center">
-            <p>
-                <p style="color:#2B2525;"><b>{{ $view->explanation }}</b></p>
-                <br/><br/>
-                <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="join-us-button">
-                    Join Us
-                </a>
-            </p>
+        <div class="join-us-section">
+            <p style="color:#2B2525;"><b>{{ $view->explanation }}</b></p>
+            <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="join-us-button">Join Us</a>
         </div>        
-        
 
-        <!-- Our Program -->
-        <div class="ourprogram w-full py-16 px-4" style="background-color: #443333; align-items:center;">
+        <div class="ourprogram">
             <div class="max-w-6xl mx-auto text-center mb-12">
-                <h3 class="font-bold text-white">Our Program</h2>
-                <h6 style="color: #ffaa23;">We help those in need</p>
+                <h3 class="font-bold text-white">Our Program</h3>
+                <h6 style="color: #ffaa23;">We help those in need</h6>
             </div>
 
-            <!-- Carousel -->
             <div id="programCarousel" class="carousel slide container-fluid" data-bs-ride="carousel">
-                <div class="carousel-inner" id="carousel-inner">
-                    <!-- Cardsnya dipake id carousel-inner -->
-                </div>
+                <div class="carousel-inner" id="carousel-inner"></div>
                 <br/>
-                <!-- Control Carousel -->
                 <button class="carousel-control-prev" type="button" id="prevBtn">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -392,18 +332,17 @@
             </div>
         </div>
 
-        <!-- Testimoni -->
         <div class="container-testimoni" align="center" style="margin-bottom:20px;">
-            <h3 style="margin-top:100px;">{{ $view->testimonial_title }}</h3><br/>
+            <h3 style="margin-top:100px;">{{ $view->testimonial_title }}</h3>
             <div class="testimony-grid">
                 @foreach($testimonies as $index => $testimony)
                     <div class="testimony-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
                         <div class="testimony-content">
                             <div class="testimony-img">
-                                <img src="{{ asset('storage/' . $testimony->image) }}" alt="Profil">
+                                <img src="{{ asset('storage/' . $testimony->image) }}" alt="Profile">
                             </div>
                             <div class="testimony-text">
-                                <p style="color:#2B2525;">"{{ $testimony->text }}"</p>
+                                <p style="color:#2B2525;"> "{{ $testimony->text }}"</p>
                                 <p>- {{ $testimony->status }} -</p>
                             </div>
                         </div>
@@ -442,106 +381,107 @@
         setInterval(updateBackground, 4000); 
         
         document.addEventListener("DOMContentLoaded", function () {
-        const logosSlide = document.querySelector(".logos-slide");
-        const logosContainer = document.querySelector(".logos");
+            const logosSlide = document.querySelector(".logos-slide");
+            const logosContainer = document.querySelector(".logos");
 
-        const containerWidth = logosContainer.offsetWidth;
-        const imageWidth = logosSlide.querySelector("img").offsetWidth;
+            const containerWidth = logosContainer.offsetWidth;
+            const imageWidth = logosSlide.querySelector("img").offsetWidth;
 
-        const imagesNeeded = Math.ceil(containerWidth / imageWidth);
+            const imagesNeeded = Math.ceil(containerWidth / imageWidth);
 
-        for (let i = 0; i < imagesNeeded; i++) {
-        logosSlide.innerHTML += logosSlide.innerHTML;
-    }
+            for (let i = 0; i < imagesNeeded; i++) {
+                logosSlide.innerHTML += logosSlide.innerHTML;
+            }
 
-        logosSlide.style.display = "flex";
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const programs = @json($programs);
-let carouselIndex = 0;
-
-function updateCarousel() {
-    const carouselInner = document.getElementById('carousel-inner');
-    carouselInner.innerHTML = '';
-
-    // Get the next three programs
-    const chunk = programs.slice(carouselIndex, carouselIndex + 3);
-    
-    // If there are less than 3 programs left, loop back to the start
-    if (chunk.length < 3) {
-        const remaining = 3 - chunk.length;
-        const additionalPrograms = programs.slice(0, remaining);
-        chunk.push(...additionalPrograms);
-    }
-
-    const itemDiv = document.createElement('div');
-    itemDiv.classList.add('carousel-item', 'justify-content-center');
-    if (carouselIndex === 0) {
-        itemDiv.classList.add('active');
-    }
-
-    const rowDiv = document.createElement('div');
-    rowDiv.classList.add('row', 'w-100', 'container-fluid');
-
-    chunk.forEach((program, index) => {
-        const colDiv = document.createElement('div');
-        colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-3');
-
-        const cardDiv = document.createElement('div');
-        cardDiv.classList.add('card', 'h-100', 'w-100');
-        cardDiv.innerHTML = `
-            <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
-            <div class="card-body">
-                <h5 class="card-title">${program.title}</h5>
-                <p class="card-text">
-                    ${program.description.slice(0, 100)}
-                </p>
-            </div>
-        `;
+            logosSlide.style.display = "flex";
+        });
         
-        // Add active class to the center image
-        if (index === 1) {
-            cardDiv.classList.add('active');
+        document.addEventListener("DOMContentLoaded", function () {
+            const programs = @json($programs);
+            
+            function renderProgramsForMobile(){
+                const carouselInner = document.getElementById('carousel-inner');
+                carouselInner.innerHTML = '';
+
+                programs.forEach(program => {
+                    const cardDiv = document.createElement('div');
+                    cardDiv.classList.add('card', 'h-100', 'w-100');
+                    cardDiv.innerHTML = `
+                        <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
+                        <div class="card-body">
+                            <h5 class="card-title">${program.title}</h5>
+                            <p class="card-text">${program.description.slice(0, 100)}</p>
+                        </div>
+                    `;
+                    
+                    carouselInner.appendChild(cardDiv);
+                });
+            }
+
+            function renderCarouselForDesktop() {
+                let carouselIndex = 0;
+
+                function updateCarousel() {
+                    const carouselInner = document.getElementById('carousel-inner');
+                    carouselInner.innerHTML = '';
+
+                    const chunk = [
+                        programs[carouselIndex % programs.length],
+                        programs[(carouselIndex + 1) % programs.length],
+                        programs[(carouselIndex + 2) % programs.length]
+                    ];
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('carousel-item', 'justify-content-center');
+                    const rowDiv = document.createElement('div');
+                    rowDiv.classList.add('row', 'w-100', 'container-fluid');
+
+                    chunk.forEach(program => {
+                        const colDiv = document.createElement('div');
+                        colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-3');
+
+                        const cardDiv = document.createElement('div');
+                        cardDiv.classList.add('card', 'h-100', 'w-100');
+                        cardDiv.innerHTML = `
+                            <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${program.title}</h5>
+                                <p class="card-text">${program.description.slice(0, 100)}</p>
+                            </div>
+                        `;
+                        colDiv.appendChild(cardDiv);
+                        rowDiv.appendChild(colDiv);
+                    });
+
+                    itemDiv.appendChild(rowDiv);
+                    carouselInner.appendChild(itemDiv);
+                }
+                function nextSlide() {
+                carouselIndex = (carouselIndex + 1) % programs.length;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                carouselIndex = (carouselIndex - 1 + programs.length) % programs.length;
+                updateCarousel();
+            }
+
+            document.getElementById('nextBtn').addEventListener('click', nextSlide);
+            document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+            updateCarousel();
         }
 
-        colDiv.appendChild(cardDiv);
-        rowDiv.appendChild(colDiv);
-    });
-
-    itemDiv.appendChild(rowDiv);
-    carouselInner.appendChild(itemDiv);
-}
-
-function nextSlide() {
-    carouselIndex = (carouselIndex + 1) % Math.ceil(programs.length);
-    updateCarousel();
-}
-
-function prevSlide() {
-    carouselIndex = (carouselIndex - 1 + Math.ceil(programs.length)) % Math.ceil(programs.length);
-    updateCarousel();
-}
-
-document.getElementById('nextBtn').addEventListener('click', nextSlide);
-document.getElementById('prevBtn').addEventListener('click', prevSlide);
-
-// Initialize the carousel
-updateCarousel();
-        }
-
-        function adjustLayout() {
-            if (window.innerWidth <= 768) {
+        function adjustLayout(){
+            if(window.innerWidth < 768){
                 renderProgramsForMobile();
             } else {
                 renderCarouselForDesktop();
             }
         }
 
-        window.addEventListener("resize", adjustLayout);
-        adjustLayout(); //diadjust layout saat halaman dimuat
-    });
-
-
+        window.addEventListener('resize', adjustLayout);
+        adjustLayout();
+        });
     </script>
 </x-layout>
