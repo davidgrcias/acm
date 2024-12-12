@@ -308,7 +308,7 @@
         </div>        
 
         <div class="join-us-section">
-            <p style="color:#2B2525;"><b>{{ $view->explanation }}</b></p>
+            <p style="color:#2B2525;">{{ $view->explanation }}</p>
             <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="join-us-button">Join Us</a>
         </div>        
 
