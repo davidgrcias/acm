@@ -119,9 +119,8 @@
         }
 
         .carousel-inner img {
-            aspect-ratio: 16/9;
-            width: 100%; /* Make images responsive */
-            height: auto; /* Maintain aspect ratio */
+            aspect-ratio: 16/9; 
+            height: auto; 
         }
 
         .carousel-item {
@@ -133,9 +132,11 @@
         .carousel-item .card {
             flex: 1;
             margin: 0 5px;
+            max-width: 33%;
         }
         .row{
             justify-content:center;
+            margin-left:2px;
         }
         @media (max-width: 720px) {
             .carousel-item .card {
@@ -163,15 +164,34 @@
             }
         }
 
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            z-index: 2;
+        }
+
+        .carousel-control-prev {
+            left: 10px;
+        }
+
+        .carousel-control-next {
+            right: 10px;
+        }
+
         @media (max-width: 768px) {
-            #programCarousel .carousel-control-prev,
-            #programCarousel .carousel-control-next {
-                display: none; /* kalo layar kecil, tombolnya diilangin */
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 40px; 
+                height: 40px;
             }
+        }
 
             .carousel-inner {
                 flex-wrap: wrap;
-                display: flex;
             }
 
             .carousel-item {
@@ -274,7 +294,7 @@
 
         @media (max-width: 576px) {
             a.tombol-about {
-                width: 80%; 
+                width: 40%; 
             }
         }
     </style>
@@ -289,7 +309,7 @@
         </div>
 
         <div class="quotes">
-            <p style="color: #2B2525;"><b>{{ $view->quotes }}</b></p>
+            <p style="color: #2B2525;" align="center"><b>{{ $view->quotes }}</b></p>
             <p>{{ $view->quotesby }}</p>
         </div>
 
@@ -398,65 +418,78 @@
         
         document.addEventListener("DOMContentLoaded", function () {
             const programs = @json($programs);
-            
-            function renderProgramsForMobile(){
-                const carouselInner = document.getElementById('carousel-inner');
+            const carouselInner = document.getElementById('carousel-inner');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            let carouselIndex = 0;
+
+            function renderProgramsForMobile() {
                 carouselInner.innerHTML = '';
 
-                programs.forEach(program => {
-                    const cardDiv = document.createElement('div');
-                    cardDiv.classList.add('card', 'h-100', 'w-100');
-                    cardDiv.innerHTML = `
-                        <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
-                        <div class="card-body">
-                            <h5 class="card-title">${program.title}</h5>
-                            <p class="card-text">${program.description.slice(0, 100)}</p>
-                        </div>
-                    `;
-                    
-                    carouselInner.appendChild(cardDiv);
-                });
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('carousel-item', 'active', 'w-100');
+
+                const cardDiv = document.createElement('div');
+                cardDiv.classList.add('card', 'h-100', 'w-100', 'd-flex', 'shadow-sm', 'border-light');  // Add shadow and border for aesthetics
+                cardDiv.style.maxWidth = '100%'; // Ensure cards don't exceed container width
+                cardDiv.innerHTML = `
+                    <img src="/storage/${programs[carouselIndex].image}" class="card-img-top" alt="${programs[carouselIndex].title}" style="object-fit: cover; height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">${programs[carouselIndex].title}</h5>
+                        <p class="card-text">${programs[carouselIndex].description.slice(0, 100)}...</p>
+                    </div>
+                `;
+
+                itemDiv.appendChild(cardDiv);
+                carouselInner.appendChild(itemDiv);
             }
 
             function renderCarouselForDesktop() {
-                let carouselIndex = 0;
+                carouselInner.innerHTML = '';
 
-                function updateCarousel() {
-                    const carouselInner = document.getElementById('carousel-inner');
-                    carouselInner.innerHTML = '';
+                const chunk = [
+                    programs[carouselIndex % programs.length],
+                    programs[(carouselIndex + 1) % programs.length],
+                    programs[(carouselIndex + 2) % programs.length],
+                ];
 
-                    const chunk = [
-                        programs[carouselIndex % programs.length],
-                        programs[(carouselIndex + 1) % programs.length],
-                        programs[(carouselIndex + 2) % programs.length]
-                    ];
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('carousel-item', 'active', 'justify-content-center');
+                const rowDiv = document.createElement('div');
+                rowDiv.classList.add('row', 'w-100', 'container-fluid', 'gx-3', 'gy-4'); 
 
-                    const itemDiv = document.createElement('div');
-                    itemDiv.classList.add('carousel-item', 'justify-content-center');
-                    const rowDiv = document.createElement('div');
-                    rowDiv.classList.add('row', 'w-100', 'container-fluid');
+                chunk.forEach(program => {
+                    const colDiv = document.createElement('div');
+                    colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-4'); 
 
-                    chunk.forEach(program => {
-                        const colDiv = document.createElement('div');
-                        colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-3');
+                    const cardDiv = document.createElement('div');
+                    cardDiv.classList.add('card', 'h-100', 'd-flex', 'shadow-sm', 'border-light');
+                    cardDiv.style.maxWidth = '100%';
+                    cardDiv.innerHTML = `
+                        <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="object-fit: cover; height: 200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">${program.title}</h5>
+                            <p class="card-text">${program.description.slice(0, 100)}...</p>
+                        </div>
+                    `;
+                    colDiv.appendChild(cardDiv);
+                    rowDiv.appendChild(colDiv);
+                });
 
-                        const cardDiv = document.createElement('div');
-                        cardDiv.classList.add('card', 'h-100', 'w-100');
-                        cardDiv.innerHTML = `
-                            <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
-                            <div class="card-body">
-                                <h5 class="card-title">${program.title}</h5>
-                                <p class="card-text">${program.description.slice(0, 100)}</p>
-                            </div>
-                        `;
-                        colDiv.appendChild(cardDiv);
-                        rowDiv.appendChild(colDiv);
-                    });
+                itemDiv.appendChild(rowDiv);
+                carouselInner.appendChild(itemDiv);
+            }
 
-                    itemDiv.appendChild(rowDiv);
-                    carouselInner.appendChild(itemDiv);
+            function updateCarousel() {
+                if (window.innerWidth < 768) {
+                    renderProgramsForMobile();
+                } else {
+                    renderCarouselForDesktop();
                 }
-                function nextSlide() {
+            }
+
+            function nextSlide() {
                 carouselIndex = (carouselIndex + 1) % programs.length;
                 updateCarousel();
             }
@@ -466,22 +499,13 @@
                 updateCarousel();
             }
 
-            document.getElementById('nextBtn').addEventListener('click', nextSlide);
-            document.getElementById('prevBtn').addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
 
+            window.addEventListener('resize', updateCarousel);
             updateCarousel();
-        }
-
-        function adjustLayout(){
-            if(window.innerWidth < 768){
-                renderProgramsForMobile();
-            } else {
-                renderCarouselForDesktop();
-            }
-        }
-
-        window.addEventListener('resize', adjustLayout);
-        adjustLayout();
         });
+
+
     </script>
 </x-layout>
