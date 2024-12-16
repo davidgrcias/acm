@@ -1,6 +1,7 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             background-color: #FFFBF4;
