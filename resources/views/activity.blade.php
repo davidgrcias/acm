@@ -152,11 +152,11 @@
         @media (max-width: 768px) {
             .NewsComponents img {
                 border-radius: 30px;
-                height: 400px;
+                height: 300px;
             }
 
             .NewsTitle p {
-                font-size: 14px;
+                font-size: 15px;
                 margin-bottom : 50px;
             }
 
@@ -165,9 +165,13 @@
             }
 
             .NewsTitleContainer .btn {
-                padding: 4px 8px;
+                padding: 2px 2px;
             }
 
+            .GalleryContainer {
+                grid-template-columns: repeat(1, 1fr);
+                gap: 10px;                  
+            }
         }
 
         @media (max-width: 480px) {
