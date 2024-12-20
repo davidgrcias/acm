@@ -281,7 +281,7 @@
     @forelse ($teamMembers as $member)
         <div class="team-member">
             <img 
-                src="{{ asset('storage/' . $member->member_image) ?: asset('templateUSER/images/portrait-volunteer-who-organized-donations-charity.jpg') }}" 
+                src="{{ asset('storage/app/public/' . $member->member_image) ?: asset('templateUSER/images/portrait-volunteer-who-organized-donations-charity.jpg') }}" 
                 alt="Profile picture of {{ $member->name }}"
                 loading="lazy">
             <h4 class="fw-bold mb-1">{{ $member->name }}</h4>
