@@ -55,22 +55,6 @@
             background-color: #5a6268;
         }
 
-        @media (max-width: 768px) {
-            .NewsComponents img {
-                border-radius: 30px;
-                height: 400px;
-            }
-
-            .NewsTitle p {
-                font-size: 18px;
-            }
-
-            .NewsTitleContainer {
-                padding: 20px;
-            }
-
-        }
-
         .GalleryContainer {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -165,6 +149,61 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
 
+        @media (max-width: 768px) {
+            .NewsComponents img {
+                border-radius: 30px;
+                height: 400px;
+            }
+
+            .NewsTitle p {
+                font-size: 18px;
+            }
+
+            .NewsTitleContainer {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .NewsComponents img {
+                border-radius: 30px;
+                height: 300px;
+            }
+
+            .NewsTitle p {
+                font-size: 16px;
+            }
+
+            .NewsTitleContainer {
+                padding: 15px;
+            }
+
+            .GalleryContainer {
+                grid-template-columns: repeat(1, 1fr);
+                gap: 10px;                  
+            }
+        }
+
+        @media (max-width: 360px) {
+            .NewsComponents img {
+                border-radius: 30px;
+                height: 100px;
+            }
+
+            .NewsTitle p {
+                font-size: 8px;
+            }
+
+            .NewsTitleContainer {
+                padding: 1px 3px;
+            }
+
+            .GalleryContainer {
+                grid-template-columns: repeat(1, 1fr);
+                gap: 10px;                  
+            }
+        }
+
     </style>
     <div class="container">
         <br></br>
@@ -195,7 +234,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        
+
         <div>
             <br></br>
             <h1>Galeri ACM</h1>
