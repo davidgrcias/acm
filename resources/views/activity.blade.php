@@ -1,15 +1,12 @@
 <x-layout>
-    <x-slot:title>{{ $title }}</x-slot:title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <x-slot:title>{{  $title }}</x-slot:title>
     <style>
         body {
             background-color: #FFFBF4;
         }
 
-        .GalleryImage {
-            width: 100%;
-            margin-bottom: 15px;
+        h1, h2 {
+            text-align: center;
         }
 
         .NewsComponents img {
@@ -22,21 +19,6 @@
             object-fit: cover;
         }
 
-        @media (max-width: 768px) {
-            .NewsComponents img {
-                border-radius: 30px;
-                height: 400px;
-            }
-
-            .title-container {
-                padding: 20px;
-            }
-
-            .NewsTitle p {
-                font-size: 18px;
-            }
-        }
-
         .NewsTitle p {
             color: white;
             margin-bottom: 20px;
@@ -46,7 +28,7 @@
             padding-left: 20px;
         }
 
-        .title-container {
+        .NewsTitleContainer {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -57,7 +39,7 @@
             position: relative;
         }
 
-        .title-container .btn {
+        .NewsTitleContainer .btn {
             color: white;
             background-color: rgba(179, 167, 168, 0.71);
             border: none;
@@ -69,8 +51,41 @@
             right: 10px;
         }
 
-        .title-container .btn:hover {
+        .NewsTitleContainer .btn:hover {
             background-color: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            .NewsComponents img {
+                border-radius: 30px;
+                height: 400px;
+            }
+
+            .NewsTitle p {
+                font-size: 18px;
+            }
+
+            .NewsTitleContainer {
+                padding: 20px;
+            }
+
+        }
+
+        .GalleryContainer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .GalleryComponents {
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .GalleryImage {
+            width: 100%;
+            margin-bottom: 15px;
         }
 
         .GalleryImage img {
@@ -82,7 +97,7 @@
             cursor: pointer;
         }
 
-        .Paging {
+        .Pagination {
             justify-content: center;
             display: flex;
             gap: 10px;
@@ -90,7 +105,7 @@
             margin-bottom: 30px;
         }
 
-        .Paging .PagingLink {
+        .Pagination .PaginationLink {
             padding: 6px 12px;
             background-color: #f0f0f0;
             border: 1px solid #ccc;
@@ -98,51 +113,34 @@
             border-radius: 5px;
         }
 
-        .Paging .PagingLink:hover {
+        .Pagination .PaginationLink:hover {
             background-color: #ddd;
         }
 
-        .Paging .page-item.active .PagingLink {
+        .Pagination .page-item.active .PaginationLink {
             font-weight: bold;
             background-color: #007bff;
             color: white;
         }
 
-        .Paging .page-item.disabled .PagingLink {
+        .Pagination .page-item.disabled .PaginationLink {
             background-color: #e9ecef;
             cursor: not-allowed;
         }
 
-        h1, h2 {
-            text-align: center;
-        }
-
-        .modal-dialog {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-content {
+        .modal-content{
             position: relative;
             background-color: transparent;
             border: none;
         }
 
-        .modal-body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        #modalImage {
+        #GalleryPhotoImage {
             max-width: 90%;
             max-height: 80vh;
             object-fit: contain;
         }
 
-        .nav-icon {
+        .Icon {
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
@@ -163,21 +161,10 @@
             right: 10px;
         }
 
-        .nav-icon:hover {
+        .Icon:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
 
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 10px;
-        }
     </style>
     <div class="container">
         <br></br>
@@ -191,7 +178,7 @@
                             <img src="{{ asset('storage/' . $activity->cover_image) }}" alt="{{ $activity->title }}">
                         @endisset
                         <div class="carousel-caption NewsTitle d-block">
-                            <div class="title-container">
+                            <div class="NewsTitleContainer">
                                 <p>{{ $activity->title }}</p>
                                 <a href="{{ route('activity.show', $activity->id) }}" class="btn">Selengkapnya --></a>
                             </div>
@@ -199,59 +186,59 @@
                     </div>
                 @endforeach
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#NewsCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <button class="carousel-control-prev CarouselPrev" type="button" data-bs-target="#NewsCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon CarouselPrevIcon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#NewsCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <button class="carousel-control-next CarouselNext" type="button" data-bs-target="#NewsCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon CarouselNextIcon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+        
         <div>
             <br></br>
             <h1>Galeri ACM</h1>
             <br></br>
-            <div class="gallery-container">
+            <div class="GalleryContainer">
                 @foreach($activitygalleries as $galleryItem)
                     @isset($galleryItem->image)
-                        <div class="gallery-item">
+                        <div class="GalleryComponents">
                             <div class="GalleryImage">
-                                <img src="{{ asset('storage/' . $galleryItem->image) }}" alt="{{ $galleryItem->label }}" data-bs-toggle="modal" data-bs-target="#galleryModal" data-index="{{ $loop->index }}">
+                                <img src="{{ asset('storage/' . $galleryItem->image) }}" alt="{{ $galleryItem->label }}" data-bs-toggle="modal" data-bs-target="#GalleryPhoto" data-index="{{ $loop->index }}">
                             </div>
                         </div>
                     @endisset
                 @endforeach
             </div>
-            <div class="Paging">
+            <div class="Pagination">
                 @unless($activitygalleries->onFirstPage())
-                    <a class="PagingLink" href="{{ $activitygalleries->previousPageUrl() }}">&lt;</a>
+                    <a class="PaginationLink" href="{{ $activitygalleries->previousPageUrl() }}">&lt;</a>
                 @endunless
                 @for ($i = 1; $i <= $activitygalleries->lastPage(); $i++)
-                    <a class="PagingLink" href="{{ $activitygalleries->url($i) }}">{{ $i }}</a>
+                    <a class="PaginationLink" href="{{ $activitygalleries->url($i) }}">{{ $i }}</a>
                 @endfor
                 @if ($activitygalleries->hasMorePages())
-                    <a class="PagingLink" href="{{ $activitygalleries->nextPageUrl() }}">&gt;</a>
+                    <a class="PaginationLink" href="{{ $activitygalleries->nextPageUrl() }}">&gt;</a>
                 @endif
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+    <div class="modal fade" id="GalleryPhoto" tabindex="-1" aria-labelledby="GalleryPhotoLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <div class="modal-content" id="GalleryPhotoItem">
                 <div class="modal-body text-center position-relative">
-                    <button id="prevIcon" class="btn nav-icon" style="left: 10px;">‹</button>
-                    <img id="modalImage" class="img-fluid" src="" alt="">
-                    <button id="nextIcon" class="btn nav-icon" style="right: 10px;">›</button>
+                    <button id="prevIcon" class="btn Icon" style="left: 10px;">‹</button>
+                    <img id="GalleryPhotoImage" class="img-fluid" src="" alt="">
+                    <button id="nextIcon" class="btn Icon" style="right: 10px;">›</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const modalImage = document.getElementById('modalImage');
+        const GalleryPhotoImage = document.getElementById('GalleryPhotoImage');
         const prevIcon = document.getElementById('prevIcon');
         const nextIcon = document.getElementById('nextIcon');
         const galleryImages = document.querySelectorAll('.GalleryImage img');
@@ -260,25 +247,25 @@
         galleryImages.forEach((img, index) => {
             img.addEventListener('click', function() {
                 currentIndex = index;
-                modalImage.src = this.src;
+                GalleryPhotoImage.src = this.src;
                 prevIcon.style.display = 'block';
                 nextIcon.style.display = 'block';
             });
         });
 
-        function updateModalImage(index) {
+        function updateGalleryPhotoImage(index) {
             currentIndex = index;
-            modalImage.src = galleryImages[currentIndex].src;
+            GalleryPhotoImage.src = galleryImages[currentIndex].src;
         }
 
         prevIcon.addEventListener('click', () => {
             currentIndex = (currentIndex > 0) ? currentIndex - 1 : galleryImages.length - 1;
-            updateModalImage(currentIndex);
+            updateGalleryPhotoImage(currentIndex);
         });
 
         nextIcon.addEventListener('click', () => {
             currentIndex = (currentIndex < galleryImages.length - 1) ? currentIndex + 1 : 0;
-            updateModalImage(currentIndex);
+            updateGalleryPhotoImage(currentIndex);
         });
     </script>
 </x-layout>
