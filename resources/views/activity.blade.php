@@ -13,7 +13,7 @@
             display: block;
             width: 100%;
             height: auto;
-            max-height: 600px;
+            max-height: 900px;
             margin: 0 auto;
             border-radius: 60px;
             object-fit: cover;
