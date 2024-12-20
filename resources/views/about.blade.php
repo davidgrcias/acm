@@ -127,7 +127,31 @@
     /* Perbaikan grid Meet Our Team */
     .team-container {
         display: grid;
-        gap: 1rem;
+        gap: 1.5rem;
+        padding: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        justify-items: center;
+    }
+
+    .team-container img {
+        width: 100%;
+        max-width: 250px;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .team-container img:hover {
+        transform: scale(1.05);
+    }
+
+    .team-container h4, .team-container h6 {
+        margin: 0;
+    }
+
+    .team-member {
+        text-align: center;
     }
 
     @media (min-width: 576px) {
@@ -174,6 +198,7 @@
         margin: 0 auto;
         max-width: 700px;
     }
+    
 </style>
 
 <div class="d-flex flex-column min-vh-100" style="background-color: #fdfaf4;">
@@ -250,27 +275,25 @@
                 </div>
             </div>
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-5">
-                @forelse ($teamMembers as $member)
-                    <div class="col">
-                        <div class="text-center">
-                            <img
-                                src="{{ asset('storage/app/public/' . $member->member_image) ?: asset('templateUSER/images/portrait-volunteer-who-organized-donations-charity.jpg') }}"
-                                class="rounded-circle mx-auto mb-2"
-                                alt="Profile picture of {{ $member->name }}"
-                                width="300" height="300"
-                                loading="lazy">
-                            <h4 class="fw-bold mb-1">{{ $member->name }}</h4>
-                            <h6 class="text-muted mb-0">{{ $member->role }}</h6>
-                        </div>
-                    </div>
-                @empty
-                <div class="col-lg-12">
-                    <p style="text-align: center;">No team members available at the moment.</p>
-                </div>
-                @endforelse
-            </div>
+            <h1 class="mb-3">Meet Our Team</h1>
 
+<div class="team-container">
+    @forelse ($teamMembers as $member)
+        <div class="team-member">
+            <img 
+                src="{{ asset('storage/' . $member->member_image) ?: asset('templateUSER/images/portrait-volunteer-who-organized-donations-charity.jpg') }}" 
+                alt="Profile picture of {{ $member->name }}"
+                loading="lazy">
+            <h4 class="fw-bold mb-1">{{ $member->name }}</h4>
+            <h6 class="text-muted mb-0">{{ $member->role }}</h6>
+        </div>
+    @empty
+        <div class="col-lg-12">
+            <p style="text-align: center;">No team members available at the moment.</p>
+        </div>
+    @endforelse
+</div>
+            
         </div>
     </main>
     <footer class="text-center py-3">
