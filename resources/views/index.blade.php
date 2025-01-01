@@ -1,62 +1,46 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-
     <style>
-         @keyframes slide {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-100%);
-            }
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,700,900');
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
-    .logos {
-         overflow: hidden;
-        width: 100%;
-        height: 150px;
-        position: relative;
-        margin-bottom: 30px;
-    }
+        .logos {
+            overflow: hidden; 
+            width: 100%; 
+            height: auto; 
+            position: relative;
+            margin-bottom: 30px;
+        }
 
+        .logos-slide {
+            display: flex; 
+            animation: scroll 10s linear infinite; 
+        }
 
-    .logos-slide {
-    display: flex;
-    animation: scroll 10s linear infinite;
-    }
-
-/* Gambar */
-.logos-slide img {
-    width: 25%; /* Setiap gambar 1/4 dari kontainer */
-    height: 100%; /* Tinggi gambar penuh */
-    object-fit: cover; /* Proporsi gambar tetap */
-}
-
-/* Animasi bergerak */
-@keyframes scroll {
-    0% {
-        transform: translateX(0); /* Awal posisi */
-    }
-    100% {
-        transform: translateX(-100%); /* Geser sepanjang kontainer */
-    }
-}
-
+        .logos-slide img {
+            width: 25%; 
+            height: auto; 
+            object-fit: cover; 
+        }
 
         .container-fotowelcome {
             position: relative;
             overflow: hidden;
             color: white;
-            width: 90%;
-            padding: 90px;
+            width: 98%;
+            padding: 2% 5% 0;
             border-radius: 50px;
             margin: 30px auto;
             display: flex;
-            justify-content: center;
             flex-direction: column;
+            aspect-ratio: 16/9;
         }
 
-        .background-image {
+        #background-slider {
             position: absolute;
             top: 0;
             left: 0;
@@ -72,105 +56,148 @@
         .container-fotowelcome img {
             margin-left: auto;
             margin-right: 0;
-            width: 20%;
+            margin-bottom: 10%;
+            width: 10%;
         }
-
 
         a.tombol-about {
             background-color: #E23917;
             color: white;
             border-radius: 50px;
             padding: 10px;
-            width: 224px;
             text-align: center;
             opacity: 86%;
+            width: 20%;
+            transition: background-color 0.5s, color 0.5s;
         }
 
-        a:hover {
+        a.tombol-about:hover {
             background-color: white;
             color: black;
-            transition: 0.5s;
         }
 
         .quotes {
-            padding: 30px;
-            margin: 70px;
+            margin: 10% auto;
             width: 90%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             font-size: 20px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .join-us-section {
-            padding: 30px;
-            margin: 70px;
+            margin: 10%;
+            text-align: center;
         }
-        .donate-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 24px;
-            font-size: 18px;
-            color: white;
+
+        .join-us-button {
+            background-color: #28a745; 
+            color: white; 
             text-decoration: none;
-            background-color: #28a745; /* Warna hijau */
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border-radius: 25px; 
+            border: none; 
+            display: inline-block; 
+            transition: background-color 0.3s ease; 
         }
 
-        .donate-button:hover {
-            background-color: #218838; /* Hijau lebih gelap saat hover */
-            transform: translateY(-2px); /* Efek sedikit terangkat */
+        .join-us-button:hover {
+            background-color: #45a049; 
         }
-
-        .button-icon {
-            width: 24px; /* Ukuran ikon */
-            height: 24px;
-            margin-right: 10px; /* Jarak antara ikon dan teks */
-            filter: brightness(0) invert(1); /* Mengubah ikon menjadi putih */
-        }
-
 
         .ourprogram {
             padding: 40px;
             margin-bottom: 20px;
+            background-color: #443333;
+            align-items: center;
         }
 
         .carousel-inner img {
-            aspect-ratio: 16/9;
+            aspect-ratio: 16/9; 
+            height: auto; 
         }
 
         .carousel-item {
             display: flex;
             justify-content: space-between;
             gap: 15px;
-            padding: 15px;
         }
 
         .carousel-item .card {
             flex: 1;
             margin: 0 5px;
+            max-width: 33%;
         }
-
+        .row{
+            justify-content:center;
+            margin-left:2px;
+        }
         @media (max-width: 720px) {
             .carousel-item .card {
                 width: 45%;
+                margin-bottom: 10px;
             }
             .container-fotowelcome img{
                 width: 50px;
+                padding-top: 10px;
+                margin-bottom: 10px;
             }
         }
 
         @media (max-width: 576px) {
             .carousel-item .card {
                 width: 100%;
+                margin-bottom:10px;
+            }
+            a.tombol-about{
+                width: 28%;
+            }
+            container-fotowelcome img{
+                padding-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            z-index: 2;
+        }
+
+        .carousel-control-prev {
+            left: 10px;
+        }
+
+        .carousel-control-next {
+            right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 40px; 
+                height: 40px;
+            }
+        }
+
+            .carousel-inner {
+                flex-wrap: wrap;
+            }
+
+            .carousel-item {
+                flex: 1 1 100%;
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            .carousel-item .card {
+                margin: auto;
             }
         }
 
@@ -179,34 +206,6 @@
             width: 30px;
             transition: 2s;
         }
-
-        .carousel-item {
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-inner {
-            display: flex;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-        }
-
-        .testimony-item.left .testimony-content {
-            flex-direction: row; /* fotonya dikiri */
-        }
-
-        .testimony-item.left .testimony-text {
-            text-align: left; /* teksnya align kiri */
-        }
-
-        .testimony-item.right .testimony-content {
-            flex-direction: row-reverse; /* fotonya dikanan */
-        }
-
-        .testimony-item.right .testimony-text {
-            text-align: right; /* teksnya align kanan */
-        }
-
         .testimony-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -223,9 +222,9 @@
         }
 
         .testimony-content {
-            display: flex;
+            display : flex;
             gap: 20px;
-            background-color: #8EC73D;
+            background-color: #ffc78f;
             border-radius: 15px;
             padding: 20px;
             width: 100%;
@@ -256,37 +255,58 @@
         }
 
         @media (max-width: 720px) {
+            .logos-slide img {
+                width: 50%;
+            }
+
+            .container-fotowelcome img {
+                width: 50px;
+                padding-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .join-us-button {
+                width: 80%;
+            }
+
+            .carousel-item .card {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
             .testimony-content {
-                flex-direction: column !important;
+                flex-direction: column !important; 
             }
 
             .testimony-img img {
                 width: 80px;
                 height: 80px;
             }
+
             .testimony-text p {
                 text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            a.tombol-about {
+                width: 40%; 
             }
         }
     </style>
 
     <div class="container-home">
-        <!-- Welcome -->
         <div class="container-fotowelcome">
-            <div class="background-image" style="background-image: url('{{ $images[0] ?? '' }}');"></div>
+            <div id="background-slider"></div>
             <img src="{{ asset('storage/' . $view->favicon_logo) }}" alt="ARK Care Ministry">
-            <h3>{{ $view->title }}</h3>
-            <h3>{{ $view->greeting_message }}</h3>
-            <p>{{ $view->placeholder_text }}</p>
+            <h3 style="color:white;"><b>{{ $view->greeting_message }}</b></h3>
+            <p style="color:white;">{{ $view->tagline }}</p>
             <a href="/about" class="tombol-about">About Us</a>
         </div>
 
-
-        <!-- Quotes -->
         <div class="quotes">
-            <p style="color:black;" align="center">{{ $view->explanation }}
-                <br/><br/>
-            </p>
+            <p style="color: #2B2525;" align="center"><b>{{ $view->quotes }}</b></p>
+            <p>{{ $view->quotesby }}</p>
         </div>
 
         <div class="logos">
@@ -294,43 +314,29 @@
                 @if($view)
                     @foreach(['introduction_banner_1', 'introduction_banner_2', 'introduction_banner_3', 'introduction_banner_4'] as $banner)
                         @if($view->$banner)
-                            <img src="{{ asset('storage/' . $view->$banner) }}" alt="Carousel Image" />
+                            <img src="{{ asset('storage/' . $view->$banner) }}" alt="Carousel Image"/>
                         @endif
                     @endforeach
                 @else
                     <p>No images available</p>
                 @endif
             </div>
-        </div>
+        </div>        
 
+        <div class="join-us-section">
+            <p style="color:#2B2525;">{{ $view->explanation }}</p>
+            <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="join-us-button">Join Us</a>
+        </div>        
 
-        <div class="join-us-section" align="center">
-            <p>
-                Join us in making a difference! Together, we can create a positive impact and support those in need.
-                Be a part of something meaningful.
-                <br/><br/>
-                <a href="https://forms.gle/exampleGoogleFormLink" target="_blank" class="donate-button">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1946/1946433.png" alt="House Icon" class="button-icon" />
-                    Donate Now
-                </a>
-            </p>
-        </div>
-
-
-        <!-- Our Program -->
-        <div class="ourprogram w-full py-16 px-4" style="background-color: #443333;">
+        <div class="ourprogram">
             <div class="max-w-6xl mx-auto text-center mb-12">
-                <h3 class="font-bold text-white mb-4">Our Program</h2>
-                <h6 style="color: #ffaa23;">We help those in need</p>
+                <h3 class="font-bold text-white">Our Program</h3>
+                <h6 style="color: #ffaa23;">We help those in need</h6>
             </div>
 
-            <!-- Carousel -->
-            <div id="programCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner" id="carousel-inner">
-                    <!-- Cardsnya dipake id carousel-inner -->
-                </div>
+            <div id="programCarousel" class="carousel slide container-fluid" data-bs-ride="carousel">
+                <div class="carousel-inner" id="carousel-inner"></div>
                 <br/>
-                <!-- Control Carousel -->
                 <button class="carousel-control-prev" type="button" id="prevBtn">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -342,18 +348,17 @@
             </div>
         </div>
 
-        <!-- Testimoni -->
-        <div class="container-testimoni" align="center">
-            <h3 style="margin-top:100px;">{{ $view->testimonial_title }}</h3><br/>
+        <div class="container-testimoni" align="center" style="margin-bottom:20px;">
+            <h3 style="margin-top:100px;">{{ $view->testimonial_title }}</h3>
             <div class="testimony-grid">
                 @foreach($testimonies as $index => $testimony)
                     <div class="testimony-item {{ $index % 2 == 0 ? 'left' : 'right' }}">
                         <div class="testimony-content">
                             <div class="testimony-img">
-                                <img src="{{ asset('storage/' . $testimony->image) }}" alt="Profil">
+                                <img src="{{ asset('storage/' . $testimony->image) }}" alt="Profile">
                             </div>
                             <div class="testimony-text">
-                                <p style="color:black;">"{{ $testimony->text }}"</p>
+                                <p style="color:#2B2525;"> "{{ $testimony->text }}"</p>
                                 <p>- {{ $testimony->status }} -</p>
                             </div>
                         </div>
@@ -368,105 +373,135 @@
 
     <script>
         // Background image di "Welcome to ACM"
-        const images = @json($images);
-        let currentImageIndex = 0;
+        const sliderData = @json($slider); 
+        let currentIndex = 0;
 
-        function changeBackground() {
-            const container = document.querySelector('.container-fotowelcome');
-            const backgroundImage = container.querySelector('.background-image');
+        function updateBackground() {
+            const sliderDiv = document.getElementById('background-slider');
 
-            if (images.length > 0) {
-                backgroundImage.style.opacity = 0;
+            if (sliderData.length > 0) {
+                const image = sliderData[currentIndex].image;
 
-                setTimeout(() => {
-                    backgroundImage.style.backgroundImage = `url('/storage/${images[currentImageIndex]}')`;
-                    backgroundImage.style.opacity = 1;
-                }, 1000);
-                currentImageIndex = (currentImageIndex + 1) % images.length;
+                sliderDiv.style.opacity = 0;
+
+                setTimeout(function () {
+                    sliderDiv.style.backgroundImage = `url('storage/${image}')`;
+                    sliderDiv.style.opacity = 1;
+                }, 700); 
+
+                currentIndex = (currentIndex + 1) % sliderData.length;
             }
         }
 
-        changeBackground();
-        setInterval(changeBackground, 4000);
-
+        updateBackground();
+        setInterval(updateBackground, 4000); 
+        
         document.addEventListener("DOMContentLoaded", function () {
-        const logosSlide = document.querySelector(".logos-slide");
-        const logosContainer = document.querySelector(".logos");
+            const logosSlide = document.querySelector(".logos-slide");
+            const logosContainer = document.querySelector(".logos");
 
-        // Hitung total lebar container dan satu gambar
-        const containerWidth = logosContainer.offsetWidth;
-        const imageWidth = logosSlide.querySelector("img").offsetWidth;
+            const containerWidth = logosContainer.offsetWidth;
+            const imageWidth = logosSlide.querySelector("img").offsetWidth;
 
-        // Hitung jumlah minimum duplikat agar memenuhi container
-        const imagesNeeded = Math.ceil(containerWidth / imageWidth);
+            const imagesNeeded = Math.ceil(containerWidth / imageWidth);
 
-        // Gandakan gambar hingga jumlah mencukupi
-        for (let i = 0; i < imagesNeeded; i++) {
-        logosSlide.innerHTML += logosSlide.innerHTML;
-    }
-
-        // Pastikan flex untuk elemen agar semuanya horizontal
-        logosSlide.style.display = "flex";
-    });
-
-
-
-        // id carousel-inner
-        const programs = @json($programs);
-
-        let carouselIndex = 0;
-
-        function updateCarousel() {
-            const carouselInner = document.getElementById('carousel-inner');
-            carouselInner.innerHTML = '';
-
-            const chunk = programs.slice(carouselIndex, carouselIndex + 3);
-
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('carousel-item');
-            if (carouselIndex === 0) {
-                itemDiv.classList.add('active');
+            for (let i = 0; i < imagesNeeded; i++) {
+                logosSlide.innerHTML += logosSlide.innerHTML;
             }
 
-            const rowDiv = document.createElement('div');
-            rowDiv.classList.add('row', 'w-100');
+            logosSlide.style.display = "flex";
+        });
+        
+        document.addEventListener("DOMContentLoaded", function () {
+            const programs = @json($programs);
+            const carouselInner = document.getElementById('carousel-inner');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
 
-            chunk.forEach(program => {
-                const colDiv = document.createElement('div');
-                colDiv.classList.add('col-12', 'col-md-4', 'd-flex');
+            let carouselIndex = 0;
+
+            function renderProgramsForMobile() {
+                carouselInner.innerHTML = '';
+
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('carousel-item', 'active', 'w-100');
 
                 const cardDiv = document.createElement('div');
-                cardDiv.classList.add('card', 'h-100', 'w-100');
+                cardDiv.classList.add('card', 'h-100', 'w-100', 'd-flex', 'shadow-sm', 'border-light');  // Add shadow and border for aesthetics
+                cardDiv.style.maxWidth = '100%'; // Ensure cards don't exceed container width
                 cardDiv.innerHTML = `
-                    <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}">
+                    <img src="/storage/${programs[carouselIndex].image}" class="card-img-top" alt="${programs[carouselIndex].title}" style="object-fit: cover; height: 200px;">
                     <div class="card-body">
-                        <h5 class="card-title">${program.title}</h5>
-                        <p class="card-text">
-                            ${program.description.slice(0, 100)}
-                        </p>
+                        <h5 class="card-title">${programs[carouselIndex].title}</h5>
+                        <p class="card-text">${programs[carouselIndex].description.slice(0, 100)}...</p>
                     </div>
                 `;
-                colDiv.appendChild(cardDiv);
-                rowDiv.appendChild(colDiv);
-            });
 
-            itemDiv.appendChild(rowDiv);
-            carouselInner.appendChild(itemDiv);
-        }
+                itemDiv.appendChild(cardDiv);
+                carouselInner.appendChild(itemDiv);
+            }
 
-        function nextSlide() {
-            carouselIndex = (carouselIndex + 1) % programs.length;
+            function renderCarouselForDesktop() {
+                carouselInner.innerHTML = '';
+
+                const chunk = [
+                    programs[carouselIndex % programs.length],
+                    programs[(carouselIndex + 1) % programs.length],
+                    programs[(carouselIndex + 2) % programs.length],
+                ];
+
+                const itemDiv = document.createElement('div');
+                itemDiv.classList.add('carousel-item', 'active', 'justify-content-center');
+                const rowDiv = document.createElement('div');
+                rowDiv.classList.add('row', 'w-100', 'container-fluid', 'gx-3', 'gy-4'); 
+
+                chunk.forEach(program => {
+                    const colDiv = document.createElement('div');
+                    colDiv.classList.add('col-12', 'col-md-4', 'd-flex', 'mb-4'); 
+
+                    const cardDiv = document.createElement('div');
+                    cardDiv.classList.add('card', 'h-100', 'd-flex', 'shadow-sm', 'border-light');
+                    cardDiv.style.maxWidth = '100%';
+                    cardDiv.innerHTML = `
+                        <img src="/storage/${program.image}" class="card-img-top" alt="${program.title}" style="object-fit: cover; height: 200px;">
+                        <div class="card-body">
+                            <h5 class="card-title">${program.title}</h5>
+                            <p class="card-text">${program.description.slice(0, 100)}...</p>
+                        </div>
+                    `;
+                    colDiv.appendChild(cardDiv);
+                    rowDiv.appendChild(colDiv);
+                });
+
+                itemDiv.appendChild(rowDiv);
+                carouselInner.appendChild(itemDiv);
+            }
+
+            function updateCarousel() {
+                if (window.innerWidth < 768) {
+                    renderProgramsForMobile();
+                } else {
+                    renderCarouselForDesktop();
+                }
+            }
+
+            function nextSlide() {
+                carouselIndex = (carouselIndex + 1) % programs.length;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                carouselIndex = (carouselIndex - 1 + programs.length) % programs.length;
+                updateCarousel();
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            window.addEventListener('resize', updateCarousel);
             updateCarousel();
-        }
+        });
 
-        function prevSlide() {
-            carouselIndex = (carouselIndex - 1 + programs.length) % programs.length;
-            updateCarousel();
-        }
 
-        document.getElementById('nextBtn').addEventListener('click', nextSlide);
-        document.getElementById('prevBtn').addEventListener('click', prevSlide);
-
-        updateCarousel();
     </script>
 </x-layout>
